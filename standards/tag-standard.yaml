@@ -1,0 +1,88 @@
+version: 1
+metadata:
+  description: "AWS Resource Tagging Standard for Web Application"
+  author: "DevOps Team"
+  created_date: "2024-01-01"
+  updated_date: "2024-01-01"
+
+cloud_provider: "aws"
+
+required_tags:
+  - key: "Environment"
+    description: "Deployment environment"
+    allowed_values: ["Production", "Staging", "Development", "Testing"]
+    case_sensitive: false
+    
+  - key: "Owner"
+    description: "Team or individual responsible for the resource"
+    format: "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$"
+    data_type: "email"
+    
+  - key: "Project"
+    description: "Project name"
+    data_type: "string"
+    min_length: 2
+    max_length: 50
+    format: "^[a-zA-Z][a-zA-Z0-9-_]*$"
+    
+  - key: "ManagedBy"
+    description: "Tool or team managing the resource"
+    allowed_values: ["Terraform", "CloudFormation", "Manual", "Ansible"]
+    case_sensitive: false
+
+optional_tags:
+  - key: "CostCenter"
+    description: "Cost center for billing"
+    data_type: "string"
+    format: "^CC-[0-9]{4}$"
+    
+  - key: "BackupSchedule"
+    description: "Backup schedule if applicable"
+    allowed_values: ["Daily", "Weekly", "Monthly", "None"]
+    case_sensitive: false
+    
+  - key: "MaintenanceWindow"
+    description: "Maintenance window"
+    format: "^(Mon|Tue|Wed|Thu|Fri|Sat|Sun)\\s([0-1]?[0-9]|2[0-3]):[0-5][0-9]-([0-1]?[0-9]|2[0-3]):[0-5][0-9]$"
+    
+  - key: "DataClassification"
+    description: "Data sensitivity level"
+    allowed_values: ["Public", "Internal", "Confidential", "Restricted"]
+    case_sensitive: false
+
+global_excludes:
+  - "aws_iam_role"
+  - "aws_iam_policy"
+  - "aws_iam_role_policy_attachment"
+  - "aws_iam_instance_profile"
+  - "random_string"
+
+resource_rules:
+  - resource_types: ["aws_instance", "aws_launch_template"]
+    required_tags: 
+      - "BackupSchedule"
+    optional_tags:
+      - "MaintenanceWindow"
+      
+  - resource_types: ["aws_db_instance"]
+    required_tags:
+      - "BackupSchedule"
+      - "DataClassification"
+    optional_tags:
+      - "MaintenanceWindow"
+      
+  - resource_types: ["aws_s3_bucket"]
+    required_tags:
+      - "DataClassification"
+    optional_tags:
+      - "BackupSchedule"
+      
+  - resource_types: ["aws_lb", "aws_autoscaling_group"]
+    required_tags: []
+    optional_tags:
+      - "MaintenanceWindow"
+
+validation_rules:
+  case_sensitive_keys: false
+  allow_extra_tags: true
+  strict_mode: false

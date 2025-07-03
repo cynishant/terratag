@@ -52,3 +52,9 @@ tf
 dist/
 
 venv
+/test-scenarios/aws-complex/.terraform
+/test-scenarios/mixed-providers/.terraform
+/test-scenarios/aws-working/.terraform
+/test-scenarios/gcp-complex/.terraform
+/demo-deployment/.terraform
+/test-scenarios/simple-aws/.terraform

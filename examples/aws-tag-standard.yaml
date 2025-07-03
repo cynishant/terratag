@@ -1,0 +1,110 @@
+# AWS Resource Tagging Standard Example
+version: 1
+metadata:
+  description: "AWS Resource Tagging Standard"
+  author: "Cloud Team"
+  date: "2025-06-30"
+  version: "1.0.0"
+
+cloud_provider: "aws"
+
+required_tags:
+  - key: "Name"
+    description: "Descriptive name for the resource"
+    data_type: "string"
+    min_length: 1
+    max_length: 255
+    examples:
+      - "web-server-prod"
+      - "database-staging"
+
+  - key: "Environment"
+    description: "Deployment environment"
+    allowed_values: ["Production", "Staging", "Development", "Testing"]
+    case_sensitive: false
+    examples:
+      - "Production"
+      - "Staging"
+
+  - key: "Owner"
+    description: "Team responsible for the resource"
+    format: "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$"
+    data_type: "email"
+    examples:
+      - "team@company.com"
+      - "devops@example.org"
+
+  - key: "CostCenter"
+    description: "Cost center for billing"
+    format: "^CC\\d{4}$"
+    examples:
+      - "CC1234"
+      - "CC5678"
+
+optional_tags:
+  - key: "Project"
+    description: "Associated project name"
+    data_type: "string"
+    max_length: 100
+    examples:
+      - "mobile-app"
+      - "data-analytics"
+
+  - key: "Backup"
+    description: "Backup schedule"
+    allowed_values: ["Daily", "Weekly", "Monthly", "None"]
+    default_value: "None"
+    case_sensitive: false
+
+  - key: "CreatedBy"
+    description: "Who created this resource"
+    data_type: "string"
+    examples:
+      - "terraform"
+      - "john.doe"
+
+  - key: "ManagedBy"
+    description: "Management system"
+    allowed_values: ["Terraform", "Manual", "Ansible", "CloudFormation"]
+    default_value: "Terraform"
+
+  - key: "DataClassification"
+    description: "Data sensitivity level"
+    allowed_values: ["Public", "Internal", "Confidential", "Restricted"]
+
+  - key: "MaintenanceWindow"
+    description: "Preferred maintenance window"
+    format: "^(Sun|Mon|Tue|Wed|Thu|Fri|Sat):\\d{2}:\\d{2}-\\d{2}:\\d{2}$"
+    examples:
+      - "Sun:03:00-04:00"
+      - "Sat:02:00-03:00"
+
+global_excludes:
+  - "aws_iam_role"
+  - "aws_iam_policy"
+  - "aws_iam_user"
+  - "aws_iam_group"
+
+resource_rules:
+  - resource_types:
+      - "aws_instance"
+      - "aws_ebs_volume"
+    required_tags:
+      - "Backup"
+    override_tags:
+      - key: "Backup"
+        description: "Backup schedule for compute resources"
+        allowed_values: ["Daily", "Weekly"]
+        # Override to make backup required for instances and volumes
+
+  - resource_types:
+      - "aws_s3_bucket"
+    required_tags:
+      - "DataClassification"
+
+  - resource_types:
+      - "aws_rds_instance"
+      - "aws_db_instance"
+    required_tags:
+      - "Backup"
+      - "MaintenanceWindow"

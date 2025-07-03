@@ -1,0 +1,111 @@
+version: 1
+metadata:
+  description: "Comprehensive AWS Tagging Standard for Terratag Testing"
+  author: "Terratag Test Suite"
+  created_date: "2025-07-03"
+  updated_date: "2025-07-03"
+cloud_provider: aws
+
+required_tags:
+  - key: Environment
+    description: "Deployment environment"
+    allowed_values: ["Production", "Staging", "Development", "Testing"]
+    case_sensitive: false
+    data_type: string
+    
+  - key: Project
+    description: "Project or application name"
+    data_type: string
+    format: "^[a-zA-Z][a-zA-Z0-9-_]{2,49}$"
+    examples: ["terratag-test", "my-app", "data-pipeline"]
+    
+  - key: Owner
+    description: "Resource owner email address"
+    data_type: email
+    format: "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$"
+    
+  - key: CostCenter
+    description: "Cost center for billing allocation"
+    data_type: string
+    format: "^CC-[A-Z0-9]{3,10}-[0-9]{3}$"
+    examples: ["CC-DEV-001", "CC-PROD-123"]
+    
+  - key: ManagedBy
+    description: "How the resource is managed"
+    allowed_values: ["Terraform", "Manual", "CloudFormation", "CDK"]
+    case_sensitive: false
+    data_type: string
+
+optional_tags:
+  - key: Team
+    description: "Team responsible for the resource"
+    data_type: string
+    allowed_values: ["DevOps", "Backend", "Frontend", "Data", "Security", "Platform"]
+    
+  - key: Application
+    description: "Application name"
+    data_type: string
+    max_length: 50
+    
+  - key: Version
+    description: "Application or infrastructure version"
+    data_type: string
+    format: "^v?[0-9]+\\.[0-9]+\\.[0-9]+.*$"
+    examples: ["v1.0.0", "1.2.3", "v2.1.0-beta"]
+    
+  - key: BusinessUnit
+    description: "Business unit"
+    data_type: string
+    allowed_values: ["Engineering", "Sales", "Marketing", "Finance", "HR"]
+    
+  - key: Backup
+    description: "Backup configuration"
+    data_type: string
+    allowed_values: ["daily", "weekly", "monthly", "none"]
+    default_value: "none"
+    
+  - key: Monitoring
+    description: "Monitoring configuration"
+    data_type: string
+    allowed_values: ["enabled", "disabled", "basic", "detailed"]
+    default_value: "basic"
+    
+  - key: Compliance
+    description: "Compliance requirements"
+    data_type: string
+    allowed_values: ["pii", "pci", "hipaa", "sox", "none"]
+    
+  - key: DataClassification
+    description: "Data classification level"
+    data_type: string
+    allowed_values: ["public", "internal", "confidential", "restricted"]
+    default_value: "internal"
+
+validation_rules:
+  case_sensitive_keys: false
+  allow_extra_tags: true
+  strict_mode: false
+  max_tags_per_resource: 50
+
+global_excludes:
+  - "aws_caller_identity"
+  - "aws_region"
+  - "aws_availability_zones"
+  - "aws_partition"
+  - "aws_ami"
+
+resource_rules:
+  - resource_types: ["aws_instance", "aws_launch_template"]
+    required_tags: ["Backup", "Monitoring"]
+    
+  - resource_types: ["aws_db_instance", "aws_rds_cluster"]
+    required_tags: ["Backup", "DataClassification"]
+    
+  - resource_types: ["aws_s3_bucket"]
+    required_tags: ["DataClassification", "Compliance"]
+    
+  - resource_types: ["aws_cloudtrail", "aws_config_*"]
+    required_tags: ["Compliance"]
+    
+  - resource_types: ["aws_iam_role", "aws_iam_policy"]
+    required_tags: ["Team"]

@@ -1,0 +1,42 @@
+version: 1
+metadata:
+  description: "Demo AWS Resource Tagging Standard"
+  author: "Demo Team"
+cloud_provider: "aws"
+
+required_tags:
+  - key: "Environment"
+    description: "Environment designation"
+    allowed_values: ["Demo", "Production", "Staging", "Development"]
+    case_sensitive: false
+  - key: "Name"
+    description: "Resource name"
+    data_type: "string"
+    min_length: 3
+
+optional_tags:
+  - key: "Purpose"
+    description: "Resource purpose"
+    data_type: "string"
+  - key: "Project"
+    description: "Project identifier"
+    data_type: "string"
+  - key: "Owner"
+    description: "Resource owner"
+    data_type: "string"
+  - key: "CostCenter"
+    description: "Cost center"
+    data_type: "string"
+
+global_excludes:
+  - "aws_s3_bucket_lifecycle_configuration"
+  - "aws_s3_bucket_versioning" 
+  - "aws_s3_bucket_server_side_encryption_configuration"
+  - "aws_s3_bucket_public_access_block"
+  - "aws_route_table_association"
+  - "aws_iam_role_policy_attachment"
+  - "random_string"
+
+resource_rules:
+  - resource_types: ["aws_s3_bucket"]
+    required_tags: ["Purpose"]  # Additional required tag for S3 buckets

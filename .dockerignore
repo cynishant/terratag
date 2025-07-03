@@ -1,0 +1,104 @@
+# Docker ignore file for Terratag
+# Optimizes build performance by excluding unnecessary files
+
+# Git files
+.git
+.gitignore
+.gitattributes
+
+# Build artifacts
+terratag
+*.exe
+*.so
+*.dylib
+dist/
+build/
+
+# Test artifacts - exclude the entire test directory due to large size
+test/
+# test/fixture/**/out/
+# test/fixture/**/.terraform/
+# test/fixture/**/.terragrunt-cache/
+# test/fixture/**/terraform.tfstate*
+# test/validation-tests/**/terraform.tfstate*
+# test/validation-tests/**/.terraform/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Dependency directories
+vendor/
+node_modules/
+
+# Documentation build
+docs/_build/
+docs/site/
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+
+# Coverage reports
+coverage.txt
+coverage.html
+*.coverage
+
+# Local environment files
+.env
+.env.local
+.env.production
+
+# Docker files (we want to include these)
+!Dockerfile
+!docker-compose.yml
+!.dockerignore
+
+# CI/CD files
+.github/
+.gitlab-ci.yml
+.circleci/
+
+# Package files
+*.tar.gz
+*.zip
+
+# Local development
+scratch/
+playground/
+bin/
+data/
+# web/ # Commented out - we need web directory for UI build
+
+# Binary files
+terratag-bin
+
+# Reports output
+reports/
+*.json
+*.md
+*.yaml
+!examples/**/*.yaml
+!standards/**/*.yaml
+!test/**/*.yaml
+
+# Terraform files in development
+*.tfstate
+*.tfstate.*
+.terraform/
+.terragrunt-cache/
+*.tfplan
+*.tfvars

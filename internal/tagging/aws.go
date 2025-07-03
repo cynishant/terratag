@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"strings"
 
-	"github.com/env0/terratag/internal/convert"
-	"github.com/env0/terratag/internal/tag_keys"
+	"github.com/cloudyali/terratag/internal/convert"
+	"github.com/cloudyali/terratag/internal/tag_keys"
 	"github.com/hashicorp/hcl/v2/hclwrite"
 )
 

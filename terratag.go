@@ -4,21 +4,25 @@ import (
 	"encoding/json"
 	"fmt"
 	"log"
+	"os"
 	"regexp"
 	"strings"
 	"sync"
 	"sync/atomic"
 
-	"github.com/env0/terratag/cli"
-	"github.com/env0/terratag/internal/common"
-	"github.com/env0/terratag/internal/convert"
-	"github.com/env0/terratag/internal/file"
-	"github.com/env0/terratag/internal/providers"
-	"github.com/env0/terratag/internal/tag_keys"
-	"github.com/env0/terratag/internal/tagging"
-	"github.com/env0/terratag/internal/terraform"
-	"github.com/env0/terratag/internal/tfschema"
-	"github.com/env0/terratag/internal/utils"
+	"github.com/cloudyali/terratag/cli"
+	"github.com/cloudyali/terratag/internal/cleanup"
+	"github.com/cloudyali/terratag/internal/common"
+	"github.com/cloudyali/terratag/internal/convert"
+	"github.com/cloudyali/terratag/internal/file"
+	"github.com/cloudyali/terratag/internal/providers"
+	"github.com/cloudyali/terratag/internal/standards"
+	"github.com/cloudyali/terratag/internal/tag_keys"
+	"github.com/cloudyali/terratag/internal/tagging"
+	"github.com/cloudyali/terratag/internal/terraform"
+	"github.com/cloudyali/terratag/internal/tfschema"
+	"github.com/cloudyali/terratag/internal/utils"
+	"github.com/cloudyali/terratag/internal/validation"
 	"github.com/hashicorp/hcl/v2/hclwrite"
 )
 
@@ -40,7 +44,140 @@ func (c *counters) Add(other counters) {
 	atomic.AddUint32(&c.taggedFiles, other.taggedFiles)
 }
 
+// TagLoadingError represents errors that occur during tag loading
+type TagLoadingError struct {
+	FilePath string
+	Cause    string
+	Err      error
+}
+
+func (e *TagLoadingError) Error() string {
+	return fmt.Sprintf("tag loading failed for %s (%s): %v", e.FilePath, e.Cause, e.Err)
+}
+
+func (e *TagLoadingError) Unwrap() error {
+	return e.Err
+}
+
+// loadTagsFromFile loads tags from a tag standardization file and returns them as JSON string
+func loadTagsFromFile(filePath string) (string, error) {
+	if filePath == "" {
+		return "", &TagLoadingError{
+			FilePath: filePath,
+			Cause:    "empty file path",
+			Err:      fmt.Errorf("tag standard file path cannot be empty"),
+		}
+	}
+
+	// Check if file exists and is readable
+	if _, err := os.Stat(filePath); err != nil {
+		if os.IsNotExist(err) {
+			return "", &TagLoadingError{
+				FilePath: filePath,
+				Cause:    "file not found",
+				Err:      fmt.Errorf("tag standard file does not exist: %s", filePath),
+			}
+		}
+		return "", &TagLoadingError{
+			FilePath: filePath,
+			Cause:    "file access error",
+			Err:      fmt.Errorf("cannot access tag standard file: %w", err),
+		}
+	}
+
+	standard, err := standards.LoadStandard(filePath)
+	if err != nil {
+		return "", &TagLoadingError{
+			FilePath: filePath,
+			Cause:    "invalid tag standard format",
+			Err:      err,
+		}
+	}
+
+	// Validate that we have at least some tags defined
+	if len(standard.RequiredTags) == 0 && len(standard.OptionalTags) == 0 {
+		return "", &TagLoadingError{
+			FilePath: filePath,
+			Cause:    "no tags defined",
+			Err:      fmt.Errorf("tag standard file must define at least one required or optional tag"),
+		}
+	}
+
+	// Extract tags from the standard file
+	// For tagging mode, we'll use required tags and their default values
+	tags := make(map[string]string)
+	var missingValues []string
+	
+	// Add required tags with their default values
+	for _, tagSpec := range standard.RequiredTags {
+		if tagSpec.DefaultValue != "" {
+			tags[tagSpec.Key] = tagSpec.DefaultValue
+		} else if len(tagSpec.Examples) > 0 {
+			tags[tagSpec.Key] = tagSpec.Examples[0]
+			log.Printf("[INFO] Using example value '%s' for required tag '%s'", tagSpec.Examples[0], tagSpec.Key)
+		} else if len(tagSpec.AllowedValues) > 0 {
+			tags[tagSpec.Key] = tagSpec.AllowedValues[0]
+			log.Printf("[INFO] Using first allowed value '%s' for required tag '%s'", tagSpec.AllowedValues[0], tagSpec.Key)
+		} else {
+			// Track tags that need manual configuration
+			missingValues = append(missingValues, tagSpec.Key)
+			// Use a descriptive placeholder that indicates action needed
+			tags[tagSpec.Key] = fmt.Sprintf("CONFIGURE_%s_VALUE", strings.ToUpper(tagSpec.Key))
+		}
+	}
+	
+	// Add optional tags with their default values if specified
+	for _, tagSpec := range standard.OptionalTags {
+		if tagSpec.DefaultValue != "" {
+			tags[tagSpec.Key] = tagSpec.DefaultValue
+		}
+	}
+
+	// Warn about tags that need manual configuration
+	if len(missingValues) > 0 {
+		log.Printf("[WARN] The following required tags need manual configuration in your tag standard file:")
+		for _, key := range missingValues {
+			log.Printf("[WARN]   - %s: Add 'default_value', 'examples', or 'allowed_values' to the tag specification", key)
+		}
+		log.Printf("[WARN] Placeholder values have been used. Update your tag standard file before applying tags.")
+	}
+
+	// Convert to JSON string
+	tagsJSON, err := json.Marshal(tags)
+	if err != nil {
+		return "", &TagLoadingError{
+			FilePath: filePath,
+			Cause:    "JSON serialization failed",
+			Err:      fmt.Errorf("failed to marshal tags to JSON: %w", err),
+		}
+	}
+
+	log.Printf("[INFO] Successfully loaded %d tags from standard file: %s", len(tags), filePath)
+	return string(tagsJSON), nil
+}
+
 func Terratag(args cli.Args) error {
+	// Create cleanup manager for the operation
+	cleanupMgr := cleanup.NewCleanupManager(nil)
+	defer func() {
+		if err := cleanupMgr.Stop(); err != nil {
+			log.Printf("[WARN] Cleanup failed: %v", err)
+		}
+	}()
+
+	// Handle validation-only mode
+	if args.ValidateOnly {
+		return validation.ValidateStandards(args)
+	}
+
+	// Load tags from the standardization file
+	tagsJSON, err := loadTagsFromFile(args.TagsFile)
+	if err != nil {
+		return fmt.Errorf("failed to load tags from file: %w", err)
+	}
+
+	log.Printf("[INFO] Loaded tags from %s: %s", args.TagsFile, tagsJSON)
+
 	if err := terraform.ValidateInitRun(args.Dir, args.Type); err != nil {
 		return err
 	}
@@ -54,7 +191,7 @@ func Terratag(args cli.Args) error {
 		Filter:              args.Filter,
 		Skip:                args.Skip,
 		Dir:                 args.Dir,
-		Tags:                args.Tags,
+		Tags:                tagsJSON, // Use the loaded tags from file
 		Matches:             matches,
 		IsSkipTerratagFiles: args.IsSkipTerratagFiles,
 		Rename:              args.Rename,
@@ -63,10 +200,52 @@ func Terratag(args cli.Args) error {
 		KeepExistingTags:    args.KeepExistingTags,
 	}
 
+	// Clean up expired provider cache entries (only if cache is enabled)
+	if !args.NoProviderCache {
+		cacheManager := providers.GetGlobalCacheManager()
+		if err := cacheManager.CleanupExpiredEntries(); err != nil {
+			log.Printf("[WARN] Failed to cleanup expired cache entries: %v", err)
+		}
+	}
+
+	// Ensure terraform is initialized if auto-init is enabled
+	if args.AutoInit {
+		log.Printf("[INFO] Auto-init enabled, ensuring terraform is properly initialized")
+		if err := terraform.EnsureInitialized(args.Dir, common.IACType(args.Type), args.DefaultToTerraform, !args.NoProviderCache); err != nil {
+			log.Printf("[WARN] Auto-initialization failed: %v", err)
+			log.Printf("[INFO] Continuing with manual initialization check")
+		} else {
+			log.Printf("[INFO] Terraform initialization verified/completed successfully")
+		}
+	}
+
 	// Initialize provider schemas before processing files
-	if err := tfschema.InitProviderSchemas(args.Dir, common.IACType(args.Type), args.DefaultToTerraform); err != nil {
+	if err := tfschema.InitProviderSchemasWithCache(args.Dir, common.IACType(args.Type), args.DefaultToTerraform, !args.NoProviderCache); err != nil {
 		log.Printf("[WARN] Failed to pre-initialize provider schemas: %v", err)
+		
+		// If auto-init is enabled and schema init failed, try to diagnose and fix
+		if args.AutoInit {
+			log.Printf("[INFO] Attempting to resolve schema initialization issue with auto-init")
+			if initErr := terraform.EnsureInitialized(args.Dir, common.IACType(args.Type), args.DefaultToTerraform, !args.NoProviderCache); initErr != nil {
+				log.Printf("[WARN] Auto-init resolution failed: %v", initErr)
+			} else {
+				// Retry schema initialization after successful init
+				if retryErr := tfschema.InitProviderSchemasWithCache(args.Dir, common.IACType(args.Type), args.DefaultToTerraform, !args.NoProviderCache); retryErr != nil {
+					log.Printf("[WARN] Schema initialization still failed after auto-init: %v", retryErr)
+				} else {
+					log.Printf("[INFO] Schema initialization succeeded after auto-init")
+				}
+			}
+		}
+		
 		// Continue even if initialization fails, as getResourceSchema will try again on-demand
+	}
+
+	// Register cleanup for backup files if they won't be renamed
+	if !args.Rename {
+		cleanupMgr.AddCleanupHook(func() error {
+			return cleanupMgr.CleanupByType(cleanup.ResourceTypeBackupFile)
+		})
 	}
 
 	counters := tagDirectoryResources(taggingArgs)

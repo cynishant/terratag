@@ -95,7 +95,7 @@ func isSimpleStringLiteral(tokens hclwrite.Tokens) (string, bool) {
 	return "", false
 }
 
-// For more details check: https://github.com/env0/terratag/issues/209
+// For more details check: https://github.com/cloudyali/terratag/issues/209
 func isAzureTypeTaggable(resource hclwrite.Block) bool {
 	typeAttr := resource.Body().GetAttribute("type")
 

@@ -1,0 +1,711 @@
+{
+  "timestamp": "2025-07-03T19:09:37.598285+05:30",
+  "standard_file": "/Users/nishant/Documents/GitHub/terratag/test-scenarios/standards/aws-comprehensive.yaml",
+  "total_resources": 10,
+  "compliant_resources": 0,
+  "non_compliant_resources": 10,
+  "tagging_support": {
+    "total_resources_analyzed": 10,
+    "resources_supporting_tags": 10,
+    "resources_not_supporting_tags": 0,
+    "tagging_support_rate": 1,
+    "service_breakdown": {
+      "cloudwatch": {
+        "total_resources": 1,
+        "taggable_resources": 1,
+        "tagging_rate": 1
+      },
+      "db": {
+        "total_resources": 1,
+        "taggable_resources": 1,
+        "tagging_rate": 1
+      },
+      "iam": {
+        "total_resources": 1,
+        "taggable_resources": 1,
+        "tagging_rate": 1
+      },
+      "internet": {
+        "total_resources": 1,
+        "taggable_resources": 1,
+        "tagging_rate": 1
+      },
+      "lambda": {
+        "total_resources": 1,
+        "taggable_resources": 1,
+        "tagging_rate": 1
+      },
+      "s3": {
+        "total_resources": 1,
+        "taggable_resources": 1,
+        "tagging_rate": 1
+      },
+      "subnet": {
+        "total_resources": 2,
+        "taggable_resources": 2,
+        "tagging_rate": 1
+      },
+      "vpc": {
+        "total_resources": 1,
+        "taggable_resources": 1,
+        "tagging_rate": 1
+      },
+      "vpn": {
+        "total_resources": 1,
+        "taggable_resources": 1,
+        "tagging_rate": 1
+      }
+    },
+    "category_breakdown": {
+      "taggable": 10
+    }
+  },
+  "results": [
+    {
+      "resource_type": "aws_s3_bucket",
+      "resource_name": "shared_data",
+      "file_path": "main.tf",
+      "line_number": 67,
+      "snippet": "resource \"aws_s3_bucket\" \"shared_data\" {\n  bucket = \"${var.project_name}-${var.environment}-shared-data\"\n\n  tags = merge(local.aws_common_tags, {\n    Name         = \"${var.project_name}-${var.environment}-shared-data\"\n    ResourceType = \"S3Bucket\"\n    Purpose      = \"cross-cloud-data-sharing\"\n    Provider     = \"AWS\"\n  })\n}\n\n── Variable Resolutions ──\n\n  ${var.project_name} → terratag-mixed-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-mixed-test\n\n  var.environment → staging\n\n  local.aws_common_tags → map[Application:Terratag-Cross-Cloud-Validation BusinessUnit:Engineering Compliance:Standard CostCenter:CC-MIXED-001 CreatedAt:2024-01-01T00:00:00Z CreatedBy:terraform Environment:staging Owner:mixed-provider-test@example.com Project:terratag-mixed-test Team:DevOps]\n\n  merge(...) → { Name = \"${var.project_name}-${var.environment}-shared-data\", ResourceType = \"S3Bucket\", Purpose...\n\n  ${var.project_name} → terratag-mixed-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-mixed-test\n\n  var.environment → staging\n",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "s3",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy",
+        "DataClassification",
+        "Compliance"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        },
+        {
+          "tag_key": "DataClassification",
+          "suggested_value": "internal",
+          "action": "add",
+          "reason": "Required tag 'DataClassification' is missing"
+        },
+        {
+          "tag_key": "Compliance",
+          "suggested_value": "pii",
+          "action": "add",
+          "reason": "Required tag 'Compliance' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_vpc",
+      "resource_name": "hybrid",
+      "file_path": "main.tf",
+      "line_number": 96,
+      "snippet": "resource \"aws_vpc\" \"hybrid\" {\n  cidr_block           = var.aws_vpc_cidr\n  enable_dns_hostnames = true\n  enable_dns_support   = true\n\n  tags = merge(local.aws_common_tags, {\n    Name         = \"${var.project_name}-${var.environment}-hybrid-vpc\"\n    ResourceType = \"VPC\"\n    Purpose      = \"hybrid-connectivity\"\n    Provider     = \"AWS\"\n  })\n}\n\n── Variable Resolutions ──\n\n  var.aws_vpc_cidr → 10.0.0.0/16\n\n  local.aws_common_tags → map[Application:Terratag-Cross-Cloud-Validation BusinessUnit:Engineering Compliance:Standard CostCenter:CC-MIXED-001 CreatedAt:2024-01-01T00:00:00Z CreatedBy:terraform Environment:staging Owner:mixed-provider-test@example.com Project:terratag-mixed-test Team:DevOps]\n\n  merge(...) → { Name = \"${var.project_name}-${var.environment}-hybrid-vpc\", ResourceType = \"VPC\", Purpose = \"hy...\n\n  ${var.project_name} → terratag-mixed-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-mixed-test\n\n  var.environment → staging\n",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "vpc",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_subnet",
+      "resource_name": "hybrid_public",
+      "file_path": "main.tf",
+      "line_number": 109,
+      "snippet": "resource \"aws_subnet\" \"hybrid_public\" {\n  vpc_id                  = aws_vpc.hybrid.id\n  cidr_block              = var.aws_public_subnet_cidr\n  availability_zone       = data.aws_availability_zones.available.names[0]\n  map_public_ip_on_launch = true\n\n  tags = merge(local.aws_common_tags, {\n    Name         = \"${var.project_name}-${var.environment}-hybrid-public\"\n    ResourceType = \"Subnet\"\n    Type         = \"Public\"\n    Purpose      = \"hybrid-connectivity\"\n    Provider     = \"AWS\"\n  })\n}\n\n── Variable Resolutions ──\n\n  var.aws_public_subnet_cidr → 10.0.1.0/24\n\n  local.aws_common_tags → map[Application:Terratag-Cross-Cloud-Validation BusinessUnit:Engineering Compliance:Standard CostCenter:CC-MIXED-001 CreatedAt:2024-01-01T00:00:00Z CreatedBy:terraform Environment:staging Owner:mixed-provider-test@example.com Project:terratag-mixed-test Team:DevOps]\n\n  merge(...) → { Name = \"${var.project_name}-${var.environment}-hybrid-public\", ResourceType = \"Subnet\", Type = ...\n\n  ${var.project_name} → terratag-mixed-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-mixed-test\n\n  var.environment → staging\n",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "subnet",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_subnet",
+      "resource_name": "hybrid_private",
+      "file_path": "main.tf",
+      "line_number": 124,
+      "snippet": "resource \"aws_subnet\" \"hybrid_private\" {\n  vpc_id            = aws_vpc.hybrid.id\n  cidr_block        = var.aws_private_subnet_cidr\n  availability_zone = data.aws_availability_zones.available.names[0]\n\n  tags = merge(local.aws_common_tags, {\n    Name         = \"${var.project_name}-${var.environment}-hybrid-private\"\n    ResourceType = \"Subnet\"\n    Type         = \"Private\"\n    Purpose      = \"hybrid-connectivity\"\n    Provider     = \"AWS\"\n  })\n}\n\n── Variable Resolutions ──\n\n  var.aws_private_subnet_cidr → 10.0.2.0/24\n\n  local.aws_common_tags → map[Application:Terratag-Cross-Cloud-Validation BusinessUnit:Engineering Compliance:Standard CostCenter:CC-MIXED-001 CreatedAt:2024-01-01T00:00:00Z CreatedBy:terraform Environment:staging Owner:mixed-provider-test@example.com Project:terratag-mixed-test Team:DevOps]\n\n  merge(...) → { Name = \"${var.project_name}-${var.environment}-hybrid-private\", ResourceType = \"Subnet\", Type =...\n\n  ${var.project_name} → terratag-mixed-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-mixed-test\n\n  var.environment → staging\n",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "subnet",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_internet_gateway",
+      "resource_name": "hybrid",
+      "file_path": "main.tf",
+      "line_number": 139,
+      "snippet": "resource \"aws_internet_gateway\" \"hybrid\" {\n  vpc_id = aws_vpc.hybrid.id\n\n  tags = merge(local.aws_common_tags, {\n    Name         = \"${var.project_name}-${var.environment}-hybrid-igw\"\n    ResourceType = \"InternetGateway\"\n    Purpose      = \"hybrid-connectivity\"\n    Provider     = \"AWS\"\n  })\n}\n\n── Variable Resolutions ──\n\n  local.aws_common_tags → map[Application:Terratag-Cross-Cloud-Validation BusinessUnit:Engineering Compliance:Standard CostCenter:CC-MIXED-001 CreatedAt:2024-01-01T00:00:00Z CreatedBy:terraform Environment:staging Owner:mixed-provider-test@example.com Project:terratag-mixed-test Team:DevOps]\n\n  merge(...) → { Name = \"${var.project_name}-${var.environment}-hybrid-igw\", ResourceType = \"InternetGateway\", P...\n\n  ${var.project_name} → terratag-mixed-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-mixed-test\n\n  var.environment → staging\n",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "internet",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_lambda_function",
+      "resource_name": "cross_cloud_sync",
+      "file_path": "main.tf",
+      "line_number": 151,
+      "snippet": "resource \"aws_lambda_function\" \"cross_cloud_sync\" {\n  filename         = \"cross_cloud_sync.zip\"\n  function_name    = \"${var.project_name}-${var.environment}-cross-cloud-sync\"\n  role            = aws_iam_role.lambda_role.arn\n  handler         = \"index.handler\"\n  source_code_hash = data.archive_file.lambda_zip.output_base64sha256\n  runtime         = \"python3.9\"\n  timeout         = 300\n\n  environment {\n    variables = {\n      GCP_PROJECT_ID = var.gcp_project_id\n      GCP_REGION     = var.gcp_region\n      S3_BUCKET      = aws_s3_bucket.shared_data.bucket\n      GCS_BUCKET     = google_storage_bucket.shared_data.name\n    }\n  }\n\n  tags = merge(local.aws_common_tags, {\n    Name         = \"${var.project_name}-${var.environment}-cross-cloud-sync\"\n    ResourceType = \"LambdaFunction\"\n    Purpose      = \"cross-cloud-integration\"\n    Provider     = \"AWS\"\n  })\n}\n\n── Variable Resolutions ──\n\n  ${var.project_name} → terratag-mixed-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-mixed-test\n\n  var.environment → staging\n\n  var.gcp_project_id → terratag-mixed-project-123\n\n  var.gcp_region → us-central1\n\n  local.aws_common_tags → map[Application:Terratag-Cross-Cloud-Validation BusinessUnit:Engineering Compliance:Standard CostCenter:CC-MIXED-001 CreatedAt:2024-01-01T00:00:00Z CreatedBy:terraform Environment:staging Owner:mixed-provider-test@example.com Project:terratag-mixed-test Team:DevOps]\n\n  merge(...) → { Name = \"${var.project_name}-${var.environment}-cross-cloud-sync\", ResourceType = \"LambdaFunctio...\n\n  ${var.project_name} → terratag-mixed-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-mixed-test\n\n  var.environment → staging\n",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "lambda",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_iam_role",
+      "resource_name": "lambda_role",
+      "file_path": "main.tf",
+      "line_number": 178,
+      "snippet": "resource \"aws_iam_role\" \"lambda_role\" {\n  name = \"${var.project_name}-${var.environment}-lambda-role\"\n\n  assume_role_policy = jsonencode({\n    Version = \"2012-10-17\"\n    Statement = [\n      {\n        Action = \"sts:AssumeRole\"\n        Effect = \"Allow\"\n        Principal = {\n          Service = \"lambda.amazonaws.com\"\n        }\n      }\n    ]\n  })\n\n  tags = merge(local.aws_common_tags, {\n    Name         = \"${var.project_name}-${var.environment}-lambda-role\"\n    ResourceType = \"IAMRole\"\n    Purpose      = \"lambda-execution\"\n    Provider     = \"AWS\"\n  })\n}\n\n── Variable Resolutions ──\n\n  ${var.project_name} → terratag-mixed-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-mixed-test\n\n  var.environment → staging\n\n  local.aws_common_tags → map[Application:Terratag-Cross-Cloud-Validation BusinessUnit:Engineering Compliance:Standard CostCenter:CC-MIXED-001 CreatedAt:2024-01-01T00:00:00Z CreatedBy:terraform Environment:staging Owner:mixed-provider-test@example.com Project:terratag-mixed-test Team:DevOps]\n\n  merge(...) → { Name = \"${var.project_name}-${var.environment}-lambda-role\", ResourceType = \"IAMRole\", Purpose ...\n\n  ${var.project_name} → terratag-mixed-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-mixed-test\n\n  var.environment → staging\n",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "iam",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy",
+        "Team"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        },
+        {
+          "tag_key": "Team",
+          "suggested_value": "DevOps",
+          "action": "add",
+          "reason": "Required tag 'Team' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_db_instance",
+      "resource_name": "shared_db",
+      "file_path": "main.tf",
+      "line_number": 203,
+      "snippet": "resource \"aws_db_instance\" \"shared_db\" {\n  identifier     = \"${var.project_name}-${var.environment}-shared-db\"\n  engine         = \"mysql\"\n  engine_version = \"8.0\"\n  instance_class = \"db.t3.micro\"\n  \n  allocated_storage = 20\n  storage_type      = \"gp2\"\n  storage_encrypted = true\n  \n  db_name  = \"shareddb\"\n  username = \"admin\"\n  password = var.db_password\n  \n  vpc_security_group_ids = [aws_security_group.database.id]\n  db_subnet_group_name   = aws_db_subnet_group.shared.name\n  \n  backup_retention_period = 7\n  backup_window          = \"03:00-04:00\"\n  maintenance_window     = \"sun:04:00-sun:05:00\"\n  \n  skip_final_snapshot = true\n\n  tags = merge(local.aws_common_tags, {\n    Name         = \"${var.project_name}-${var.environment}-shared-db\"\n    ResourceType = \"RDSInstance\"\n    Engine       = \"MySQL\"\n    Purpose      = \"shared-database\"\n    Provider     = \"AWS\"\n  })\n}\n\n── Variable Resolutions ──\n\n  ${var.project_name} → terratag-mixed-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-mixed-test\n\n  var.environment → staging\n\n  var.db_password → MixedProviderTest123!\n\n  local.aws_common_tags → map[Application:Terratag-Cross-Cloud-Validation BusinessUnit:Engineering Compliance:Standard CostCenter:CC-MIXED-001 CreatedAt:2024-01-01T00:00:00Z CreatedBy:terraform Environment:staging Owner:mixed-provider-test@example.com Project:terratag-mixed-test Team:DevOps]\n\n  merge(...) → { ResourceType = \"RDSInstance\", Engine = \"MySQL\", Purpose = \"shared-database\", Provider = \"AWS\", ...\n\n  ${var.project_name} → terratag-mixed-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-mixed-test\n\n  var.environment → staging\n",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "db",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy",
+        "Backup",
+        "DataClassification"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        },
+        {
+          "tag_key": "Backup",
+          "suggested_value": "none",
+          "action": "add",
+          "reason": "Required tag 'Backup' is missing"
+        },
+        {
+          "tag_key": "DataClassification",
+          "suggested_value": "internal",
+          "action": "add",
+          "reason": "Required tag 'DataClassification' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_vpn_gateway",
+      "resource_name": "hybrid",
+      "file_path": "main.tf",
+      "line_number": 379,
+      "snippet": "resource \"aws_vpn_gateway\" \"hybrid\" {\n  count  = var.enable_hybrid_connectivity ? 1 : 0\n  vpc_id = aws_vpc.hybrid.id\n\n  tags = merge(local.aws_common_tags, {\n    Name         = \"${var.project_name}-${var.environment}-vpn-gateway\"\n    ResourceType = \"VPNGateway\"\n    Purpose      = \"hybrid-connectivity\"\n    Provider     = \"AWS\"\n    ConnectsTo   = \"GCP\"\n  })\n}\n\n── Variable Resolutions ──\n\n  var.enable_hybrid_connectivity → true\n\n  local.aws_common_tags → map[Application:Terratag-Cross-Cloud-Validation BusinessUnit:Engineering Compliance:Standard CostCenter:CC-MIXED-001 CreatedAt:2024-01-01T00:00:00Z CreatedBy:terraform Environment:staging Owner:mixed-provider-test@example.com Project:terratag-mixed-test Team:DevOps]\n\n  merge(...) → { Name = \"${var.project_name}-${var.environment}-vpn-gateway\", ResourceType = \"VPNGateway\", Purpo...\n\n  ${var.project_name} → terratag-mixed-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-mixed-test\n\n  var.environment → staging\n",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "vpn",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_cloudwatch_log_group",
+      "resource_name": "cross_cloud",
+      "file_path": "main.tf",
+      "line_number": 409,
+      "snippet": "resource \"aws_cloudwatch_log_group\" \"cross_cloud\" {\n  name              = \"/aws/lambda/${aws_lambda_function.cross_cloud_sync.function_name}\"\n  retention_in_days = 14\n\n  tags = merge(local.aws_common_tags, {\n    Name         = \"${var.project_name}-${var.environment}-cross-cloud-logs\"\n    ResourceType = \"CloudWatchLogGroup\"\n    Purpose      = \"cross-cloud-monitoring\"\n    Provider     = \"AWS\"\n  })\n}\n\n── Variable Resolutions ──\n\n  local.aws_common_tags → map[Application:Terratag-Cross-Cloud-Validation BusinessUnit:Engineering Compliance:Standard CostCenter:CC-MIXED-001 CreatedAt:2024-01-01T00:00:00Z CreatedBy:terraform Environment:staging Owner:mixed-provider-test@example.com Project:terratag-mixed-test Team:DevOps]\n\n  merge(...) → { Name = \"${var.project_name}-${var.environment}-cross-cloud-logs\", ResourceType = \"CloudWatchLog...\n\n  ${var.project_name} → terratag-mixed-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-mixed-test\n\n  var.environment → staging\n",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "cloudwatch",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "compliance_rate": 0,
+    "most_common_violations": null,
+    "resource_type_breakdown": {
+      "aws_cloudwatch_log_group": {
+        "total": 1,
+        "compliant": 0,
+        "rate": 0
+      },
+      "aws_db_instance": {
+        "total": 1,
+        "compliant": 0,
+        "rate": 0
+      },
+      "aws_iam_role": {
+        "total": 1,
+        "compliant": 0,
+        "rate": 0
+      },
+      "aws_internet_gateway": {
+        "total": 1,
+        "compliant": 0,
+        "rate": 0
+      },
+      "aws_lambda_function": {
+        "total": 1,
+        "compliant": 0,
+        "rate": 0
+      },
+      "aws_s3_bucket": {
+        "total": 1,
+        "compliant": 0,
+        "rate": 0
+      },
+      "aws_subnet": {
+        "total": 2,
+        "compliant": 0,
+        "rate": 0
+      },
+      "aws_vpc": {
+        "total": 1,
+        "compliant": 0,
+        "rate": 0
+      },
+      "aws_vpn_gateway": {
+        "total": 1,
+        "compliant": 0,
+        "rate": 0
+      }
+    }
+  }
+}

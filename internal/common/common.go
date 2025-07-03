@@ -19,7 +19,7 @@ type TaggingArgs struct {
 	Filter              string
 	Skip                string
 	Dir                 string
-	Tags                string
+	Tags                string // JSON string of tags loaded from TagsFile
 	Matches             []string
 	IsSkipTerratagFiles bool
 	Rename              bool

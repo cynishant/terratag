@@ -1,0 +1,2500 @@
+{
+  "timestamp": "2025-07-03T16:07:39.947551+05:30",
+  "standard_file": "../standards/aws-comprehensive.yaml",
+  "total_resources": 40,
+  "compliant_resources": 0,
+  "non_compliant_resources": 40,
+  "tagging_support": {
+    "total_resources_analyzed": 40,
+    "resources_supporting_tags": 40,
+    "resources_not_supporting_tags": 0,
+    "tagging_support_rate": 1,
+    "service_breakdown": {
+      "cloudfront": {
+        "total_resources": 1,
+        "taggable_resources": 1,
+        "tagging_rate": 1
+      },
+      "cloudtrail": {
+        "total_resources": 1,
+        "taggable_resources": 1,
+        "tagging_rate": 1
+      },
+      "cloudwatch": {
+        "total_resources": 10,
+        "taggable_resources": 10,
+        "tagging_rate": 1
+      },
+      "db": {
+        "total_resources": 5,
+        "taggable_resources": 5,
+        "tagging_rate": 1
+      },
+      "iam": {
+        "total_resources": 3,
+        "taggable_resources": 3,
+        "tagging_rate": 1
+      },
+      "internet": {
+        "total_resources": 1,
+        "taggable_resources": 1,
+        "tagging_rate": 1
+      },
+      "kms": {
+        "total_resources": 2,
+        "taggable_resources": 2,
+        "tagging_rate": 1
+      },
+      "launch": {
+        "total_resources": 1,
+        "taggable_resources": 1,
+        "tagging_rate": 1
+      },
+      "lb": {
+        "total_resources": 3,
+        "taggable_resources": 3,
+        "tagging_rate": 1
+      },
+      "route": {
+        "total_resources": 1,
+        "taggable_resources": 1,
+        "tagging_rate": 1
+      },
+      "s3": {
+        "total_resources": 4,
+        "taggable_resources": 4,
+        "tagging_rate": 1
+      },
+      "secretsmanager": {
+        "total_resources": 1,
+        "taggable_resources": 1,
+        "tagging_rate": 1
+      },
+      "security": {
+        "total_resources": 2,
+        "taggable_resources": 2,
+        "tagging_rate": 1
+      },
+      "sns": {
+        "total_resources": 2,
+        "taggable_resources": 2,
+        "tagging_rate": 1
+      },
+      "subnet": {
+        "total_resources": 2,
+        "taggable_resources": 2,
+        "tagging_rate": 1
+      },
+      "vpc": {
+        "total_resources": 1,
+        "taggable_resources": 1,
+        "tagging_rate": 1
+      }
+    },
+    "category_breakdown": {
+      "taggable": 40
+    }
+  },
+  "results": [
+    {
+      "resource_type": "aws_sns_topic",
+      "resource_name": "alerts",
+      "file_path": "modules/monitoring/main.tf",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "sns",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_cloudwatch_log_group",
+      "resource_name": "application",
+      "file_path": "modules/monitoring/main.tf",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "cloudwatch",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_cloudwatch_metric_alarm",
+      "resource_name": "high_cpu",
+      "file_path": "modules/monitoring/main.tf",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "cloudwatch",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_cloudwatch_metric_alarm",
+      "resource_name": "database_cpu",
+      "file_path": "modules/monitoring/main.tf",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "cloudwatch",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_cloudwatch_metric_alarm",
+      "resource_name": "database_connections",
+      "file_path": "modules/monitoring/main.tf",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "cloudwatch",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_cloudwatch_metric_alarm",
+      "resource_name": "error_rate",
+      "file_path": "modules/monitoring/main.tf",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "cloudwatch",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_s3_bucket",
+      "resource_name": "main",
+      "file_path": "modules/storage/main.tf",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "s3",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy",
+        "DataClassification",
+        "Compliance"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        },
+        {
+          "tag_key": "DataClassification",
+          "suggested_value": "internal",
+          "action": "add",
+          "reason": "Required tag 'DataClassification' is missing"
+        },
+        {
+          "tag_key": "Compliance",
+          "suggested_value": "pii",
+          "action": "add",
+          "reason": "Required tag 'Compliance' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_s3_bucket",
+      "resource_name": "static",
+      "file_path": "modules/storage/main.tf",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "s3",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy",
+        "DataClassification",
+        "Compliance"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        },
+        {
+          "tag_key": "DataClassification",
+          "suggested_value": "internal",
+          "action": "add",
+          "reason": "Required tag 'DataClassification' is missing"
+        },
+        {
+          "tag_key": "Compliance",
+          "suggested_value": "pii",
+          "action": "add",
+          "reason": "Required tag 'Compliance' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_cloudfront_distribution",
+      "resource_name": "main",
+      "file_path": "modules/storage/main.tf",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "cloudfront",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_s3_bucket",
+      "resource_name": "logs",
+      "file_path": "modules/storage/main.tf",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "s3",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy",
+        "DataClassification",
+        "Compliance"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        },
+        {
+          "tag_key": "DataClassification",
+          "suggested_value": "internal",
+          "action": "add",
+          "reason": "Required tag 'DataClassification' is missing"
+        },
+        {
+          "tag_key": "Compliance",
+          "suggested_value": "pii",
+          "action": "add",
+          "reason": "Required tag 'Compliance' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_s3_bucket",
+      "resource_name": "backup",
+      "file_path": "modules/storage/main.tf",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "s3",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy",
+        "DataClassification",
+        "Compliance"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        },
+        {
+          "tag_key": "DataClassification",
+          "suggested_value": "internal",
+          "action": "add",
+          "reason": "Required tag 'DataClassification' is missing"
+        },
+        {
+          "tag_key": "Compliance",
+          "suggested_value": "pii",
+          "action": "add",
+          "reason": "Required tag 'Compliance' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_kms_key",
+      "resource_name": "storage",
+      "file_path": "modules/storage/main.tf",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "kms",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_sns_topic",
+      "resource_name": "bucket_notifications",
+      "file_path": "modules/storage/main.tf",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "sns",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_security_group",
+      "resource_name": "database",
+      "file_path": "modules/database/main.tf",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "security",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_db_subnet_group",
+      "resource_name": "main",
+      "file_path": "modules/database/main.tf",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "db",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_db_parameter_group",
+      "resource_name": "main",
+      "file_path": "modules/database/main.tf",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "db",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_db_option_group",
+      "resource_name": "main",
+      "file_path": "modules/database/main.tf",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "db",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_secretsmanager_secret",
+      "resource_name": "database",
+      "file_path": "modules/database/main.tf",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "secretsmanager",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_db_instance",
+      "resource_name": "main",
+      "file_path": "modules/database/main.tf",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "db",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy",
+        "Backup",
+        "DataClassification"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        },
+        {
+          "tag_key": "Backup",
+          "suggested_value": "none",
+          "action": "add",
+          "reason": "Required tag 'Backup' is missing"
+        },
+        {
+          "tag_key": "DataClassification",
+          "suggested_value": "internal",
+          "action": "add",
+          "reason": "Required tag 'DataClassification' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_db_instance",
+      "resource_name": "replica",
+      "file_path": "modules/database/main.tf",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "db",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy",
+        "Backup",
+        "DataClassification"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        },
+        {
+          "tag_key": "Backup",
+          "suggested_value": "none",
+          "action": "add",
+          "reason": "Required tag 'Backup' is missing"
+        },
+        {
+          "tag_key": "DataClassification",
+          "suggested_value": "internal",
+          "action": "add",
+          "reason": "Required tag 'DataClassification' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_iam_role",
+      "resource_name": "rds_enhanced_monitoring",
+      "file_path": "modules/database/main.tf",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "iam",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy",
+        "Team"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        },
+        {
+          "tag_key": "Team",
+          "suggested_value": "DevOps",
+          "action": "add",
+          "reason": "Required tag 'Team' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_cloudwatch_log_group",
+      "resource_name": "database_slow_query",
+      "file_path": "modules/database/main.tf",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "cloudwatch",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_cloudwatch_log_group",
+      "resource_name": "database_error",
+      "file_path": "modules/database/main.tf",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "cloudwatch",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_cloudwatch_log_group",
+      "resource_name": "database_general",
+      "file_path": "modules/database/main.tf",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "cloudwatch",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_vpc",
+      "resource_name": "main",
+      "file_path": "main.tf",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "vpc",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_subnet",
+      "resource_name": "public",
+      "file_path": "main.tf",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "subnet",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_subnet",
+      "resource_name": "private",
+      "file_path": "main.tf",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "subnet",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_internet_gateway",
+      "resource_name": "main",
+      "file_path": "main.tf",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "internet",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_route_table",
+      "resource_name": "public",
+      "file_path": "main.tf",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "route",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_cloudtrail",
+      "resource_name": "main",
+      "file_path": "main.tf",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "cloudtrail",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy",
+        "Compliance"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        },
+        {
+          "tag_key": "Compliance",
+          "suggested_value": "pii",
+          "action": "add",
+          "reason": "Required tag 'Compliance' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_kms_key",
+      "resource_name": "main",
+      "file_path": "main.tf",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "kms",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_security_group",
+      "resource_name": "compute",
+      "file_path": "modules/compute/main.tf",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "security",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_iam_role",
+      "resource_name": "compute",
+      "file_path": "modules/compute/main.tf",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "iam",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy",
+        "Team"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        },
+        {
+          "tag_key": "Team",
+          "suggested_value": "DevOps",
+          "action": "add",
+          "reason": "Required tag 'Team' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_iam_instance_profile",
+      "resource_name": "compute",
+      "file_path": "modules/compute/main.tf",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "iam",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_launch_template",
+      "resource_name": "compute",
+      "file_path": "modules/compute/main.tf",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "launch",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy",
+        "Backup",
+        "Monitoring"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        },
+        {
+          "tag_key": "Backup",
+          "suggested_value": "none",
+          "action": "add",
+          "reason": "Required tag 'Backup' is missing"
+        },
+        {
+          "tag_key": "Monitoring",
+          "suggested_value": "basic",
+          "action": "add",
+          "reason": "Required tag 'Monitoring' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_lb",
+      "resource_name": "compute",
+      "file_path": "modules/compute/main.tf",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "lb",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_lb_target_group",
+      "resource_name": "compute",
+      "file_path": "modules/compute/main.tf",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "lb",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_lb_listener",
+      "resource_name": "compute",
+      "file_path": "modules/compute/main.tf",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "lb",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_cloudwatch_log_group",
+      "resource_name": "compute",
+      "file_path": "modules/compute/main.tf",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "cloudwatch",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_cloudwatch_metric_alarm",
+      "resource_name": "high_cpu",
+      "file_path": "modules/compute/main.tf",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "cloudwatch",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "compliance_rate": 0,
+    "most_common_violations": null,
+    "resource_type_breakdown": {
+      "aws_cloudfront_distribution": {
+        "total": 1,
+        "compliant": 0,
+        "rate": 0
+      },
+      "aws_cloudtrail": {
+        "total": 1,
+        "compliant": 0,
+        "rate": 0
+      },
+      "aws_cloudwatch_log_group": {
+        "total": 5,
+        "compliant": 0,
+        "rate": 0
+      },
+      "aws_cloudwatch_metric_alarm": {
+        "total": 5,
+        "compliant": 0,
+        "rate": 0
+      },
+      "aws_db_instance": {
+        "total": 2,
+        "compliant": 0,
+        "rate": 0
+      },
+      "aws_db_option_group": {
+        "total": 1,
+        "compliant": 0,
+        "rate": 0
+      },
+      "aws_db_parameter_group": {
+        "total": 1,
+        "compliant": 0,
+        "rate": 0
+      },
+      "aws_db_subnet_group": {
+        "total": 1,
+        "compliant": 0,
+        "rate": 0
+      },
+      "aws_iam_instance_profile": {
+        "total": 1,
+        "compliant": 0,
+        "rate": 0
+      },
+      "aws_iam_role": {
+        "total": 2,
+        "compliant": 0,
+        "rate": 0
+      },
+      "aws_internet_gateway": {
+        "total": 1,
+        "compliant": 0,
+        "rate": 0
+      },
+      "aws_kms_key": {
+        "total": 2,
+        "compliant": 0,
+        "rate": 0
+      },
+      "aws_launch_template": {
+        "total": 1,
+        "compliant": 0,
+        "rate": 0
+      },
+      "aws_lb": {
+        "total": 1,
+        "compliant": 0,
+        "rate": 0
+      },
+      "aws_lb_listener": {
+        "total": 1,
+        "compliant": 0,
+        "rate": 0
+      },
+      "aws_lb_target_group": {
+        "total": 1,
+        "compliant": 0,
+        "rate": 0
+      },
+      "aws_route_table": {
+        "total": 1,
+        "compliant": 0,
+        "rate": 0
+      },
+      "aws_s3_bucket": {
+        "total": 4,
+        "compliant": 0,
+        "rate": 0
+      },
+      "aws_secretsmanager_secret": {
+        "total": 1,
+        "compliant": 0,
+        "rate": 0
+      },
+      "aws_security_group": {
+        "total": 2,
+        "compliant": 0,
+        "rate": 0
+      },
+      "aws_sns_topic": {
+        "total": 2,
+        "compliant": 0,
+        "rate": 0
+      },
+      "aws_subnet": {
+        "total": 2,
+        "compliant": 0,
+        "rate": 0
+      },
+      "aws_vpc": {
+        "total": 1,
+        "compliant": 0,
+        "rate": 0
+      }
+    }
+  }
+}

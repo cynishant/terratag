@@ -1,0 +1,60 @@
+version: 1
+metadata:
+  description: "Basic GCP Resource Labeling Template"
+  author: "Your Team"
+  created_date: "2024-01-01"
+
+cloud_provider: "gcp"
+
+required_tags:
+  - key: "environment"
+    description: "Deployment environment"
+    allowed_values: ["production", "staging", "development", "testing"]
+    case_sensitive: true
+    
+  - key: "owner"
+    description: "Team or individual responsible for the resource"
+    format: "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$"
+    data_type: "email"
+    
+  - key: "project"
+    description: "Project name"
+    data_type: "string"
+    min_length: 2
+    max_length: 63
+    format: "^[a-z][a-z0-9-]*[a-z0-9]$"
+    
+  - key: "managed-by"
+    description: "Tool managing the resource"
+    allowed_values: ["terraform", "deployment-manager", "manual"]
+    case_sensitive: true
+
+optional_tags:
+  - key: "cost-center"
+    description: "Cost center for billing"
+    data_type: "string"
+    format: "^cc-[0-9]{4}$"
+    
+  - key: "backup-schedule"
+    description: "Backup schedule if applicable"
+    allowed_values: ["daily", "weekly", "monthly", "none"]
+    case_sensitive: true
+
+global_excludes:
+  - "google_project_iam_member"
+  - "google_service_account"
+  - "random_id"
+
+resource_rules:
+  - resource_types: ["google_compute_instance", "google_compute_instance_template"]
+    required_tags: 
+      - "backup-schedule"
+      
+  - resource_types: ["google_sql_database_instance"]
+    required_tags:
+      - "backup-schedule"
+
+validation_rules:
+  case_sensitive_keys: true
+  allow_extra_tags: true
+  strict_mode: false

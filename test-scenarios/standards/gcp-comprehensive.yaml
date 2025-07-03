@@ -1,0 +1,124 @@
+version: 1
+metadata:
+  description: "Comprehensive GCP Labeling Standard for Terratag Testing"
+  author: "Terratag Test Suite"
+  created_date: "2025-07-03"
+  updated_date: "2025-07-03"
+cloud_provider: gcp
+
+required_tags:
+  - key: environment
+    description: "Deployment environment"
+    allowed_values: ["production", "staging", "development", "testing"]
+    case_sensitive: false
+    data_type: string
+    
+  - key: project_name
+    description: "Project or application name"
+    data_type: string
+    format: "^[a-z][a-z0-9-_]{2,49}$"
+    examples: ["terratag-test", "my-app", "data-pipeline"]
+    
+  - key: owner
+    description: "Resource owner email address"
+    data_type: email
+    format: "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$"
+    
+  - key: cost_center
+    description: "Cost center for billing allocation"
+    data_type: string
+    format: "^cc-[a-z0-9]{3,10}-[0-9]{3}$"
+    examples: ["cc-dev-001", "cc-prod-123"]
+    
+  - key: managed_by
+    description: "How the resource is managed"
+    allowed_values: ["terraform", "manual", "deployment-manager", "gcloud"]
+    case_sensitive: false
+    data_type: string
+
+optional_tags:
+  - key: team
+    description: "Team responsible for the resource"
+    data_type: string
+    allowed_values: ["devops", "backend", "frontend", "data", "security", "platform"]
+    
+  - key: application
+    description: "Application name"
+    data_type: string
+    max_length: 50
+    
+  - key: version
+    description: "Application or infrastructure version"
+    data_type: string
+    format: "^v?[0-9]+\\.[0-9]+\\.[0-9]+.*$"
+    examples: ["v1.0.0", "1.2.3", "v2.1.0-beta"]
+    
+  - key: business_unit
+    description: "Business unit"
+    data_type: string
+    allowed_values: ["engineering", "sales", "marketing", "finance", "hr"]
+    
+  - key: backup
+    description: "Backup configuration"
+    data_type: string
+    allowed_values: ["daily", "weekly", "monthly", "none"]
+    default_value: "none"
+    
+  - key: monitoring
+    description: "Monitoring configuration"
+    data_type: string
+    allowed_values: ["enabled", "disabled", "basic", "detailed"]
+    default_value: "basic"
+    
+  - key: compliance
+    description: "Compliance requirements"
+    data_type: string
+    allowed_values: ["pii", "pci", "hipaa", "sox", "none"]
+    
+  - key: data_classification
+    description: "Data classification level"
+    data_type: string
+    allowed_values: ["public", "internal", "confidential", "restricted"]
+    default_value: "internal"
+    
+  - key: tier
+    description: "Application tier"
+    data_type: string
+    allowed_values: ["web", "application", "data", "cache", "queue"]
+    
+  - key: resource_type
+    description: "Type of GCP resource"
+    data_type: string
+    allowed_values: ["compute", "storage", "network", "database", "security", "monitoring"]
+
+validation_rules:
+  case_sensitive_keys: true  # GCP labels are case-sensitive
+  allow_extra_tags: true
+  strict_mode: false
+  max_tags_per_resource: 64  # GCP label limit
+
+global_excludes:
+  - "google_client_config"
+  - "google_project"
+  - "google_billing_account"
+  - "google_folder"
+  - "google_organization"
+
+resource_rules:
+  - resource_types: ["google_compute_instance", "google_compute_instance_template"]
+    required_tags: ["backup", "monitoring", "tier"]
+    
+  - resource_types: ["google_sql_database_instance"]
+    required_tags: ["backup", "data_classification", "tier"]
+    
+  - resource_types: ["google_storage_bucket"]
+    required_tags: ["data_classification", "compliance", "tier"]
+    
+  - resource_types: ["google_logging_*", "google_monitoring_*"]
+    required_tags: ["compliance", "tier"]
+    
+  - resource_types: ["google_service_account", "google_project_iam_*"]
+    required_tags: ["team", "tier"]
+    
+  - resource_types: ["google_container_cluster", "google_container_node_pool"]
+    required_tags: ["tier", "monitoring"]

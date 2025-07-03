@@ -1,0 +1,82 @@
+Terratag Test Analysis - mixed-providers
+Generated: Thu Jul  3 19:09:37 IST 2025
+
+SCENARIO OVERVIEW:
+- Scenario: mixed-providers
+- Directory: /Users/nishant/Documents/GitHub/terratag/test-scenarios/mixed-providers
+- Total Resources:       21
+- Tagged Resources: 0
+
+VALIDATION RESULTS:
+{
+  "compliance_rate": 0,
+  "most_common_violations": null,
+  "resource_type_breakdown": {
+    "aws_cloudwatch_log_group": {
+      "total": 1,
+      "compliant": 0,
+      "rate": 0
+    },
+    "aws_db_instance": {
+      "total": 1,
+      "compliant": 0,
+      "rate": 0
+    },
+    "aws_iam_role": {
+      "total": 1,
+      "compliant": 0,
+      "rate": 0
+    },
+    "aws_internet_gateway": {
+      "total": 1,
+      "compliant": 0,
+      "rate": 0
+    },
+    "aws_lambda_function": {
+      "total": 1,
+      "compliant": 0,
+      "rate": 0
+    },
+    "aws_s3_bucket": {
+      "total": 1,
+      "compliant": 0,
+      "rate": 0
+    },
+    "aws_subnet": {
+      "total": 2,
+      "compliant": 0,
+      "rate": 0
+    },
+    "aws_vpc": {
+      "total": 1,
+      "compliant": 0,
+      "rate": 0
+    },
+    "aws_vpn_gateway": {
+      "total": 1,
+      "compliant": 0,
+      "rate": 0
+    }
+  }
+}
+
+FILES CREATED:
+
+
+TERRAFORM MODULES:
+
+
+VARIABLES ANALYSIS:
+Total variables defined: 128
+
+TAG/LABEL PATTERNS:
+      12 AWS tag blocks found
+      11 GCP label blocks found
+      21 merge() function calls found
+
+COMPLEX FEATURES:
+       2 Resources using count
+       0 Resources using for_each
+       0 Dynamic blocks found
+       1 Locals blocks found
+

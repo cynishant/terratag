@@ -6,13 +6,15 @@ import (
 	"log"
 	"strings"
 
-	"github.com/env0/terratag/internal/common"
-	"github.com/env0/terratag/internal/tag_keys"
-	"github.com/env0/terratag/internal/utils"
 	"github.com/hashicorp/hcl/v2/hclsyntax"
 	"github.com/hashicorp/hcl/v2/hclwrite"
 	"github.com/thoas/go-funk"
 	"github.com/zclconf/go-cty/cty"
+
+	"github.com/cloudyali/terratag/internal/common"
+	"github.com/cloudyali/terratag/internal/hcl"
+	"github.com/cloudyali/terratag/internal/tag_keys"
+	"github.com/cloudyali/terratag/internal/utils"
 )
 
 func GetExistingTagsExpression(tokens hclwrite.Tokens) string {
@@ -183,4 +185,10 @@ func quoteAttributeKeys(tagsAttribute *hclwrite.Attribute) hclwrite.Tokens {
 	}
 
 	return newTags
+}
+
+// HclValueToMap converts HCL tokens to a map[string]interface{}
+// Uses shared HCL parsing utility to avoid code duplication
+func HclValueToMap(tokens hclwrite.Tokens) (map[string]interface{}, error) {
+	return hcl.ParseHclMapToInterfaceMap(tokens)
 }

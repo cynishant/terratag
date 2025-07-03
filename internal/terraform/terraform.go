@@ -11,7 +11,7 @@ import (
 	"strings"
 
 	"github.com/bmatcuk/doublestar"
-	"github.com/env0/terratag/internal/common"
+	"github.com/cloudyali/terratag/internal/common"
 	"github.com/hashicorp/hcl/v2/hclwrite"
 	"github.com/thoas/go-funk"
 )
@@ -47,6 +47,18 @@ func ValidateInitRun(dir string, iacType string) error {
 	}
 
 	return nil
+}
+
+// EnsureInitialized ensures terraform is properly initialized, running init if necessary
+func EnsureInitialized(dir string, iacType common.IACType, defaultToTerraform bool, useCache bool) error {
+	initManager := NewInitManager(dir, iacType, defaultToTerraform, useCache)
+	return initManager.EnsureInitialized()
+}
+
+// GetInitStatus returns the current initialization status for a directory
+func GetInitStatus(dir string, iacType common.IACType, defaultToTerraform bool, useCache bool) (bool, error) {
+	initManager := NewInitManager(dir, iacType, defaultToTerraform, useCache)
+	return initManager.GetInitStatus()
 }
 
 func GetFilePaths(dir string, iacType string) ([]string, error) {

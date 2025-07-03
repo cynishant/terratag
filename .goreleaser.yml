@@ -25,7 +25,7 @@ brews:
     commit_author:
       name: "env0"
       email: contact@env0.com
-    homepage: https://github.com/env0/terratag
+    homepage: https://github.com/cloudyali/terratag
     description: "Automatically create and maintain tags across their entire set of AWS, Azure, and GCP resources on Terraform"
     skip_upload: auto
     install: |

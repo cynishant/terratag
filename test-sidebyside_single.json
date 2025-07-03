@@ -1,0 +1,92 @@
+{
+  "timestamp": "2025-07-03T18:43:31.414516+05:30",
+  "standard_file": "test-scenarios/standards/aws-comprehensive.yaml",
+  "total_resources": 1,
+  "compliant_resources": 0,
+  "non_compliant_resources": 1,
+  "tagging_support": {
+    "total_resources_analyzed": 1,
+    "resources_supporting_tags": 1,
+    "resources_not_supporting_tags": 0,
+    "tagging_support_rate": 1,
+    "service_breakdown": {
+      "vpc": {
+        "total_resources": 1,
+        "taggable_resources": 1,
+        "tagging_rate": 1
+      }
+    },
+    "category_breakdown": {
+      "taggable": 1
+    }
+  },
+  "results": [
+    {
+      "resource_type": "aws_vpc",
+      "resource_name": "main",
+      "file_path": "test-scenarios/aws-working/main.tf",
+      "line_number": 60,
+      "snippet": "┌────────────────────────────────────┐    ┌───────────────────────────────────────────────────────────┐\n│             Original              │    │                         Resolved                         │\n├────────────────────────────────────┤    ├───────────────────────────────────────────────────────────┤\n│ tags = merge(local.common_tags, { │    │ local.common_tags = map[CreatedBy:terraform Environme... │\n│                                   │    │ { Environment = \"production\", Project = \"terratag-wor... │\n└────────────────────────────────────┘    └───────────────────────────────────────────────────────────┘\n\n┌───────────────────────────────────────────────────────────┐    ┌──────────────────────────────────────────────┐\n│                         Original                         │    │                  Resolved                   │\n├───────────────────────────────────────────────────────────┤    ├──────────────────────────────────────────────┤\n│ Name         = \"${var.project_name}-${var.environment... │    │ ${var.project_name} = terratag-working-test │\n│                                                          │    │ ${var.environment} = production             │\n└───────────────────────────────────────────────────────────┘    │ var.project_name = terratag-working-test    │\n│                                                                                                                                                                                     │    │ var.environment = production                │\n│                                                                                                                                                                                     │    └──────────────────────────────────────────────┘",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "vpc",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "compliance_rate": 0,
+    "most_common_violations": null,
+    "resource_type_breakdown": {
+      "aws_vpc": {
+        "total": 1,
+        "compliant": 0,
+        "rate": 0
+      }
+    }
+  }
+}

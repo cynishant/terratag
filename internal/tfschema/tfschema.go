@@ -6,13 +6,15 @@ import (
 	"errors"
 	"fmt"
 	"log"
+	"os"
 	"os/exec"
+	"path/filepath"
 	"strings"
 
-	"github.com/env0/terratag/internal/common"
-	"github.com/env0/terratag/internal/providers"
-	"github.com/env0/terratag/internal/tagging"
-	"github.com/env0/terratag/internal/terraform"
+	"github.com/cloudyali/terratag/internal/common"
+	"github.com/cloudyali/terratag/internal/providers"
+	"github.com/cloudyali/terratag/internal/tagging"
+	"github.com/cloudyali/terratag/internal/terraform"
 	"github.com/thoas/go-funk"
 
 	"maps"
@@ -51,9 +53,115 @@ type ProviderSchemas struct {
 	ProviderSchemas map[string]*ProviderSchema `json:"provider_schemas"`
 }
 
-// InitProviderSchemas fetches and stores the provider schemas for a directory
+// InitProviderSchemas fetches and stores the provider schemas for a directory using a centralized cache
 // This can be called ahead of time to pre-populate the schemas cache
 func InitProviderSchemas(dir string, iacType common.IACType, defaultToTerraform bool) error {
+	return InitProviderSchemasWithCache(dir, iacType, defaultToTerraform, true)
+}
+
+// InitProviderSchemasWithCache fetches and stores the provider schemas with optional caching
+func InitProviderSchemasWithCache(dir string, iacType common.IACType, defaultToTerraform bool, useCache bool) error {
+	// Check if schemas are already cached in memory
+	if _, exists := providerSchemasMap[dir]; exists {
+		log.Printf("[INFO] Provider schemas already loaded for directory: %s", dir)
+		return nil
+	}
+
+	// Skip caching if disabled
+	if !useCache {
+		log.Printf("[INFO] Provider cache disabled, fetching schemas locally for directory: %s", dir)
+		return initProviderSchemasLocal(dir, iacType, defaultToTerraform)
+	}
+
+	// Try to get cached schema first
+	cacheManager := providers.GetGlobalCacheManager()
+	cachedSchema, _, err := cacheManager.GetCachedSchema(dir, iacType)
+	if err == nil {
+		// Parse cached schema
+		mergedProviderSchemas := &ProviderSchemas{
+			ProviderSchemas: make(map[string]*ProviderSchema),
+		}
+
+		if err := json.Unmarshal([]byte(cachedSchema), mergedProviderSchemas); err != nil {
+			log.Printf("[WARN] Failed to parse cached schema, fetching fresh: %v", err)
+		} else {
+			providerSchemasMap[dir] = mergedProviderSchemas
+			log.Printf("[INFO] Using cached provider schemas for directory: %s", dir)
+			return nil
+		}
+	}
+
+	// Get or create shared terraform directory
+	sharedTerraformDir, err := cacheManager.GetOrCreateSharedTerraformDir(dir, iacType)
+	if err != nil {
+		log.Printf("[WARN] Failed to create shared terraform directory, falling back to local: %v", err)
+		return initProviderSchemasLocal(dir, iacType, defaultToTerraform)
+	}
+
+	// Initialize providers in shared directory if needed
+	if _, err := os.Stat(filepath.Join(sharedTerraformDir, ".terraform")); os.IsNotExist(err) {
+		if err := cacheManager.InitProviders(sharedTerraformDir, iacType, defaultToTerraform); err != nil {
+			log.Printf("[WARN] Failed to initialize shared providers, falling back to local: %v", err)
+			return initProviderSchemasLocal(dir, iacType, defaultToTerraform)
+		}
+	}
+
+	// Fetch schema from shared directory
+	schemaData, err := fetchProviderSchemas(sharedTerraformDir, iacType, defaultToTerraform)
+	if err != nil {
+		log.Printf("[WARN] Failed to fetch schema from shared directory, falling back to local: %v", err)
+		return initProviderSchemasLocal(dir, iacType, defaultToTerraform)
+	}
+
+	// Parse and store schema
+	mergedProviderSchemas := &ProviderSchemas{
+		ProviderSchemas: make(map[string]*ProviderSchema),
+	}
+
+	if err := json.Unmarshal([]byte(schemaData), mergedProviderSchemas); err != nil {
+		return fmt.Errorf("failed to unmarshal provider schemas: %w", err)
+	}
+
+	providerSchemasMap[dir] = mergedProviderSchemas
+
+	// Cache the schema for future use
+	if err := cacheManager.CacheSchema(dir, iacType, schemaData, sharedTerraformDir); err != nil {
+		log.Printf("[WARN] Failed to cache schema: %v", err)
+	}
+
+	log.Printf("[INFO] Successfully initialized provider schemas for directory: %s with %d providers",
+		dir, len(mergedProviderSchemas.ProviderSchemas))
+
+	return nil
+}
+
+// initProviderSchemasLocal is the fallback implementation that works locally
+func initProviderSchemasLocal(dir string, iacType common.IACType, defaultToTerraform bool) error {
+	log.Print("[INFO] Fetching provider schemas locally for directory: ", dir)
+
+	schemaData, err := fetchProviderSchemas(dir, iacType, defaultToTerraform)
+	if err != nil {
+		return err
+	}
+
+	// Parse and store schema
+	mergedProviderSchemas := &ProviderSchemas{
+		ProviderSchemas: make(map[string]*ProviderSchema),
+	}
+
+	if err := json.Unmarshal([]byte(schemaData), mergedProviderSchemas); err != nil {
+		return fmt.Errorf("failed to unmarshal provider schemas: %w", err)
+	}
+
+	providerSchemasMap[dir] = mergedProviderSchemas
+	log.Printf("[INFO] Successfully initialized provider schemas locally for directory: %s with %d providers",
+		dir, len(mergedProviderSchemas.ProviderSchemas))
+
+	return nil
+}
+
+// fetchProviderSchemas fetches provider schemas from the specified directory
+func fetchProviderSchemas(dir string, iacType common.IACType, defaultToTerraform bool) (string, error) {
 	// Use tofu by default (if it exists).
 	name := "terraform"
 	// For terragrunt - use terragrunt.
@@ -62,8 +170,6 @@ func InitProviderSchemas(dir string, iacType common.IACType, defaultToTerraform 
 	} else if _, err := exec.LookPath("tofu"); !defaultToTerraform && err == nil {
 		name = "tofu"
 	}
-
-	log.Print("[INFO] Fetching provider schemas for directory: ", dir)
 
 	var cmd *exec.Cmd
 	if iacType == common.TerragruntRunAll {
@@ -87,7 +193,7 @@ func InitProviderSchemas(dir string, iacType common.IACType, defaultToTerraform 
 		log.Printf("Standard output: %s\n", string(out))
 		log.Println("===============================================")
 
-		return fmt.Errorf("failed to execute '%s providers schema -json' command in directory '%s': %w", name, dir, err)
+		return "", fmt.Errorf("failed to execute '%s providers schema -json' command in directory '%s': %w", name, dir, err)
 	}
 
 	// Create a new provider schemas object
@@ -134,15 +240,17 @@ func InitProviderSchemas(dir string, iacType common.IACType, defaultToTerraform 
 			if e, ok := err.(*json.SyntaxError); ok {
 				log.Printf("syntax error at byte offset %d", e.Offset)
 			}
-			return fmt.Errorf("failed to unmarshal returned provider schemas: %w", err)
+			return "", fmt.Errorf("failed to unmarshal returned provider schemas: %w", err)
 		}
 	}
 
-	providerSchemasMap[dir] = mergedProviderSchemas
-	log.Printf("[INFO] Successfully initialized provider schemas for directory: %s with %d providers",
-		dir, len(mergedProviderSchemas.ProviderSchemas))
+	// Convert back to JSON string for caching
+	schemaBytes, err := json.Marshal(mergedProviderSchemas)
+	if err != nil {
+		return "", fmt.Errorf("failed to marshal schemas for caching: %w", err)
+	}
 
-	return nil
+	return string(schemaBytes), nil
 }
 
 // mergeProviderSchemas merges the source provider schemas into the target

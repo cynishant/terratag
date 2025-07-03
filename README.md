@@ -1,6 +1,6 @@
 # [<img src="ttlogo.png" width="300" alt="Terratag Logo">](https://terratag.io)
 
-[![ci](https://github.com/env0/terratag/workflows/ci/badge.svg)](https://github.com/env0/terratag/actions?query=workflow%3Aci+branch%3Amaster) [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fenv0%2Fterratag.svg?type=small)](https://app.fossa.com/projects/git%2Bgithub.com%2Fenv0%2Fterratag?ref=badge_small)
+[![ci](https://github.com/cloudyali/terratag/workflows/ci/badge.svg)](https://github.com/cloudyali/terratag/actions?query=workflow%3Aci+branch%3Amaster) [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fenv0%2Fterratag.svg?type=small)](https://app.fossa.com/projects/git%2Bgithub.com%2Fenv0%2Fterratag?ref=badge_small)
 
 > <sub>Terratag is brought to you with&nbsp;❤️&nbsp; by
 > [<img src="logo.svg" width="150">](https://env0.com)
@@ -9,7 +9,37 @@
 
 ## What?
 
-Terratag is a CLI tool allowing for tags or labels to be applied across an entire set of OpenTofu/Terraform files. Terratag will apply tags or labels to any AWS, GCP and Azure resources.
+Terratag is a CLI tool allowing for tags or labels to be applied across an entire set of OpenTofu/Terraform files, plus comprehensive tag validation and compliance checking. Terratag will apply tags or labels to any AWS, GCP and Azure resources.
+
+## ✨ New: Tag Validation & Compliance Features
+
+🔍 **Advanced Tag Validation** - Validate existing tags against organizational standards
+📊 **Multi-Tag Support** - Handle complex scenarios with 12+ tags per resource  
+☁️ **Multi-Cloud Analysis** - AWS (1,506 resources), GCP (213 resources), Azure support
+📋 **Multiple Report Formats** - Table, JSON, YAML, Markdown outputs
+🚀 **CI/CD Integration** - Automated compliance checking for pipelines
+🐳 **Docker Support** - Run without local installation using Docker/Docker Compose
+
+### Quick Examples
+
+```bash
+# Validate tags against a standard
+terratag -validate-only -standard tag-standard.yaml
+
+# Generate compliance report 
+terratag -validate-only -standard tag-standard.yaml -report-format markdown -report-output report.md
+
+# CI/CD strict mode
+terratag -validate-only -standard tag-standard.yaml -strict-mode -report-format json
+
+# Docker usage (no local installation needed)
+docker run --rm -v $(pwd):/workspace terratag:latest -validate-only -standard /standards/tag-standard.yaml
+
+# Docker Compose (recommended)
+docker-compose --profile validate up
+```
+
+**[📚 Complete Documentation](docs/GETTING_STARTED.md)** | **[🏷️ Tag Validation Guide](docs/TAG_VALIDATION_FEATURES.md)** | **[☁️ AWS Resource Reference](docs/AWS_RESOURCE_TAGGING.md)** | **[🐳 Docker Usage Guide](docs/DOCKER_USAGE.md)**
 
 ### Terratag in action
 
@@ -27,13 +57,26 @@ Maintaining tags across your application is hard, especially when done manually.
 
 ### Usage
 
+#### Option 1: Docker (Recommended - No Installation Required)
+
+   ```bash
+   # Build and run with Docker
+   docker build -t terratag:latest .
+   docker run --rm -v $(pwd):/workspace terratag:latest -validate-only -standard /standards/tag-standard.yaml
+   
+   # Or use Docker Compose
+   docker-compose --profile validate up
+   ```
+
+#### Option 2: Local Installation
+
 1. Install from homebrew:
 
    ```
    brew install env0/terratag/terratag
    ```
 
-   Or download the latest [release binary](https://github.com/env0/terratag/releases) .
+   Or download the latest [release binary](https://github.com/cloudyali/terratag/releases) .
 
 1. Initialize Opentofu/Terraform modules to get provider schema and pull child modules:
 
@@ -190,7 +233,7 @@ TERRATAG_DEFAULT_TO_TERRAFORM
 TERRATAG_KEEP_EXISTING_TAGS
 ```
 
-##### See more samples [here](https://github.com/env0/terratag/tree/master/test/fixture)
+##### See more samples [here](https://github.com/cloudyali/terratag/tree/master/test/fixture)
 
 ## Notes
 
@@ -213,7 +256,7 @@ Issues and Pull Requests are very welcome!
 ### Build
 
 ```bash
-git clone https://github.com/env0/terratag
+git clone https://github.com/cloudyali/terratag
 cd terratag
 go mod tidy
 go build ./cmd/terratag
@@ -265,6 +308,6 @@ We use [tfenv](https://github.com/tfutils/tfenv) to switch between versions. The
 ## Release
 
 1. Create and push a tag locally, in semver format - `git tag v0.1.32 && git push origin --tags`
-2. Goto [Github Releases](https://github.com/env0/terratag/releases) and edit the draft created by Release Drafter Bot - it should contain the change log for the release (if not press on Auto-generate release notes). Make sure it's pointing at the tag you created in the previous step and publish the release.
+2. Goto [Github Releases](https://github.com/cloudyali/terratag/releases) and edit the draft created by Release Drafter Bot - it should contain the change log for the release (if not press on Auto-generate release notes). Make sure it's pointing at the tag you created in the previous step and publish the release.
 3. Binaries will be automatically generated by the Github action defined in `.github/workflows/release.yml`
 4. NPM will automatically pick up on the new version.

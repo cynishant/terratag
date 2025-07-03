@@ -1,0 +1,206 @@
+version: 1
+metadata:
+  description: "Google Cloud Platform Resource Labeling Standard"
+  author: "Cloud Platform Team"
+  date: "2025-06-30"
+  version: "1.0.0"
+
+cloud_provider: "gcp"
+
+required_tags:
+  - key: "environment"
+    description: "Deployment environment for the resource"
+    data_type: "string"
+    allowed_values: ["production", "staging", "development", "testing"]
+    case_sensitive: true
+    examples: ["production", "staging"]
+
+  - key: "owner"
+    description: "Team or individual responsible for the resource"
+    data_type: "email"
+    format: "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$"
+    examples: ["platform@company.com", "devops@company.com"]
+
+  - key: "cost-center"
+    description: "Cost center for billing and reporting"
+    format: "^CC[0-9]{4}$"
+    examples: ["CC1001", "CC2002"]
+
+  - key: "project"
+    description: "Project name associated with the resource"
+    data_type: "string"
+    min_length: 2
+    max_length: 30
+    format: "^[a-z0-9-]+$"
+    examples: ["web-app", "data-pipeline"]
+
+optional_tags:
+  - key: "application"
+    description: "Application name or service"
+    data_type: "string"
+    min_length: 2
+    max_length: 50
+    examples: ["frontend", "backend", "database"]
+
+  - key: "version"
+    description: "Application or infrastructure version"
+    format: "^v?\\d+\\.\\d+\\.\\d+$"
+    examples: ["v1.2.3", "2.1.0"]
+
+  - key: "backup"
+    description: "Backup requirement and schedule"
+    allowed_values: ["required", "optional", "none"]
+    default_value: "none"
+
+  - key: "monitoring"
+    description: "Monitoring level required"
+    allowed_values: ["critical", "high", "medium", "low", "none"]
+    default_value: "medium"
+
+  - key: "data-classification"
+    description: "Data sensitivity classification"
+    allowed_values: ["public", "internal", "confidential", "restricted"]
+    case_sensitive: true
+
+  - key: "compliance"
+    description: "Compliance requirements"
+    allowed_values: ["pci-dss", "hipaa", "gdpr", "sox", "none"]
+    default_value: "none"
+
+  - key: "maintenance-window"
+    description: "Maintenance window schedule using cron expression"
+    data_type: "cron"
+    examples: ["0 2 * * 0", "30 3 * * 1-5"]
+
+  - key: "created-by"
+    description: "Who or what created this resource"
+    data_type: "string"
+    examples: ["terraform", "gcp-console", "gcloud-cli"]
+
+  - key: "business-unit"
+    description: "Business unit that owns the resource"
+    allowed_values: ["engineering", "marketing", "sales", "hr", "finance"]
+
+# Global excludes for non-labelable resources
+global_excludes:
+  - "google_project_iam_*"
+  - "google_folder_iam_*"
+  - "google_organization_iam_*"
+  - "google_service_account_iam_*"
+  - "google_compute_instance_iam_*"
+  - "google_compute_disk_iam_*"
+  - "google_compute_image_iam_*"
+  - "google_compute_subnetwork_iam_*"
+  - "google_storage_bucket_iam_*"
+  - "google_bigquery_dataset_iam_*"
+  - "google_pubsub_topic_iam_*"
+  - "google_cloud_function_iam_*"
+  - "google_cloud_run_service_iam_*"
+  - "google_kms_key_ring_iam_*"
+  - "google_kms_crypto_key_iam_*"
+  - "google_secret_manager_secret_iam_*"
+  - "google_*_access_control"
+  - "google_*_peering*"
+  - "google_*_association"
+  - "google_*_attachment"
+  - "google_*_metadata*"
+  - "google_*_policy"
+  - "google_*_rule"
+  - "google_*_key"
+  - "google_*_version"
+  - "google_*_member"
+  - "google_*_binding"
+
+# Resource-specific labeling rules
+resource_rules:
+  # Compute resources require additional labels
+  - resource_types: 
+      - "google_compute_instance"
+      - "google_compute_instance_template"
+      - "google_compute_instance_group*"
+    required_tags: ["monitoring"]
+    optional_tags: ["maintenance-window"]
+
+  # Storage resources need data classification
+  - resource_types:
+      - "google_storage_bucket"
+      - "google_compute_disk"
+      - "google_filestore_instance"
+    required_tags: ["data-classification", "backup"]
+
+  # Database resources require backup and compliance
+  - resource_types:
+      - "google_sql_database_instance"
+      - "google_bigtable_instance"
+      - "google_spanner_instance"
+      - "google_redis_instance"
+      - "google_memcache_instance"
+    required_tags: ["backup", "compliance"]
+    optional_tags: ["maintenance-window"]
+
+  # Analytics resources need data classification
+  - resource_types:
+      - "google_bigquery_dataset"
+      - "google_bigquery_table"
+      - "google_dataflow_job"
+      - "google_dataproc_cluster"
+    required_tags: ["data-classification"]
+
+  # Kubernetes resources have specific labeling patterns
+  - resource_types:
+      - "google_container_cluster"
+      - "google_container_node_pool"
+    required_tags: ["monitoring", "version"]
+    override_tags:
+      - key: "k8s-cluster"
+        description: "Kubernetes cluster identifier"
+        data_type: "string"
+        format: "^[a-z0-9]([a-z0-9-]*[a-z0-9])?$"
+
+  # Serverless resources
+  - resource_types:
+      - "google_cloud_function"
+      - "google_cloudfunctions_function"
+      - "google_cloudfunctions2_function"
+      - "google_cloud_run_service"
+      - "google_cloud_run_v2_service"
+    required_tags: ["version"]
+    optional_tags: ["monitoring"]
+
+  # Networking resources
+  - resource_types:
+      - "google_compute_network"
+      - "google_compute_subnetwork"
+      - "google_compute_firewall"
+      - "google_compute_forwarding_rule"
+      - "google_compute_global_forwarding_rule"
+    excluded_tags: ["backup", "data-classification"]
+
+  # Security resources require compliance labeling
+  - resource_types:
+      - "google_kms_key_ring"
+      - "google_kms_crypto_key"
+      - "google_secret_manager_secret"
+      - "google_binary_authorization_policy"
+    required_tags: ["compliance"]
+    excluded_tags: ["backup"]
+
+  # AI/ML resources
+  - resource_types:
+      - "google_ml_engine_model"
+      - "google_vertex_ai_*"
+      - "google_notebooks_instance"
+      - "google_ai_platform_notebook_instance"
+    required_tags: ["data-classification"]
+    optional_tags: ["version"]
+
+  # Monitoring and logging resources
+  - resource_types:
+      - "google_monitoring_*"
+      - "google_logging_*"
+    excluded_tags: ["backup", "data-classification", "maintenance-window"]
+    override_tags:
+      - key: "alert-level"
+        description: "Alert severity level"
+        allowed_values: ["critical", "warning", "info"]
+        default_value: "info"

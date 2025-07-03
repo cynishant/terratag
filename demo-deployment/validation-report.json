@@ -1,0 +1,1695 @@
+{
+  "timestamp": "2025-07-01T22:33:06.597373+05:30",
+  "standard_file": "demo-tag-standard.yaml",
+  "total_resources": 27,
+  "compliant_resources": 0,
+  "non_compliant_resources": 27,
+  "tagging_support": {
+    "total_resources_analyzed": 27,
+    "resources_supporting_tags": 27,
+    "resources_not_supporting_tags": 0,
+    "tagging_support_rate": 1,
+    "service_breakdown": {
+      "cloudwatch": {
+        "total_resources": 2,
+        "taggable_resources": 2,
+        "tagging_rate": 1
+      },
+      "db": {
+        "total_resources": 4,
+        "taggable_resources": 4,
+        "tagging_rate": 1
+      },
+      "eip": {
+        "total_resources": 1,
+        "taggable_resources": 1,
+        "tagging_rate": 1
+      },
+      "iam": {
+        "total_resources": 3,
+        "taggable_resources": 3,
+        "tagging_rate": 1
+      },
+      "internet": {
+        "total_resources": 1,
+        "taggable_resources": 1,
+        "tagging_rate": 1
+      },
+      "launch": {
+        "total_resources": 1,
+        "taggable_resources": 1,
+        "tagging_rate": 1
+      },
+      "lb": {
+        "total_resources": 3,
+        "taggable_resources": 3,
+        "tagging_rate": 1
+      },
+      "nat": {
+        "total_resources": 1,
+        "taggable_resources": 1,
+        "tagging_rate": 1
+      },
+      "route": {
+        "total_resources": 2,
+        "taggable_resources": 2,
+        "tagging_rate": 1
+      },
+      "s3": {
+        "total_resources": 3,
+        "taggable_resources": 3,
+        "tagging_rate": 1
+      },
+      "security": {
+        "total_resources": 3,
+        "taggable_resources": 3,
+        "tagging_rate": 1
+      },
+      "subnet": {
+        "total_resources": 2,
+        "taggable_resources": 2,
+        "tagging_rate": 1
+      },
+      "vpc": {
+        "total_resources": 1,
+        "taggable_resources": 1,
+        "tagging_rate": 1
+      }
+    },
+    "category_breakdown": {
+      "taggable": 27
+    }
+  },
+  "results": [
+    {
+      "resource_type": "aws_db_subnet_group",
+      "resource_name": "main",
+      "file_path": "database.tf",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "db",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "violations": [
+        {
+          "tag_key": "Name",
+          "tag_value": "${var.project_name}-db-subnet-group",
+          "violation_type": "unresolvable_value",
+          "message": "Tag 'Name' value '${var.project_name}-db-subnet-group' cannot be validated: Unable to identify reference type"
+        }
+      ],
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Demo",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "Name",
+          "current_value": "${var.project_name}-db-subnet-group",
+          "suggested_value": "",
+          "action": "update",
+          "reason": "Tag 'Name' value '${var.project_name}-db-subnet-group' cannot be validated: Unable to identify reference type"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_db_parameter_group",
+      "resource_name": "main",
+      "file_path": "database.tf",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "db",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "violations": [
+        {
+          "tag_key": "Name",
+          "tag_value": "${var.project_name}-db-params",
+          "violation_type": "unresolvable_value",
+          "message": "Tag 'Name' value '${var.project_name}-db-params' cannot be validated: Unable to identify reference type"
+        }
+      ],
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Demo",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "Name",
+          "current_value": "${var.project_name}-db-params",
+          "suggested_value": "",
+          "action": "update",
+          "reason": "Tag 'Name' value '${var.project_name}-db-params' cannot be validated: Unable to identify reference type"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_db_instance",
+      "resource_name": "main",
+      "file_path": "database.tf",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "db",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "violations": [
+        {
+          "tag_key": "Name",
+          "tag_value": "${var.project_name}-database",
+          "violation_type": "unresolvable_value",
+          "message": "Tag 'Name' value '${var.project_name}-database' cannot be validated: Unable to identify reference type"
+        }
+      ],
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner"
+      ],
+      "extra_tags": [
+        "Type"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Demo",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "Name",
+          "current_value": "${var.project_name}-database",
+          "suggested_value": "",
+          "action": "update",
+          "reason": "Tag 'Name' value '${var.project_name}-database' cannot be validated: Unable to identify reference type"
+        },
+        {
+          "tag_key": "Type",
+          "current_value": "Database",
+          "suggested_value": "",
+          "action": "remove",
+          "reason": "Tag 'Type' is not defined in the standard"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_db_instance",
+      "resource_name": "replica",
+      "file_path": "database.tf",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "db",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "violations": [
+        {
+          "tag_key": "Name",
+          "tag_value": "${var.project_name}-database-replica",
+          "violation_type": "unresolvable_value",
+          "message": "Tag 'Name' value '${var.project_name}-database-replica' cannot be validated: Unable to identify reference type"
+        }
+      ],
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner"
+      ],
+      "extra_tags": [
+        "Type"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Demo",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "Name",
+          "current_value": "${var.project_name}-database-replica",
+          "suggested_value": "",
+          "action": "update",
+          "reason": "Tag 'Name' value '${var.project_name}-database-replica' cannot be validated: Unable to identify reference type"
+        },
+        {
+          "tag_key": "Type",
+          "current_value": "DatabaseReplica",
+          "suggested_value": "",
+          "action": "remove",
+          "reason": "Tag 'Type' is not defined in the standard"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_lb",
+      "resource_name": "main",
+      "file_path": "loadbalancer.tf",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "lb",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "violations": [
+        {
+          "tag_key": "Name",
+          "tag_value": "${var.project_name}-alb",
+          "violation_type": "unresolvable_value",
+          "message": "Tag 'Name' value '${var.project_name}-alb' cannot be validated: Unable to identify reference type"
+        }
+      ],
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Demo",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "Name",
+          "current_value": "${var.project_name}-alb",
+          "suggested_value": "",
+          "action": "update",
+          "reason": "Tag 'Name' value '${var.project_name}-alb' cannot be validated: Unable to identify reference type"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_lb_target_group",
+      "resource_name": "web",
+      "file_path": "loadbalancer.tf",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "lb",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "violations": [
+        {
+          "tag_key": "Name",
+          "tag_value": "${var.project_name}-web-tg",
+          "violation_type": "unresolvable_value",
+          "message": "Tag 'Name' value '${var.project_name}-web-tg' cannot be validated: Unable to identify reference type"
+        }
+      ],
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Demo",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "Name",
+          "current_value": "${var.project_name}-web-tg",
+          "suggested_value": "",
+          "action": "update",
+          "reason": "Tag 'Name' value '${var.project_name}-web-tg' cannot be validated: Unable to identify reference type"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_lb_listener",
+      "resource_name": "web",
+      "file_path": "loadbalancer.tf",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "lb",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "violations": [
+        {
+          "tag_key": "Name",
+          "tag_value": "${var.project_name}-web-listener",
+          "violation_type": "unresolvable_value",
+          "message": "Tag 'Name' value '${var.project_name}-web-listener' cannot be validated: Unable to identify reference type"
+        }
+      ],
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Demo",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "Name",
+          "current_value": "${var.project_name}-web-listener",
+          "suggested_value": "",
+          "action": "update",
+          "reason": "Tag 'Name' value '${var.project_name}-web-listener' cannot be validated: Unable to identify reference type"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_launch_template",
+      "resource_name": "web",
+      "file_path": "compute.tf",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "launch",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "violations": [
+        {
+          "tag_key": "Name",
+          "tag_value": "${var.project_name}-launch-template",
+          "violation_type": "unresolvable_value",
+          "message": "Tag 'Name' value '${var.project_name}-launch-template' cannot be validated: Unable to identify reference type"
+        }
+      ],
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Demo",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "Name",
+          "current_value": "${var.project_name}-launch-template",
+          "suggested_value": "",
+          "action": "update",
+          "reason": "Tag 'Name' value '${var.project_name}-launch-template' cannot be validated: Unable to identify reference type"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_cloudwatch_metric_alarm",
+      "resource_name": "cpu_high",
+      "file_path": "compute.tf",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "cloudwatch",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "violations": [
+        {
+          "tag_key": "Name",
+          "tag_value": "${var.project_name}-cpu-high-alarm",
+          "violation_type": "unresolvable_value",
+          "message": "Tag 'Name' value '${var.project_name}-cpu-high-alarm' cannot be validated: Unable to identify reference type"
+        }
+      ],
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Demo",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "Name",
+          "current_value": "${var.project_name}-cpu-high-alarm",
+          "suggested_value": "",
+          "action": "update",
+          "reason": "Tag 'Name' value '${var.project_name}-cpu-high-alarm' cannot be validated: Unable to identify reference type"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_cloudwatch_metric_alarm",
+      "resource_name": "cpu_low",
+      "file_path": "compute.tf",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "cloudwatch",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "violations": [
+        {
+          "tag_key": "Name",
+          "tag_value": "${var.project_name}-cpu-low-alarm",
+          "violation_type": "unresolvable_value",
+          "message": "Tag 'Name' value '${var.project_name}-cpu-low-alarm' cannot be validated: Unable to identify reference type"
+        }
+      ],
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Demo",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "Name",
+          "current_value": "${var.project_name}-cpu-low-alarm",
+          "suggested_value": "",
+          "action": "update",
+          "reason": "Tag 'Name' value '${var.project_name}-cpu-low-alarm' cannot be validated: Unable to identify reference type"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_vpc",
+      "resource_name": "main",
+      "file_path": "main.tf",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "vpc",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "violations": [
+        {
+          "tag_key": "Name",
+          "tag_value": "${var.project_name}-vpc",
+          "violation_type": "unresolvable_value",
+          "message": "Tag 'Name' value '${var.project_name}-vpc' cannot be validated: Unable to identify reference type"
+        }
+      ],
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Demo",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "Name",
+          "current_value": "${var.project_name}-vpc",
+          "suggested_value": "",
+          "action": "update",
+          "reason": "Tag 'Name' value '${var.project_name}-vpc' cannot be validated: Unable to identify reference type"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_internet_gateway",
+      "resource_name": "main",
+      "file_path": "main.tf",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "internet",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "violations": [
+        {
+          "tag_key": "Name",
+          "tag_value": "${var.project_name}-igw",
+          "violation_type": "unresolvable_value",
+          "message": "Tag 'Name' value '${var.project_name}-igw' cannot be validated: Unable to identify reference type"
+        }
+      ],
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Demo",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "Name",
+          "current_value": "${var.project_name}-igw",
+          "suggested_value": "",
+          "action": "update",
+          "reason": "Tag 'Name' value '${var.project_name}-igw' cannot be validated: Unable to identify reference type"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_subnet",
+      "resource_name": "public",
+      "file_path": "main.tf",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "subnet",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "violations": [
+        {
+          "tag_key": "Name",
+          "tag_value": "${var.project_name}-public-subnet-${count.index + 1}",
+          "violation_type": "unresolvable_value",
+          "message": "Tag 'Name' value '${var.project_name}-public-subnet-${count.index + 1}' cannot be validated: Unable to identify reference type"
+        }
+      ],
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner"
+      ],
+      "extra_tags": [
+        "Type"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Demo",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "Name",
+          "current_value": "${var.project_name}-public-subnet-${count.index + 1}",
+          "suggested_value": "",
+          "action": "update",
+          "reason": "Tag 'Name' value '${var.project_name}-public-subnet-${count.index + 1}' cannot be validated: Unable to identify reference type"
+        },
+        {
+          "tag_key": "Type",
+          "current_value": "Public",
+          "suggested_value": "",
+          "action": "remove",
+          "reason": "Tag 'Type' is not defined in the standard"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_subnet",
+      "resource_name": "private",
+      "file_path": "main.tf",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "subnet",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "violations": [
+        {
+          "tag_key": "Name",
+          "tag_value": "${var.project_name}-private-subnet-${count.index + 1}",
+          "violation_type": "unresolvable_value",
+          "message": "Tag 'Name' value '${var.project_name}-private-subnet-${count.index + 1}' cannot be validated: Unable to identify reference type"
+        }
+      ],
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner"
+      ],
+      "extra_tags": [
+        "Type"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Demo",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "Type",
+          "current_value": "Private",
+          "suggested_value": "",
+          "action": "remove",
+          "reason": "Tag 'Type' is not defined in the standard"
+        },
+        {
+          "tag_key": "Name",
+          "current_value": "${var.project_name}-private-subnet-${count.index + 1}",
+          "suggested_value": "",
+          "action": "update",
+          "reason": "Tag 'Name' value '${var.project_name}-private-subnet-${count.index + 1}' cannot be validated: Unable to identify reference type"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_route_table",
+      "resource_name": "public",
+      "file_path": "main.tf",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "route",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "violations": [
+        {
+          "tag_key": "Name",
+          "tag_value": "${var.project_name}-public-rt",
+          "violation_type": "unresolvable_value",
+          "message": "Tag 'Name' value '${var.project_name}-public-rt' cannot be validated: Unable to identify reference type"
+        }
+      ],
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Demo",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "Name",
+          "current_value": "${var.project_name}-public-rt",
+          "suggested_value": "",
+          "action": "update",
+          "reason": "Tag 'Name' value '${var.project_name}-public-rt' cannot be validated: Unable to identify reference type"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_nat_gateway",
+      "resource_name": "main",
+      "file_path": "main.tf",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "nat",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "violations": [
+        {
+          "tag_key": "Name",
+          "tag_value": "${var.project_name}-nat-gw-${count.index + 1}",
+          "violation_type": "unresolvable_value",
+          "message": "Tag 'Name' value '${var.project_name}-nat-gw-${count.index + 1}' cannot be validated: Unable to identify reference type"
+        }
+      ],
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Demo",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "Name",
+          "current_value": "${var.project_name}-nat-gw-${count.index + 1}",
+          "suggested_value": "",
+          "action": "update",
+          "reason": "Tag 'Name' value '${var.project_name}-nat-gw-${count.index + 1}' cannot be validated: Unable to identify reference type"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_eip",
+      "resource_name": "nat",
+      "file_path": "main.tf",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "eip",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "violations": [
+        {
+          "tag_key": "Name",
+          "tag_value": "${var.project_name}-nat-eip-${count.index + 1}",
+          "violation_type": "unresolvable_value",
+          "message": "Tag 'Name' value '${var.project_name}-nat-eip-${count.index + 1}' cannot be validated: Unable to identify reference type"
+        }
+      ],
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Demo",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "Name",
+          "current_value": "${var.project_name}-nat-eip-${count.index + 1}",
+          "suggested_value": "",
+          "action": "update",
+          "reason": "Tag 'Name' value '${var.project_name}-nat-eip-${count.index + 1}' cannot be validated: Unable to identify reference type"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_route_table",
+      "resource_name": "private",
+      "file_path": "main.tf",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "route",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "violations": [
+        {
+          "tag_key": "Name",
+          "tag_value": "${var.project_name}-private-rt-${count.index + 1}",
+          "violation_type": "unresolvable_value",
+          "message": "Tag 'Name' value '${var.project_name}-private-rt-${count.index + 1}' cannot be validated: Unable to identify reference type"
+        }
+      ],
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Demo",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "Name",
+          "current_value": "${var.project_name}-private-rt-${count.index + 1}",
+          "suggested_value": "",
+          "action": "update",
+          "reason": "Tag 'Name' value '${var.project_name}-private-rt-${count.index + 1}' cannot be validated: Unable to identify reference type"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_security_group",
+      "resource_name": "alb",
+      "file_path": "security.tf",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "security",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "violations": [
+        {
+          "tag_key": "Name",
+          "tag_value": "${var.project_name}-alb-sg",
+          "violation_type": "unresolvable_value",
+          "message": "Tag 'Name' value '${var.project_name}-alb-sg' cannot be validated: Unable to identify reference type"
+        }
+      ],
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Demo",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "Name",
+          "current_value": "${var.project_name}-alb-sg",
+          "suggested_value": "",
+          "action": "update",
+          "reason": "Tag 'Name' value '${var.project_name}-alb-sg' cannot be validated: Unable to identify reference type"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_security_group",
+      "resource_name": "web",
+      "file_path": "security.tf",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "security",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "violations": [
+        {
+          "tag_key": "Name",
+          "tag_value": "${var.project_name}-web-sg",
+          "violation_type": "unresolvable_value",
+          "message": "Tag 'Name' value '${var.project_name}-web-sg' cannot be validated: Unable to identify reference type"
+        }
+      ],
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Demo",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "Name",
+          "current_value": "${var.project_name}-web-sg",
+          "suggested_value": "",
+          "action": "update",
+          "reason": "Tag 'Name' value '${var.project_name}-web-sg' cannot be validated: Unable to identify reference type"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_security_group",
+      "resource_name": "database",
+      "file_path": "security.tf",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "security",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "violations": [
+        {
+          "tag_key": "Name",
+          "tag_value": "${var.project_name}-db-sg",
+          "violation_type": "unresolvable_value",
+          "message": "Tag 'Name' value '${var.project_name}-db-sg' cannot be validated: Unable to identify reference type"
+        }
+      ],
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Demo",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "Name",
+          "current_value": "${var.project_name}-db-sg",
+          "suggested_value": "",
+          "action": "update",
+          "reason": "Tag 'Name' value '${var.project_name}-db-sg' cannot be validated: Unable to identify reference type"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_iam_role",
+      "resource_name": "ec2_role",
+      "file_path": "security.tf",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "iam",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "violations": [
+        {
+          "tag_key": "Name",
+          "tag_value": "${var.project_name}-ec2-role",
+          "violation_type": "unresolvable_value",
+          "message": "Tag 'Name' value '${var.project_name}-ec2-role' cannot be validated: Unable to identify reference type"
+        }
+      ],
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Demo",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "Name",
+          "current_value": "${var.project_name}-ec2-role",
+          "suggested_value": "",
+          "action": "update",
+          "reason": "Tag 'Name' value '${var.project_name}-ec2-role' cannot be validated: Unable to identify reference type"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_iam_policy",
+      "resource_name": "s3_access",
+      "file_path": "security.tf",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "iam",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "violations": [
+        {
+          "tag_key": "Name",
+          "tag_value": "${var.project_name}-s3-policy",
+          "violation_type": "unresolvable_value",
+          "message": "Tag 'Name' value '${var.project_name}-s3-policy' cannot be validated: Unable to identify reference type"
+        }
+      ],
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Demo",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "Name",
+          "current_value": "${var.project_name}-s3-policy",
+          "suggested_value": "",
+          "action": "update",
+          "reason": "Tag 'Name' value '${var.project_name}-s3-policy' cannot be validated: Unable to identify reference type"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_iam_instance_profile",
+      "resource_name": "ec2_profile",
+      "file_path": "security.tf",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "iam",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "violations": [
+        {
+          "tag_key": "Name",
+          "tag_value": "${var.project_name}-ec2-profile",
+          "violation_type": "unresolvable_value",
+          "message": "Tag 'Name' value '${var.project_name}-ec2-profile' cannot be validated: Unable to identify reference type"
+        }
+      ],
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Demo",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "Name",
+          "current_value": "${var.project_name}-ec2-profile",
+          "suggested_value": "",
+          "action": "update",
+          "reason": "Tag 'Name' value '${var.project_name}-ec2-profile' cannot be validated: Unable to identify reference type"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_s3_bucket",
+      "resource_name": "app_data",
+      "file_path": "storage.tf",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "s3",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "violations": [
+        {
+          "tag_key": "Name",
+          "tag_value": "${var.project_name}-app-data",
+          "violation_type": "unresolvable_value",
+          "message": "Tag 'Name' value '${var.project_name}-app-data' cannot be validated: Unable to identify reference type"
+        }
+      ],
+      "missing_tags": [
+        "Project",
+        "Owner"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Project",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "Name",
+          "current_value": "${var.project_name}-app-data",
+          "suggested_value": "",
+          "action": "update",
+          "reason": "Tag 'Name' value '${var.project_name}-app-data' cannot be validated: Unable to identify reference type"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_s3_bucket",
+      "resource_name": "logs",
+      "file_path": "storage.tf",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "s3",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "violations": [
+        {
+          "tag_key": "Name",
+          "tag_value": "${var.project_name}-logs",
+          "violation_type": "unresolvable_value",
+          "message": "Tag 'Name' value '${var.project_name}-logs' cannot be validated: Unable to identify reference type"
+        }
+      ],
+      "missing_tags": [
+        "Project",
+        "Owner"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Project",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "Name",
+          "current_value": "${var.project_name}-logs",
+          "suggested_value": "",
+          "action": "update",
+          "reason": "Tag 'Name' value '${var.project_name}-logs' cannot be validated: Unable to identify reference type"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_s3_bucket",
+      "resource_name": "backups",
+      "file_path": "storage.tf",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "s3",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "violations": [
+        {
+          "tag_key": "Name",
+          "tag_value": "${var.project_name}-backups",
+          "violation_type": "unresolvable_value",
+          "message": "Tag 'Name' value '${var.project_name}-backups' cannot be validated: Unable to identify reference type"
+        }
+      ],
+      "missing_tags": [
+        "Project",
+        "Owner"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Project",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "Name",
+          "current_value": "${var.project_name}-backups",
+          "suggested_value": "",
+          "action": "update",
+          "reason": "Tag 'Name' value '${var.project_name}-backups' cannot be validated: Unable to identify reference type"
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "compliance_rate": 0,
+    "most_common_violations": [
+      {
+        "violation_type": "unresolvable_value",
+        "count": 27
+      }
+    ],
+    "resource_type_breakdown": {
+      "aws_cloudwatch_metric_alarm": {
+        "total": 2,
+        "compliant": 0,
+        "rate": 0
+      },
+      "aws_db_instance": {
+        "total": 2,
+        "compliant": 0,
+        "rate": 0
+      },
+      "aws_db_parameter_group": {
+        "total": 1,
+        "compliant": 0,
+        "rate": 0
+      },
+      "aws_db_subnet_group": {
+        "total": 1,
+        "compliant": 0,
+        "rate": 0
+      },
+      "aws_eip": {
+        "total": 1,
+        "compliant": 0,
+        "rate": 0
+      },
+      "aws_iam_instance_profile": {
+        "total": 1,
+        "compliant": 0,
+        "rate": 0
+      },
+      "aws_iam_policy": {
+        "total": 1,
+        "compliant": 0,
+        "rate": 0
+      },
+      "aws_iam_role": {
+        "total": 1,
+        "compliant": 0,
+        "rate": 0
+      },
+      "aws_internet_gateway": {
+        "total": 1,
+        "compliant": 0,
+        "rate": 0
+      },
+      "aws_launch_template": {
+        "total": 1,
+        "compliant": 0,
+        "rate": 0
+      },
+      "aws_lb": {
+        "total": 1,
+        "compliant": 0,
+        "rate": 0
+      },
+      "aws_lb_listener": {
+        "total": 1,
+        "compliant": 0,
+        "rate": 0
+      },
+      "aws_lb_target_group": {
+        "total": 1,
+        "compliant": 0,
+        "rate": 0
+      },
+      "aws_nat_gateway": {
+        "total": 1,
+        "compliant": 0,
+        "rate": 0
+      },
+      "aws_route_table": {
+        "total": 2,
+        "compliant": 0,
+        "rate": 0
+      },
+      "aws_s3_bucket": {
+        "total": 3,
+        "compliant": 0,
+        "rate": 0
+      },
+      "aws_security_group": {
+        "total": 3,
+        "compliant": 0,
+        "rate": 0
+      },
+      "aws_subnet": {
+        "total": 2,
+        "compliant": 0,
+        "rate": 0
+      },
+      "aws_vpc": {
+        "total": 1,
+        "compliant": 0,
+        "rate": 0
+      }
+    }
+  }
+}

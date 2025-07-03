@@ -1,0 +1,1493 @@
+[
+  {
+    "resource_type": "google_ai_platform_notebook_instance",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "ai",
+    "category": "AI/ML"
+  },
+  {
+    "resource_type": "google_api_gateway_api",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "api",
+    "category": "API Management"
+  },
+  {
+    "resource_type": "google_api_gateway_api_config",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "api",
+    "category": "API Management"
+  },
+  {
+    "resource_type": "google_api_gateway_gateway",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "api",
+    "category": "API Management"
+  },
+  {
+    "resource_type": "google_apigee_environment",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "apigee",
+    "category": "API Management"
+  },
+  {
+    "resource_type": "google_apigee_instance",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "apigee",
+    "category": "API Management"
+  },
+  {
+    "resource_type": "google_apigee_organization",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "apigee",
+    "category": "API Management"
+  },
+  {
+    "resource_type": "google_app_engine_application",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "app",
+    "category": "App Engine"
+  },
+  {
+    "resource_type": "google_app_engine_service",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "app",
+    "category": "App Engine"
+  },
+  {
+    "resource_type": "google_app_engine_version",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "app",
+    "category": "App Engine"
+  },
+  {
+    "resource_type": "google_artifact_registry_repository",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "artifact",
+    "category": "DevOps"
+  },
+  {
+    "resource_type": "google_bigquery_dataset",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "bigquery",
+    "category": "Analytics"
+  },
+  {
+    "resource_type": "google_bigquery_dataset_access",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "bigquery",
+    "category": "Analytics"
+  },
+  {
+    "resource_type": "google_bigquery_dataset_iam_binding",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "bigquery",
+    "category": "Analytics"
+  },
+  {
+    "resource_type": "google_bigquery_dataset_iam_member",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "bigquery",
+    "category": "Analytics"
+  },
+  {
+    "resource_type": "google_bigquery_dataset_iam_policy",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "bigquery",
+    "category": "Analytics"
+  },
+  {
+    "resource_type": "google_bigquery_table",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "bigquery",
+    "category": "Analytics"
+  },
+  {
+    "resource_type": "google_bigquery_table_iam_binding",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "bigquery",
+    "category": "Analytics"
+  },
+  {
+    "resource_type": "google_bigquery_table_iam_member",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "bigquery",
+    "category": "Analytics"
+  },
+  {
+    "resource_type": "google_bigquery_table_iam_policy",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "bigquery",
+    "category": "Analytics"
+  },
+  {
+    "resource_type": "google_bigtable_instance",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "bigtable",
+    "category": "Database"
+  },
+  {
+    "resource_type": "google_billing_account_iam_binding",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "billing",
+    "category": "Billing"
+  },
+  {
+    "resource_type": "google_billing_account_iam_member",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "billing",
+    "category": "Billing"
+  },
+  {
+    "resource_type": "google_billing_account_iam_policy",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "billing",
+    "category": "Billing"
+  },
+  {
+    "resource_type": "google_binary_authorization_policy",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "binary",
+    "category": "Security"
+  },
+  {
+    "resource_type": "google_cloud_function",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "cloud",
+    "category": "Serverless"
+  },
+  {
+    "resource_type": "google_cloud_function_iam_binding",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "cloud",
+    "category": "Serverless"
+  },
+  {
+    "resource_type": "google_cloud_function_iam_member",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "cloud",
+    "category": "Serverless"
+  },
+  {
+    "resource_type": "google_cloud_function_iam_policy",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "cloud",
+    "category": "Serverless"
+  },
+  {
+    "resource_type": "google_cloud_run_domain_mapping",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "cloud",
+    "category": "Serverless"
+  },
+  {
+    "resource_type": "google_cloud_run_service",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "cloud",
+    "category": "Serverless"
+  },
+  {
+    "resource_type": "google_cloud_run_service_iam_binding",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "cloud",
+    "category": "Serverless"
+  },
+  {
+    "resource_type": "google_cloud_run_service_iam_member",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "cloud",
+    "category": "Serverless"
+  },
+  {
+    "resource_type": "google_cloud_run_service_iam_policy",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "cloud",
+    "category": "Serverless"
+  },
+  {
+    "resource_type": "google_cloud_run_v2_service",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "cloud",
+    "category": "Serverless"
+  },
+  {
+    "resource_type": "google_cloud_scheduler_job",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "cloud",
+    "category": "Serverless"
+  },
+  {
+    "resource_type": "google_cloud_tasks_queue",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "cloud",
+    "category": "Serverless"
+  },
+  {
+    "resource_type": "google_cloudfunctions2_function",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "cloudfunctions2",
+    "category": "Serverless"
+  },
+  {
+    "resource_type": "google_cloudfunctions_function",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "cloudfunctions",
+    "category": "Serverless"
+  },
+  {
+    "resource_type": "google_cloudfunctions_function_iam_binding",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "cloudfunctions",
+    "category": "Serverless"
+  },
+  {
+    "resource_type": "google_cloudfunctions_function_iam_member",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "cloudfunctions",
+    "category": "Serverless"
+  },
+  {
+    "resource_type": "google_cloudfunctions_function_iam_policy",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "cloudfunctions",
+    "category": "Serverless"
+  },
+  {
+    "resource_type": "google_composer_environment",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "composer",
+    "category": "Analytics"
+  },
+  {
+    "resource_type": "google_compute_address",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "compute",
+    "category": "Compute"
+  },
+  {
+    "resource_type": "google_compute_attached_disk",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "compute",
+    "category": "Compute"
+  },
+  {
+    "resource_type": "google_compute_autoscaler",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "compute",
+    "category": "Compute"
+  },
+  {
+    "resource_type": "google_compute_backend_bucket",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "compute",
+    "category": "Compute"
+  },
+  {
+    "resource_type": "google_compute_backend_service",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "compute",
+    "category": "Compute"
+  },
+  {
+    "resource_type": "google_compute_disk",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "compute",
+    "category": "Compute"
+  },
+  {
+    "resource_type": "google_compute_disk_iam_binding",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "compute",
+    "category": "Compute"
+  },
+  {
+    "resource_type": "google_compute_disk_iam_member",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "compute",
+    "category": "Compute"
+  },
+  {
+    "resource_type": "google_compute_disk_iam_policy",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "compute",
+    "category": "Compute"
+  },
+  {
+    "resource_type": "google_compute_firewall",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "compute",
+    "category": "Compute"
+  },
+  {
+    "resource_type": "google_compute_firewall_policy",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "compute",
+    "category": "Compute"
+  },
+  {
+    "resource_type": "google_compute_firewall_policy_association",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "compute",
+    "category": "Compute"
+  },
+  {
+    "resource_type": "google_compute_firewall_policy_rule",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "compute",
+    "category": "Compute"
+  },
+  {
+    "resource_type": "google_compute_forwarding_rule",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "compute",
+    "category": "Compute"
+  },
+  {
+    "resource_type": "google_compute_global_address",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "compute",
+    "category": "Compute"
+  },
+  {
+    "resource_type": "google_compute_global_forwarding_rule",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "compute",
+    "category": "Compute"
+  },
+  {
+    "resource_type": "google_compute_health_check",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "compute",
+    "category": "Compute"
+  },
+  {
+    "resource_type": "google_compute_http_health_check",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "compute",
+    "category": "Compute"
+  },
+  {
+    "resource_type": "google_compute_https_health_check",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "compute",
+    "category": "Compute"
+  },
+  {
+    "resource_type": "google_compute_image",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "compute",
+    "category": "Compute"
+  },
+  {
+    "resource_type": "google_compute_image_iam_binding",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "compute",
+    "category": "Compute"
+  },
+  {
+    "resource_type": "google_compute_image_iam_member",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "compute",
+    "category": "Compute"
+  },
+  {
+    "resource_type": "google_compute_image_iam_policy",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "compute",
+    "category": "Compute"
+  },
+  {
+    "resource_type": "google_compute_instance",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "compute",
+    "category": "Compute"
+  },
+  {
+    "resource_type": "google_compute_instance_group",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "compute",
+    "category": "Compute"
+  },
+  {
+    "resource_type": "google_compute_instance_group_manager",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "compute",
+    "category": "Compute"
+  },
+  {
+    "resource_type": "google_compute_instance_group_named_port",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "compute",
+    "category": "Compute"
+  },
+  {
+    "resource_type": "google_compute_instance_iam_binding",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "compute",
+    "category": "Compute"
+  },
+  {
+    "resource_type": "google_compute_instance_iam_member",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "compute",
+    "category": "Compute"
+  },
+  {
+    "resource_type": "google_compute_instance_iam_policy",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "compute",
+    "category": "Compute"
+  },
+  {
+    "resource_type": "google_compute_instance_template",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "compute",
+    "category": "Compute"
+  },
+  {
+    "resource_type": "google_compute_managed_ssl_certificate",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "compute",
+    "category": "Compute"
+  },
+  {
+    "resource_type": "google_compute_network",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "compute",
+    "category": "Compute"
+  },
+  {
+    "resource_type": "google_compute_network_peering",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "compute",
+    "category": "Compute"
+  },
+  {
+    "resource_type": "google_compute_network_peering_routes_config",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "compute",
+    "category": "Compute"
+  },
+  {
+    "resource_type": "google_compute_organization_security_policy",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "compute",
+    "category": "Compute"
+  },
+  {
+    "resource_type": "google_compute_organization_security_policy_association",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "compute",
+    "category": "Compute"
+  },
+  {
+    "resource_type": "google_compute_organization_security_policy_rule",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "compute",
+    "category": "Compute"
+  },
+  {
+    "resource_type": "google_compute_project_metadata",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "compute",
+    "category": "Compute"
+  },
+  {
+    "resource_type": "google_compute_project_metadata_item",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "compute",
+    "category": "Compute"
+  },
+  {
+    "resource_type": "google_compute_region_instance_group_manager",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "compute",
+    "category": "Compute"
+  },
+  {
+    "resource_type": "google_compute_route",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "compute",
+    "category": "Compute"
+  },
+  {
+    "resource_type": "google_compute_router",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "compute",
+    "category": "Compute"
+  },
+  {
+    "resource_type": "google_compute_router_nat",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "compute",
+    "category": "Compute"
+  },
+  {
+    "resource_type": "google_compute_security_policy",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "compute",
+    "category": "Compute"
+  },
+  {
+    "resource_type": "google_compute_shared_vpc_host_project",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "compute",
+    "category": "Compute"
+  },
+  {
+    "resource_type": "google_compute_shared_vpc_service_project",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "compute",
+    "category": "Compute"
+  },
+  {
+    "resource_type": "google_compute_snapshot",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "compute",
+    "category": "Compute"
+  },
+  {
+    "resource_type": "google_compute_ssl_certificate",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "compute",
+    "category": "Compute"
+  },
+  {
+    "resource_type": "google_compute_subnetwork",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "compute",
+    "category": "Compute"
+  },
+  {
+    "resource_type": "google_compute_subnetwork_iam_binding",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "compute",
+    "category": "Compute"
+  },
+  {
+    "resource_type": "google_compute_subnetwork_iam_member",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "compute",
+    "category": "Compute"
+  },
+  {
+    "resource_type": "google_compute_subnetwork_iam_policy",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "compute",
+    "category": "Compute"
+  },
+  {
+    "resource_type": "google_compute_target_http_proxy",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "compute",
+    "category": "Compute"
+  },
+  {
+    "resource_type": "google_compute_target_https_proxy",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "compute",
+    "category": "Compute"
+  },
+  {
+    "resource_type": "google_compute_target_pool",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "compute",
+    "category": "Compute"
+  },
+  {
+    "resource_type": "google_compute_target_ssl_proxy",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "compute",
+    "category": "Compute"
+  },
+  {
+    "resource_type": "google_compute_target_tcp_proxy",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "compute",
+    "category": "Compute"
+  },
+  {
+    "resource_type": "google_compute_url_map",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "compute",
+    "category": "Compute"
+  },
+  {
+    "resource_type": "google_compute_vpn_gateway",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "compute",
+    "category": "Compute"
+  },
+  {
+    "resource_type": "google_compute_vpn_tunnel",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "compute",
+    "category": "Compute"
+  },
+  {
+    "resource_type": "google_container_cluster",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "container",
+    "category": "Kubernetes"
+  },
+  {
+    "resource_type": "google_container_cluster_iam_binding",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "container",
+    "category": "Kubernetes"
+  },
+  {
+    "resource_type": "google_container_cluster_iam_member",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "container",
+    "category": "Kubernetes"
+  },
+  {
+    "resource_type": "google_container_cluster_iam_policy",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "container",
+    "category": "Kubernetes"
+  },
+  {
+    "resource_type": "google_container_node_pool",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "container",
+    "category": "Kubernetes"
+  },
+  {
+    "resource_type": "google_container_registry",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "container",
+    "category": "Kubernetes"
+  },
+  {
+    "resource_type": "google_data_fusion_instance",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "data",
+    "category": "Analytics"
+  },
+  {
+    "resource_type": "google_dataflow_job",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "dataflow",
+    "category": "Analytics"
+  },
+  {
+    "resource_type": "google_dataform_repository",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "dataform",
+    "category": "Analytics"
+  },
+  {
+    "resource_type": "google_dataplex_asset",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "dataplex",
+    "category": "Analytics"
+  },
+  {
+    "resource_type": "google_dataplex_lake",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "dataplex",
+    "category": "Analytics"
+  },
+  {
+    "resource_type": "google_dataplex_zone",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "dataplex",
+    "category": "Analytics"
+  },
+  {
+    "resource_type": "google_dataproc_cluster",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "dataproc",
+    "category": "Analytics"
+  },
+  {
+    "resource_type": "google_dns_managed_zone",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "dns",
+    "category": "Networking"
+  },
+  {
+    "resource_type": "google_dns_policy",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "dns",
+    "category": "Networking"
+  },
+  {
+    "resource_type": "google_dns_record_set",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "dns",
+    "category": "Networking"
+  },
+  {
+    "resource_type": "google_endpoints_service",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "endpoints",
+    "category": "API Management"
+  },
+  {
+    "resource_type": "google_endpoints_service_iam_binding",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "endpoints",
+    "category": "API Management"
+  },
+  {
+    "resource_type": "google_endpoints_service_iam_member",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "endpoints",
+    "category": "API Management"
+  },
+  {
+    "resource_type": "google_endpoints_service_iam_policy",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "endpoints",
+    "category": "API Management"
+  },
+  {
+    "resource_type": "google_eventarc_trigger",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "eventarc",
+    "category": "Serverless"
+  },
+  {
+    "resource_type": "google_filestore_instance",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "filestore",
+    "category": "Storage"
+  },
+  {
+    "resource_type": "google_firebase_android_app",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "firebase",
+    "category": "Firebase"
+  },
+  {
+    "resource_type": "google_firebase_ios_app",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "firebase",
+    "category": "Firebase"
+  },
+  {
+    "resource_type": "google_firebase_project",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "firebase",
+    "category": "Firebase"
+  },
+  {
+    "resource_type": "google_firebase_web_app",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "firebase",
+    "category": "Firebase"
+  },
+  {
+    "resource_type": "google_folder",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "folder",
+    "category": "IAM"
+  },
+  {
+    "resource_type": "google_folder_iam_binding",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "folder",
+    "category": "IAM"
+  },
+  {
+    "resource_type": "google_folder_iam_member",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "folder",
+    "category": "IAM"
+  },
+  {
+    "resource_type": "google_folder_iam_policy",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "folder",
+    "category": "IAM"
+  },
+  {
+    "resource_type": "google_healthcare_dataset",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "healthcare",
+    "category": "Healthcare"
+  },
+  {
+    "resource_type": "google_healthcare_dicom_store",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "healthcare",
+    "category": "Healthcare"
+  },
+  {
+    "resource_type": "google_healthcare_fhir_store",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "healthcare",
+    "category": "Healthcare"
+  },
+  {
+    "resource_type": "google_healthcare_hl7_v2_store",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "healthcare",
+    "category": "Healthcare"
+  },
+  {
+    "resource_type": "google_iap_brand",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "iap",
+    "category": "Security"
+  },
+  {
+    "resource_type": "google_iap_client",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "iap",
+    "category": "Security"
+  },
+  {
+    "resource_type": "google_identity_platform_config",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "identity",
+    "category": "Security"
+  },
+  {
+    "resource_type": "google_kms_crypto_key",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "kms",
+    "category": "Security"
+  },
+  {
+    "resource_type": "google_kms_crypto_key_iam_binding",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "kms",
+    "category": "Security"
+  },
+  {
+    "resource_type": "google_kms_crypto_key_iam_member",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "kms",
+    "category": "Security"
+  },
+  {
+    "resource_type": "google_kms_crypto_key_iam_policy",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "kms",
+    "category": "Security"
+  },
+  {
+    "resource_type": "google_kms_key_ring",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "kms",
+    "category": "Security"
+  },
+  {
+    "resource_type": "google_kms_key_ring_iam_binding",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "kms",
+    "category": "Security"
+  },
+  {
+    "resource_type": "google_kms_key_ring_iam_member",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "kms",
+    "category": "Security"
+  },
+  {
+    "resource_type": "google_kms_key_ring_iam_policy",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "kms",
+    "category": "Security"
+  },
+  {
+    "resource_type": "google_logging_sink",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "logging",
+    "category": "Monitoring"
+  },
+  {
+    "resource_type": "google_memcache_instance",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "memcache",
+    "category": "Database"
+  },
+  {
+    "resource_type": "google_ml_engine_model",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "ml",
+    "category": "AI/ML"
+  },
+  {
+    "resource_type": "google_monitoring_alert_policy",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "monitoring",
+    "category": "Monitoring"
+  },
+  {
+    "resource_type": "google_monitoring_notification_channel",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "monitoring",
+    "category": "Monitoring"
+  },
+  {
+    "resource_type": "google_monitoring_uptime_check_config",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "monitoring",
+    "category": "Monitoring"
+  },
+  {
+    "resource_type": "google_network_connectivity_hub",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "network",
+    "category": "Networking"
+  },
+  {
+    "resource_type": "google_network_connectivity_spoke",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "network",
+    "category": "Networking"
+  },
+  {
+    "resource_type": "google_network_security_gateway_security_policy",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "network",
+    "category": "Networking"
+  },
+  {
+    "resource_type": "google_network_security_server_tls_policy",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "network",
+    "category": "Networking"
+  },
+  {
+    "resource_type": "google_notebooks_instance",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "notebooks",
+    "category": "AI/ML"
+  },
+  {
+    "resource_type": "google_organization_iam_binding",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "organization",
+    "category": "IAM"
+  },
+  {
+    "resource_type": "google_organization_iam_member",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "organization",
+    "category": "IAM"
+  },
+  {
+    "resource_type": "google_organization_iam_policy",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "organization",
+    "category": "IAM"
+  },
+  {
+    "resource_type": "google_organization_policy",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "organization",
+    "category": "IAM"
+  },
+  {
+    "resource_type": "google_project",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "project",
+    "category": "IAM"
+  },
+  {
+    "resource_type": "google_project_iam_binding",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "project",
+    "category": "IAM"
+  },
+  {
+    "resource_type": "google_project_iam_custom_role",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "project",
+    "category": "IAM"
+  },
+  {
+    "resource_type": "google_project_iam_member",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "project",
+    "category": "IAM"
+  },
+  {
+    "resource_type": "google_project_iam_policy",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "project",
+    "category": "IAM"
+  },
+  {
+    "resource_type": "google_project_organization_policy",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "project",
+    "category": "IAM"
+  },
+  {
+    "resource_type": "google_project_service",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "project",
+    "category": "IAM"
+  },
+  {
+    "resource_type": "google_pubsub_subscription",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "pubsub",
+    "category": "Messaging"
+  },
+  {
+    "resource_type": "google_pubsub_subscription_iam_binding",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "pubsub",
+    "category": "Messaging"
+  },
+  {
+    "resource_type": "google_pubsub_subscription_iam_member",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "pubsub",
+    "category": "Messaging"
+  },
+  {
+    "resource_type": "google_pubsub_subscription_iam_policy",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "pubsub",
+    "category": "Messaging"
+  },
+  {
+    "resource_type": "google_pubsub_topic",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "pubsub",
+    "category": "Messaging"
+  },
+  {
+    "resource_type": "google_pubsub_topic_iam_binding",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "pubsub",
+    "category": "Messaging"
+  },
+  {
+    "resource_type": "google_pubsub_topic_iam_member",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "pubsub",
+    "category": "Messaging"
+  },
+  {
+    "resource_type": "google_pubsub_topic_iam_policy",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "pubsub",
+    "category": "Messaging"
+  },
+  {
+    "resource_type": "google_redis_instance",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "redis",
+    "category": "Database"
+  },
+  {
+    "resource_type": "google_secret_manager_secret",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "secret",
+    "category": "Security"
+  },
+  {
+    "resource_type": "google_secret_manager_secret_iam_binding",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "secret",
+    "category": "Security"
+  },
+  {
+    "resource_type": "google_secret_manager_secret_iam_member",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "secret",
+    "category": "Security"
+  },
+  {
+    "resource_type": "google_secret_manager_secret_iam_policy",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "secret",
+    "category": "Security"
+  },
+  {
+    "resource_type": "google_secret_manager_secret_version",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "secret",
+    "category": "Security"
+  },
+  {
+    "resource_type": "google_service_account",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "service",
+    "category": "IAM"
+  },
+  {
+    "resource_type": "google_service_account_iam_binding",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "service",
+    "category": "IAM"
+  },
+  {
+    "resource_type": "google_service_account_iam_member",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "service",
+    "category": "IAM"
+  },
+  {
+    "resource_type": "google_service_account_iam_policy",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "service",
+    "category": "IAM"
+  },
+  {
+    "resource_type": "google_service_account_key",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "service",
+    "category": "IAM"
+  },
+  {
+    "resource_type": "google_sourcerepo_repository",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "sourcerepo",
+    "category": "DevOps"
+  },
+  {
+    "resource_type": "google_spanner_database",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "spanner",
+    "category": "Database"
+  },
+  {
+    "resource_type": "google_spanner_instance",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "spanner",
+    "category": "Database"
+  },
+  {
+    "resource_type": "google_sql_database",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "sql",
+    "category": "Database"
+  },
+  {
+    "resource_type": "google_sql_database_instance",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "sql",
+    "category": "Database"
+  },
+  {
+    "resource_type": "google_sql_ssl_cert",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "sql",
+    "category": "Database"
+  },
+  {
+    "resource_type": "google_sql_user",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "sql",
+    "category": "Database"
+  },
+  {
+    "resource_type": "google_storage_bucket",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "storage",
+    "category": "Storage"
+  },
+  {
+    "resource_type": "google_storage_bucket_access_control",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "storage",
+    "category": "Storage"
+  },
+  {
+    "resource_type": "google_storage_bucket_iam_binding",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "storage",
+    "category": "Storage"
+  },
+  {
+    "resource_type": "google_storage_bucket_iam_member",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "storage",
+    "category": "Storage"
+  },
+  {
+    "resource_type": "google_storage_bucket_iam_policy",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "storage",
+    "category": "Storage"
+  },
+  {
+    "resource_type": "google_storage_bucket_object",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "storage",
+    "category": "Storage"
+  },
+  {
+    "resource_type": "google_storage_default_object_access_control",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "storage",
+    "category": "Storage"
+  },
+  {
+    "resource_type": "google_storage_notification",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "storage",
+    "category": "Storage"
+  },
+  {
+    "resource_type": "google_storage_object_access_control",
+    "supports_labels": false,
+    "label_attribute_name": "",
+    "service": "storage",
+    "category": "Storage"
+  },
+  {
+    "resource_type": "google_vertex_ai_dataset",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "vertex",
+    "category": "AI/ML"
+  },
+  {
+    "resource_type": "google_vertex_ai_endpoint",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "vertex",
+    "category": "AI/ML"
+  },
+  {
+    "resource_type": "google_vmwareengine_cluster",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "vmwareengine",
+    "category": "VMware Engine"
+  },
+  {
+    "resource_type": "google_vmwareengine_network",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "vmwareengine",
+    "category": "VMware Engine"
+  },
+  {
+    "resource_type": "google_vmwareengine_private_cloud",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "vmwareengine",
+    "category": "VMware Engine"
+  },
+  {
+    "resource_type": "google_vpc_access_connector",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "vpc",
+    "category": "Networking"
+  },
+  {
+    "resource_type": "google_workflows_workflow",
+    "supports_labels": true,
+    "label_attribute_name": "labels",
+    "service": "workflows",
+    "category": "Serverless"
+  }
+]

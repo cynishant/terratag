@@ -1,0 +1,82 @@
+{
+  "format_version": "1.2",
+  "terraform_version": "1.12.2",
+  "variables": {
+    "environment": {
+      "value": "demo"
+    },
+    "project_name": {
+      "value": "webapp"
+    }
+  },
+  "planned_values": {
+    "root_module": {
+      "resources": [
+        {
+          "address": "aws_s3_bucket.app_data",
+          "mode": "managed",
+          "type": "aws_s3_bucket",
+          "name": "app_data",
+          "values": {
+            "bucket": "webapp-app-data-abc123",
+            "tags": {
+              "Name": "webapp-app-data",
+              "Environment": "demo",
+              "Purpose": "ApplicationData"
+            }
+          }
+        },
+        {
+          "address": "aws_s3_bucket.logs",
+          "mode": "managed",
+          "type": "aws_s3_bucket",
+          "name": "logs",
+          "values": {
+            "bucket": "webapp-logs-abc123",
+            "tags": {
+              "Name": "webapp-logs",
+              "Environment": "demo",
+              "Purpose": "Logging"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "resource_changes": [
+    {
+      "address": "aws_s3_bucket.app_data",
+      "mode": "managed",
+      "type": "aws_s3_bucket",
+      "name": "app_data",
+      "change": {
+        "actions": ["create"],
+        "after": {
+          "bucket": "webapp-app-data-abc123",
+          "tags": {
+            "Name": "webapp-app-data",
+            "Environment": "demo",
+            "Purpose": "ApplicationData"
+          }
+        }
+      }
+    },
+    {
+      "address": "aws_s3_bucket.logs",
+      "mode": "managed",
+      "type": "aws_s3_bucket",
+      "name": "logs",
+      "change": {
+        "actions": ["create"],
+        "after": {
+          "bucket": "webapp-logs-abc123",
+          "tags": {
+            "Name": "webapp-logs",
+            "Environment": "demo",
+            "Purpose": "Logging"
+          }
+        }
+      }
+    }
+  ]
+}

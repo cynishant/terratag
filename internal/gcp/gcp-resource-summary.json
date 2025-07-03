@@ -1,0 +1,278 @@
+{
+  "categories": {
+    "AI/ML": 5,
+    "API Management": 6,
+    "Analytics": 10,
+    "App Engine": 3,
+    "Compute": 28,
+    "Database": 7,
+    "DevOps": 2,
+    "Firebase": 4,
+    "Healthcare": 4,
+    "IAM": 2,
+    "Kubernetes": 3,
+    "Messaging": 2,
+    "Monitoring": 4,
+    "Networking": 7,
+    "Security": 7,
+    "Serverless": 9,
+    "Storage": 3,
+    "VMware Engine": 3
+  },
+  "label_support_rate": 51.173708920187785,
+  "resources_not_supporting_labels": 104,
+  "resources_supporting_labels": 109,
+  "services": {
+    "ai": {
+      "labeled_resources": 1,
+      "labeling_rate": 100,
+      "total_resources": 1
+    },
+    "api": {
+      "labeled_resources": 3,
+      "labeling_rate": 100,
+      "total_resources": 3
+    },
+    "apigee": {
+      "labeled_resources": 3,
+      "labeling_rate": 100,
+      "total_resources": 3
+    },
+    "app": {
+      "labeled_resources": 3,
+      "labeling_rate": 100,
+      "total_resources": 3
+    },
+    "artifact": {
+      "labeled_resources": 1,
+      "labeling_rate": 100,
+      "total_resources": 1
+    },
+    "bigquery": {
+      "labeled_resources": 2,
+      "labeling_rate": 22.22222222222222,
+      "total_resources": 9
+    },
+    "bigtable": {
+      "labeled_resources": 1,
+      "labeling_rate": 100,
+      "total_resources": 1
+    },
+    "billing": {
+      "labeled_resources": 0,
+      "labeling_rate": 0,
+      "total_resources": 3
+    },
+    "binary": {
+      "labeled_resources": 1,
+      "labeling_rate": 100,
+      "total_resources": 1
+    },
+    "cloud": {
+      "labeled_resources": 5,
+      "labeling_rate": 41.66666666666667,
+      "total_resources": 12
+    },
+    "cloudfunctions": {
+      "labeled_resources": 1,
+      "labeling_rate": 25,
+      "total_resources": 4
+    },
+    "cloudfunctions2": {
+      "labeled_resources": 1,
+      "labeling_rate": 100,
+      "total_resources": 1
+    },
+    "composer": {
+      "labeled_resources": 1,
+      "labeling_rate": 100,
+      "total_resources": 1
+    },
+    "compute": {
+      "labeled_resources": 28,
+      "labeling_rate": 45.90163934426229,
+      "total_resources": 61
+    },
+    "container": {
+      "labeled_resources": 3,
+      "labeling_rate": 50,
+      "total_resources": 6
+    },
+    "data": {
+      "labeled_resources": 1,
+      "labeling_rate": 100,
+      "total_resources": 1
+    },
+    "dataflow": {
+      "labeled_resources": 1,
+      "labeling_rate": 100,
+      "total_resources": 1
+    },
+    "dataform": {
+      "labeled_resources": 1,
+      "labeling_rate": 100,
+      "total_resources": 1
+    },
+    "dataplex": {
+      "labeled_resources": 3,
+      "labeling_rate": 100,
+      "total_resources": 3
+    },
+    "dataproc": {
+      "labeled_resources": 1,
+      "labeling_rate": 100,
+      "total_resources": 1
+    },
+    "dns": {
+      "labeled_resources": 2,
+      "labeling_rate": 66.66666666666666,
+      "total_resources": 3
+    },
+    "endpoints": {
+      "labeled_resources": 0,
+      "labeling_rate": 0,
+      "total_resources": 4
+    },
+    "eventarc": {
+      "labeled_resources": 1,
+      "labeling_rate": 100,
+      "total_resources": 1
+    },
+    "filestore": {
+      "labeled_resources": 1,
+      "labeling_rate": 100,
+      "total_resources": 1
+    },
+    "firebase": {
+      "labeled_resources": 4,
+      "labeling_rate": 100,
+      "total_resources": 4
+    },
+    "folder": {
+      "labeled_resources": 0,
+      "labeling_rate": 0,
+      "total_resources": 4
+    },
+    "healthcare": {
+      "labeled_resources": 4,
+      "labeling_rate": 100,
+      "total_resources": 4
+    },
+    "iap": {
+      "labeled_resources": 2,
+      "labeling_rate": 100,
+      "total_resources": 2
+    },
+    "identity": {
+      "labeled_resources": 1,
+      "labeling_rate": 100,
+      "total_resources": 1
+    },
+    "kms": {
+      "labeled_resources": 2,
+      "labeling_rate": 25,
+      "total_resources": 8
+    },
+    "logging": {
+      "labeled_resources": 1,
+      "labeling_rate": 100,
+      "total_resources": 1
+    },
+    "memcache": {
+      "labeled_resources": 1,
+      "labeling_rate": 100,
+      "total_resources": 1
+    },
+    "ml": {
+      "labeled_resources": 1,
+      "labeling_rate": 100,
+      "total_resources": 1
+    },
+    "monitoring": {
+      "labeled_resources": 3,
+      "labeling_rate": 100,
+      "total_resources": 3
+    },
+    "network": {
+      "labeled_resources": 4,
+      "labeling_rate": 100,
+      "total_resources": 4
+    },
+    "notebooks": {
+      "labeled_resources": 1,
+      "labeling_rate": 100,
+      "total_resources": 1
+    },
+    "organization": {
+      "labeled_resources": 0,
+      "labeling_rate": 0,
+      "total_resources": 4
+    },
+    "project": {
+      "labeled_resources": 1,
+      "labeling_rate": 14.285714285714285,
+      "total_resources": 7
+    },
+    "pubsub": {
+      "labeled_resources": 2,
+      "labeling_rate": 25,
+      "total_resources": 8
+    },
+    "redis": {
+      "labeled_resources": 1,
+      "labeling_rate": 100,
+      "total_resources": 1
+    },
+    "secret": {
+      "labeled_resources": 1,
+      "labeling_rate": 20,
+      "total_resources": 5
+    },
+    "service": {
+      "labeled_resources": 1,
+      "labeling_rate": 20,
+      "total_resources": 5
+    },
+    "sourcerepo": {
+      "labeled_resources": 1,
+      "labeling_rate": 100,
+      "total_resources": 1
+    },
+    "spanner": {
+      "labeled_resources": 2,
+      "labeling_rate": 100,
+      "total_resources": 2
+    },
+    "sql": {
+      "labeled_resources": 2,
+      "labeling_rate": 50,
+      "total_resources": 4
+    },
+    "storage": {
+      "labeled_resources": 2,
+      "labeling_rate": 22.22222222222222,
+      "total_resources": 9
+    },
+    "vertex": {
+      "labeled_resources": 2,
+      "labeling_rate": 100,
+      "total_resources": 2
+    },
+    "vmwareengine": {
+      "labeled_resources": 3,
+      "labeling_rate": 100,
+      "total_resources": 3
+    },
+    "vpc": {
+      "labeled_resources": 1,
+      "labeling_rate": 100,
+      "total_resources": 1
+    },
+    "workflows": {
+      "labeled_resources": 1,
+      "labeling_rate": 100,
+      "total_resources": 1
+    }
+  },
+  "total_resources": 213
+}

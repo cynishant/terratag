@@ -1,0 +1,703 @@
+{
+  "timestamp": "2025-07-03T17:29:58.440639+05:30",
+  "standard_file": "test-scenarios/standards/aws-comprehensive.yaml",
+  "total_resources": 10,
+  "compliant_resources": 0,
+  "non_compliant_resources": 10,
+  "tagging_support": {
+    "total_resources_analyzed": 10,
+    "resources_supporting_tags": 10,
+    "resources_not_supporting_tags": 0,
+    "tagging_support_rate": 1,
+    "service_breakdown": {
+      "db": {
+        "total_resources": 2,
+        "taggable_resources": 2,
+        "tagging_rate": 1
+      },
+      "instance": {
+        "total_resources": 1,
+        "taggable_resources": 1,
+        "tagging_rate": 1
+      },
+      "internet": {
+        "total_resources": 1,
+        "taggable_resources": 1,
+        "tagging_rate": 1
+      },
+      "s3": {
+        "total_resources": 1,
+        "taggable_resources": 1,
+        "tagging_rate": 1
+      },
+      "security": {
+        "total_resources": 2,
+        "taggable_resources": 2,
+        "tagging_rate": 1
+      },
+      "subnet": {
+        "total_resources": 2,
+        "taggable_resources": 2,
+        "tagging_rate": 1
+      },
+      "vpc": {
+        "total_resources": 1,
+        "taggable_resources": 1,
+        "tagging_rate": 1
+      }
+    },
+    "category_breakdown": {
+      "taggable": 10
+    }
+  },
+  "results": [
+    {
+      "resource_type": "aws_vpc",
+      "resource_name": "main",
+      "file_path": "test-scenarios/aws-working/main.tf",
+      "line_number": 60,
+      "snippet": "resource \"aws_vpc\" \"main\" {\n  cidr_block           = \"10.0.0.0/16\"\n  enable_dns_hostnames = true\n  enable_dns_support   = true\n\n  tags = merge(local.common_tags, {\n    Name         = \"${var.project_name}-${var.environment}-vpc\"\n    ResourceType = \"VPC\"\n  })\n}",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "vpc",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_internet_gateway",
+      "resource_name": "main",
+      "file_path": "test-scenarios/aws-working/main.tf",
+      "line_number": 72,
+      "snippet": "resource \"aws_internet_gateway\" \"main\" {\n  vpc_id = aws_vpc.main.id\n\n  tags = merge(local.common_tags, {\n    Name         = \"${var.project_name}-${var.environment}-igw\"\n    ResourceType = \"InternetGateway\"\n  })\n}",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "internet",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_subnet",
+      "resource_name": "public",
+      "file_path": "test-scenarios/aws-working/main.tf",
+      "line_number": 82,
+      "snippet": "resource \"aws_subnet\" \"public\" {\n  vpc_id                  = aws_vpc.main.id\n  cidr_block              = \"10.0.1.0/24\"\n  availability_zone       = data.aws_availability_zones.available.names[0]\n  map_public_ip_on_launch = true\n\n  tags = merge(local.common_tags, {\n    Name         = \"${var.project_name}-${var.environment}-public-subnet\"\n    ResourceType = \"Subnet\"\n    Type         = \"Public\"\n  })\n}",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "subnet",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_subnet",
+      "resource_name": "private",
+      "file_path": "test-scenarios/aws-working/main.tf",
+      "line_number": 96,
+      "snippet": "resource \"aws_subnet\" \"private\" {\n  vpc_id            = aws_vpc.main.id\n  cidr_block        = \"10.0.2.0/24\"\n  availability_zone = data.aws_availability_zones.available.names[1]\n\n  tags = merge(local.common_tags, {\n    Name         = \"${var.project_name}-${var.environment}-private-subnet\"\n    ResourceType = \"Subnet\"\n    Type         = \"Private\"\n  })\n}",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "subnet",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_security_group",
+      "resource_name": "web",
+      "file_path": "test-scenarios/aws-working/main.tf",
+      "line_number": 109,
+      "snippet": "resource \"aws_security_group\" \"web\" {\n  name        = \"${var.project_name}-${var.environment}-web\"\n  description = \"Security group for web servers\"\n  vpc_id      = aws_vpc.main.id\n\n  ingress {\n    from_port   = 80\n    to_port     = 80\n    protocol    = \"tcp\"\n    cidr_blocks = [\"0.0.0.0/0\"]\n  }\n\n  ingress {\n    from_port   = 443\n    to_port     = 443\n    protocol    = \"tcp\"\n    cidr_blocks = [\"0.0.0.0/0\"]\n  }\n\n  egress {\n    from_port   = 0\n    to_port     = 0\n    protocol    = \"-1\"\n    cidr_blocks = [\"0.0.0.0/0\"]\n  }\n\n  tags = merge(local.common_tags, {\n    Name         = \"${var.project_name}-${var.environment}-web-sg\"\n    ResourceType = \"SecurityGroup\"\n  })\n}",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "security",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_s3_bucket",
+      "resource_name": "main",
+      "file_path": "test-scenarios/aws-working/main.tf",
+      "line_number": 142,
+      "snippet": "resource \"aws_s3_bucket\" \"main\" {\n  bucket = \"${var.project_name}-${var.environment}-main-bucket\"\n\n  tags = merge(local.common_tags, {\n    Name         = \"${var.project_name}-${var.environment}-main-bucket\"\n    ResourceType = \"S3Bucket\"\n    Purpose      = \"main-storage\"\n  })\n}",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "s3",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy",
+        "DataClassification",
+        "Compliance"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        },
+        {
+          "tag_key": "DataClassification",
+          "suggested_value": "internal",
+          "action": "add",
+          "reason": "Required tag 'DataClassification' is missing"
+        },
+        {
+          "tag_key": "Compliance",
+          "suggested_value": "pii",
+          "action": "add",
+          "reason": "Required tag 'Compliance' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_instance",
+      "resource_name": "web",
+      "file_path": "test-scenarios/aws-working/main.tf",
+      "line_number": 161,
+      "snippet": "resource \"aws_instance\" \"web\" {\n  ami                    = data.aws_ami.amazon_linux.id\n  instance_type          = \"t3.micro\"\n  subnet_id              = aws_subnet.public.id\n  vpc_security_group_ids = [aws_security_group.web.id]\n\n  tags = merge(local.common_tags, {\n    Name         = \"${var.project_name}-${var.environment}-web\"\n    ResourceType = \"EC2Instance\"\n    Purpose      = \"web-server\"\n  })\n}",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "instance",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy",
+        "Backup",
+        "Monitoring"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        },
+        {
+          "tag_key": "Backup",
+          "suggested_value": "none",
+          "action": "add",
+          "reason": "Required tag 'Backup' is missing"
+        },
+        {
+          "tag_key": "Monitoring",
+          "suggested_value": "basic",
+          "action": "add",
+          "reason": "Required tag 'Monitoring' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_db_subnet_group",
+      "resource_name": "main",
+      "file_path": "test-scenarios/aws-working/main.tf",
+      "line_number": 175,
+      "snippet": "resource \"aws_db_subnet_group\" \"main\" {\n  name       = \"${var.project_name}-${var.environment}-db-subnet-group\"\n  subnet_ids = [aws_subnet.private.id, aws_subnet.public.id]\n\n  tags = merge(local.common_tags, {\n    Name         = \"${var.project_name}-${var.environment}-db-subnet-group\"\n    ResourceType = \"DBSubnetGroup\"\n  })\n}",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "db",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_db_instance",
+      "resource_name": "main",
+      "file_path": "test-scenarios/aws-working/main.tf",
+      "line_number": 186,
+      "snippet": "resource \"aws_db_instance\" \"main\" {\n  identifier             = \"${var.project_name}-${var.environment}-db\"\n  engine                 = \"mysql\"\n  engine_version         = \"8.0\"\n  instance_class         = \"db.t3.micro\"\n  allocated_storage      = 20\n  storage_type           = \"gp2\"\n  storage_encrypted      = true\n  \n  db_name  = \"maindb\"\n  username = \"admin\"\n  password = \"changeme123!\"\n  \n  vpc_security_group_ids = [aws_security_group.database.id]\n  db_subnet_group_name   = aws_db_subnet_group.main.name\n  \n  backup_retention_period = 7\n  backup_window          = \"03:00-04:00\"\n  maintenance_window     = \"sun:04:00-sun:05:00\"\n  \n  skip_final_snapshot = true\n\n  tags = merge(local.common_tags, {\n    Name         = \"${var.project_name}-${var.environment}-db\"\n    ResourceType = \"RDSInstance\"\n    Engine       = \"MySQL\"\n  })\n}",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "db",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy",
+        "Backup",
+        "DataClassification"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        },
+        {
+          "tag_key": "Backup",
+          "suggested_value": "none",
+          "action": "add",
+          "reason": "Required tag 'Backup' is missing"
+        },
+        {
+          "tag_key": "DataClassification",
+          "suggested_value": "internal",
+          "action": "add",
+          "reason": "Required tag 'DataClassification' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_security_group",
+      "resource_name": "database",
+      "file_path": "test-scenarios/aws-working/main.tf",
+      "line_number": 216,
+      "snippet": "resource \"aws_security_group\" \"database\" {\n  name        = \"${var.project_name}-${var.environment}-database\"\n  description = \"Security group for database\"\n  vpc_id      = aws_vpc.main.id\n\n  ingress {\n    from_port       = 3306\n    to_port         = 3306\n    protocol        = \"tcp\"\n    security_groups = [aws_security_group.web.id]\n  }\n\n  tags = merge(local.common_tags, {\n    Name         = \"${var.project_name}-${var.environment}-database-sg\"\n    ResourceType = \"SecurityGroup\"\n    Purpose      = \"database\"\n  })\n}",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "security",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "compliance_rate": 0,
+    "most_common_violations": null,
+    "resource_type_breakdown": {
+      "aws_db_instance": {
+        "total": 1,
+        "compliant": 0,
+        "rate": 0
+      },
+      "aws_db_subnet_group": {
+        "total": 1,
+        "compliant": 0,
+        "rate": 0
+      },
+      "aws_instance": {
+        "total": 1,
+        "compliant": 0,
+        "rate": 0
+      },
+      "aws_internet_gateway": {
+        "total": 1,
+        "compliant": 0,
+        "rate": 0
+      },
+      "aws_s3_bucket": {
+        "total": 1,
+        "compliant": 0,
+        "rate": 0
+      },
+      "aws_security_group": {
+        "total": 2,
+        "compliant": 0,
+        "rate": 0
+      },
+      "aws_subnet": {
+        "total": 2,
+        "compliant": 0,
+        "rate": 0
+      },
+      "aws_vpc": {
+        "total": 1,
+        "compliant": 0,
+        "rate": 0
+      }
+    }
+  }
+}

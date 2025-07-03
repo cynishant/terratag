@@ -3,7 +3,7 @@ package tagging
 import (
 	"testing"
 
-	"github.com/env0/terratag/internal/common"
+	"github.com/cloudyali/terratag/internal/common"
 	"github.com/hashicorp/hcl/v2/hclwrite"
 	"github.com/stretchr/testify/assert"
 )

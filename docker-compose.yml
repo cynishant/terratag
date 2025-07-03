@@ -1,0 +1,98 @@
+# Docker Compose configuration for Terratag
+# Provides two modes: CLI mode and UI mode
+
+services:
+  # CLI mode - Interactive shell for running terratag commands
+  terratag-cli:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: terratag:latest
+    container_name: terratag-cli
+    command: /bin/bash
+    stdin_open: true
+    tty: true
+    volumes:
+      # Mount source code directory (configurable via environment variables)
+      - ${TERRATAG_SOURCE_DIR:-.}:/workspace
+      # Mount demo deployment directory for demonstration
+      - ${TERRATAG_DEMO_DEPLOYMENT_DIR:-./demo-deployment}:/demo-deployment
+      # Mount standards directory (configurable)
+      - ${TERRATAG_STANDARDS_DIR:-./standards}:/standards:ro
+      # Mount reports output directory (configurable)
+      - ${TERRATAG_REPORTS_DIR:-./reports}:/reports
+      # Mount SSH keys for Git access (if needed)
+      - ${HOME}/.ssh:/home/terratag/.ssh:ro
+      # Mount Git config (if needed)
+      - ${HOME}/.gitconfig:/home/terratag/.gitconfig:ro
+      # Mount AWS credentials (if needed)
+      - ${HOME}/.aws:/home/terratag/.aws:ro
+      # Mount GCP credentials (if needed)  
+      - ${HOME}/.config/gcloud:/home/terratag/.config/gcloud:ro
+    environment:
+      # Terratag environment variables
+      - TERRATAG_VERBOSE=${TERRATAG_VERBOSE:-false}
+      - TERRATAG_REPORT_FORMAT=${TERRATAG_REPORT_FORMAT:-table}
+      - TERRATAG_STRICT_MODE=${TERRATAG_STRICT_MODE:-false}
+      - TERRATAG_DIR=${TERRATAG_WORKSPACE_SUBDIR:-}
+      # Cloud provider credentials
+      - AWS_PROFILE=${AWS_PROFILE:-}
+      - AWS_REGION=${AWS_REGION:-us-east-1}
+      - GOOGLE_APPLICATION_CREDENTIALS=${GOOGLE_APPLICATION_CREDENTIALS:-}
+      - GOOGLE_PROJECT=${GOOGLE_PROJECT:-}
+    working_dir: /workspace
+    user: "1000:1000"
+    networks:
+      - terratag-network
+    profiles:
+      - cli
+
+  # UI mode - Web interface and API server
+  terratag-ui:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: terratag:latest
+    container_name: terratag-ui
+    entrypoint: ["/usr/local/bin/entrypoint.sh"]
+    command: ["/usr/local/bin/terratag-api"]
+    ports:
+      - "8080:8080"
+    environment:
+      - PORT=8080
+      - DB_PATH=/data/terratag.db
+      - GIN_MODE=${GIN_MODE:-release}
+      - LOG_LEVEL=${LOG_LEVEL:-info}
+      - TERRATAG_DEMO_MODE=true
+      - TERRATAG_DEMO_DIR=/demo-deployment
+      - TERRATAG_STANDARDS_DIR=/standards
+      - REQUIRE_AUTH=false
+    volumes:
+      - ${TERRATAG_SOURCE_DIR:-.}:/workspace
+      - ${TERRATAG_DEMO_DEPLOYMENT_DIR:-./demo-deployment}:/demo-deployment
+      - ${TERRATAG_STANDARDS_DIR:-./standards}:/standards:ro
+      - ${TERRATAG_REPORTS_DIR:-./reports}:/reports
+      - terratag-data:/data
+      # Optional: Mount cloud credentials if needed for UI operations
+      - ${HOME}/.aws:/home/terratag/.aws:ro
+      - ${HOME}/.config/gcloud:/home/terratag/.config/gcloud:ro
+    working_dir: /workspace
+    user: "1000:1000"
+    networks:
+      - terratag-network
+    profiles:
+      - ui
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+networks:
+  terratag-network:
+    driver: bridge
+
+volumes:
+  # Named volumes for persistent data
+  terratag-data:
+    driver: local

@@ -1,0 +1,35 @@
+Terratag Test Analysis - gcp-complex
+Generated: Thu Jul  3 19:09:26 IST 2025
+
+SCENARIO OVERVIEW:
+- Scenario: gcp-complex
+- Directory: /Users/nishant/Documents/GitHub/terratag/test-scenarios/gcp-complex
+- Total Resources:       71
+- Tagged Resources: 0
+
+VALIDATION RESULTS:
+
+
+FILES CREATED:
+
+
+TERRAFORM MODULES:
+modules/compute
+modules/database
+modules/monitoring
+modules/storage
+
+VARIABLES ANALYSIS:
+Total variables defined: 411
+
+TAG/LABEL PATTERNS:
+       5 AWS tag blocks found
+      61 GCP label blocks found
+      52 merge() function calls found
+
+COMPLEX FEATURES:
+      30 Resources using count
+       7 Resources using for_each
+       8 Dynamic blocks found
+       1 Locals blocks found
+

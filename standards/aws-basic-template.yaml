@@ -1,0 +1,61 @@
+version: 1
+metadata:
+  description: "Basic AWS Resource Tagging Template"
+  author: "Your Team"
+  created_date: "2024-01-01"
+
+cloud_provider: "aws"
+
+required_tags:
+  - key: "Environment"
+    description: "Deployment environment"
+    allowed_values: ["Production", "Staging", "Development", "Testing"]
+    case_sensitive: false
+    
+  - key: "Owner"
+    description: "Team or individual responsible for the resource"
+    format: "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$"
+    data_type: "email"
+    
+  - key: "Project"
+    description: "Project name"
+    data_type: "string"
+    min_length: 2
+    max_length: 50
+    
+  - key: "ManagedBy"
+    description: "Tool managing the resource"
+    allowed_values: ["Terraform", "CloudFormation", "Manual"]
+    case_sensitive: false
+
+optional_tags:
+  - key: "CostCenter"
+    description: "Cost center for billing"
+    data_type: "string"
+    format: "^CC-[0-9]{4}$"
+    
+  - key: "BackupSchedule"
+    description: "Backup schedule if applicable"
+    allowed_values: ["Daily", "Weekly", "Monthly", "None"]
+    case_sensitive: false
+
+global_excludes:
+  - "aws_iam_role"
+  - "aws_iam_policy"
+  - "random_string"
+
+resource_rules:
+  - resource_types: ["aws_instance", "aws_launch_template"]
+    required_tags: 
+      - "BackupSchedule"
+      
+  - resource_types: ["aws_db_instance"]
+    required_tags:
+      - "BackupSchedule"
+    optional_tags:
+      - "MaintenanceWindow"
+
+validation_rules:
+  case_sensitive_keys: false
+  allow_extra_tags: true
+  strict_mode: false

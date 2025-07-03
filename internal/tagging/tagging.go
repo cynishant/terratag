@@ -3,10 +3,10 @@ package tagging
 import (
 	"log"
 
-	"github.com/env0/terratag/internal/common"
-	"github.com/env0/terratag/internal/convert"
-	"github.com/env0/terratag/internal/tag_keys"
-	"github.com/env0/terratag/internal/terraform"
+	"github.com/cloudyali/terratag/internal/common"
+	"github.com/cloudyali/terratag/internal/convert"
+	"github.com/cloudyali/terratag/internal/tag_keys"
+	"github.com/cloudyali/terratag/internal/terraform"
 	"github.com/hashicorp/hcl/v2"
 	"github.com/hashicorp/hcl/v2/hclwrite"
 )

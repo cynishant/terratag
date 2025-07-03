@@ -1,0 +1,230 @@
+# Docker Compose Examples for Terratag
+# Various scenarios and use cases for running Terratag with Docker Compose
+
+version: '3.8'
+
+services:
+  # Example 1: AWS Infrastructure Validation
+  aws-production-validation:
+    build:
+      context: ../../
+      dockerfile: Dockerfile
+    image: terratag:latest
+    container_name: aws-prod-validation
+    command: >
+      -validate-only
+      -standard /standards/aws-production-standard.yaml
+      -report-format markdown
+      -report-output /reports/aws-prod-compliance.md
+      -strict-mode
+      -verbose
+      /workspace/aws-infrastructure
+    volumes:
+      - ../../aws-infrastructure:/workspace/aws-infrastructure:ro
+      - ./standards:/standards:ro
+      - ./reports:/reports
+      - ~/.aws:/home/terratag/.aws:ro
+    environment:
+      - AWS_PROFILE=production
+      - AWS_REGION=us-east-1
+    profiles:
+      - aws-prod
+
+  # Example 2: GCP Multi-Environment Validation
+  gcp-multi-env-validation:
+    extends: aws-production-validation
+    container_name: gcp-multi-env
+    command: >
+      -validate-only
+      -standard /standards/gcp-multi-env-standard.yaml
+      -report-format json
+      -report-output /reports/gcp-multi-env-compliance.json
+      -verbose
+      /workspace/gcp-infrastructure
+    volumes:
+      - ../../gcp-infrastructure:/workspace/gcp-infrastructure:ro
+      - ./standards:/standards:ro
+      - ./reports:/reports
+      - ~/.config/gcloud:/home/terratag/.config/gcloud:ro
+    environment:
+      - GOOGLE_APPLICATION_CREDENTIALS=/home/terratag/.config/gcloud/application_default_credentials.json
+      - GOOGLE_PROJECT=my-production-project
+    profiles:
+      - gcp-multi
+
+  # Example 3: Development Environment Tag Application
+  dev-tag-application:
+    extends: aws-production-validation
+    container_name: dev-tag-app
+    command: >
+      -tags='{"Environment":"development","Owner":"dev-team@company.com","CostCenter":"CC2001","Project":"web-app-dev"}'
+      -filter="aws_(instance|ebs_volume|s3_bucket)"
+      -verbose
+      -rename=false
+    volumes:
+      - ../../dev-infrastructure:/workspace:rw
+    environment:
+      - AWS_PROFILE=development
+    profiles:
+      - dev-apply
+
+  # Example 4: CI/CD Pipeline Validation
+  cicd-strict-validation:
+    extends: aws-production-validation
+    container_name: cicd-validation
+    command: >
+      -validate-only
+      -standard /standards/cicd-standard.yaml
+      -report-format json
+      -report-output /reports/cicd-compliance.json
+      -strict-mode
+      /workspace
+    volumes:
+      - ${CI_PROJECT_DIR:-../../}:/workspace:ro
+      - ./standards:/standards:ro
+      - ./reports:/reports
+    environment:
+      - CI=true
+      - TERRATAG_STRICT_MODE=true
+    profiles:
+      - cicd
+
+  # Example 5: Multi-Cloud Validation
+  multi-cloud-validation:
+    extends: aws-production-validation
+    container_name: multi-cloud
+    command: >
+      -validate-only
+      -standard /standards/multi-cloud-standard.yaml
+      -report-format table
+      -verbose
+      /workspace
+    volumes:
+      - ../../multi-cloud-infrastructure:/workspace:ro
+      - ./standards:/standards:ro
+      - ./reports:/reports
+      - ~/.aws:/home/terratag/.aws:ro
+      - ~/.config/gcloud:/home/terratag/.config/gcloud:ro
+      - ~/.azure:/home/terratag/.azure:ro
+    environment:
+      - AWS_PROFILE=default
+      - GOOGLE_APPLICATION_CREDENTIALS=/home/terratag/.config/gcloud/credentials.json
+      - AZURE_SUBSCRIPTION_ID=${AZURE_SUBSCRIPTION_ID}
+    profiles:
+      - multi-cloud
+
+  # Example 6: Batch Processing Multiple Projects
+  batch-project-processor:
+    extends: aws-production-validation
+    container_name: batch-processor
+    command: >
+      /bin/bash -c "
+      for project in project-a project-b project-c; do
+        echo 'Processing $$project...';
+        terratag -validate-only 
+          -standard /standards/$$project-standard.yaml 
+          -report-format json 
+          -report-output /reports/$$project-compliance.json 
+          -strict-mode 
+          /workspace/$$project;
+      done
+      "
+    volumes:
+      - ../../projects:/workspace:ro
+      - ./standards:/standards:ro
+      - ./reports:/reports
+    profiles:
+      - batch
+
+  # Example 7: Interactive Development Shell
+  dev-shell:
+    extends: aws-production-validation
+    container_name: terratag-dev-shell
+    command: /bin/bash
+    stdin_open: true
+    tty: true
+    volumes:
+      - ../../:/workspace
+      - ./standards:/standards
+      - ./reports:/reports
+      - ~/.aws:/home/terratag/.aws:ro
+      - ~/.config/gcloud:/home/terratag/.config/gcloud:ro
+      - ~/.gitconfig:/home/terratag/.gitconfig:ro
+      - ~/.ssh:/home/terratag/.ssh:ro
+    environment:
+      - AWS_PROFILE=default
+      - GOOGLE_PROJECT=default-project
+    profiles:
+      - shell
+
+  # Example 8: Compliance Audit
+  compliance-audit:
+    extends: aws-production-validation
+    container_name: compliance-audit
+    command: >
+      -validate-only
+      -standard /standards/compliance-audit-standard.yaml
+      -report-format markdown
+      -report-output /reports/compliance-audit-$(date +%Y%m%d).md
+      -strict-mode
+      -verbose
+      /workspace
+    volumes:
+      - ../../audit-infrastructure:/workspace:ro
+      - ./standards:/standards:ro
+      - ./reports:/reports
+    environment:
+      - AUDIT_DATE=$(date +%Y%m%d)
+    profiles:
+      - audit
+
+  # Example 9: Terragrunt Support
+  terragrunt-validation:
+    extends: aws-production-validation
+    container_name: terragrunt-validation
+    command: >
+      -validate-only
+      -standard /standards/terragrunt-standard.yaml
+      -type=terragrunt-run-all
+      -report-format json
+      -report-output /reports/terragrunt-compliance.json
+      -verbose
+      /workspace
+    volumes:
+      - ../../terragrunt-infrastructure:/workspace:ro
+      - ./standards:/standards:ro
+      - ./reports:/reports
+    profiles:
+      - terragrunt
+
+  # Example 10: Performance Testing
+  performance-test:
+    extends: aws-production-validation
+    container_name: performance-test
+    command: >
+      /bin/bash -c "
+      echo 'Starting performance test...';
+      time terratag -validate-only 
+        -standard /standards/large-infrastructure-standard.yaml 
+        -report-format json 
+        -report-output /reports/performance-test.json 
+        -verbose 
+        /workspace;
+      echo 'Performance test completed.';
+      "
+    volumes:
+      - ../../large-infrastructure:/workspace:ro
+      - ./standards:/standards:ro
+      - ./reports:/reports
+    profiles:
+      - performance
+
+networks:
+  terratag-examples:
+    driver: bridge
+
+volumes:
+  example-reports:
+    driver: local
+  example-cache:
+    driver: local

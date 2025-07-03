@@ -1,0 +1,2580 @@
+{
+  "timestamp": "2025-07-03T19:09:21.570846+05:30",
+  "standard_file": "/Users/nishant/Documents/GitHub/terratag/test-scenarios/standards/aws-comprehensive.yaml",
+  "total_resources": 40,
+  "compliant_resources": 0,
+  "non_compliant_resources": 40,
+  "tagging_support": {
+    "total_resources_analyzed": 40,
+    "resources_supporting_tags": 40,
+    "resources_not_supporting_tags": 0,
+    "tagging_support_rate": 1,
+    "service_breakdown": {
+      "cloudfront": {
+        "total_resources": 1,
+        "taggable_resources": 1,
+        "tagging_rate": 1
+      },
+      "cloudtrail": {
+        "total_resources": 1,
+        "taggable_resources": 1,
+        "tagging_rate": 1
+      },
+      "cloudwatch": {
+        "total_resources": 10,
+        "taggable_resources": 10,
+        "tagging_rate": 1
+      },
+      "db": {
+        "total_resources": 5,
+        "taggable_resources": 5,
+        "tagging_rate": 1
+      },
+      "iam": {
+        "total_resources": 3,
+        "taggable_resources": 3,
+        "tagging_rate": 1
+      },
+      "internet": {
+        "total_resources": 1,
+        "taggable_resources": 1,
+        "tagging_rate": 1
+      },
+      "kms": {
+        "total_resources": 2,
+        "taggable_resources": 2,
+        "tagging_rate": 1
+      },
+      "launch": {
+        "total_resources": 1,
+        "taggable_resources": 1,
+        "tagging_rate": 1
+      },
+      "lb": {
+        "total_resources": 3,
+        "taggable_resources": 3,
+        "tagging_rate": 1
+      },
+      "route": {
+        "total_resources": 1,
+        "taggable_resources": 1,
+        "tagging_rate": 1
+      },
+      "s3": {
+        "total_resources": 4,
+        "taggable_resources": 4,
+        "tagging_rate": 1
+      },
+      "secretsmanager": {
+        "total_resources": 1,
+        "taggable_resources": 1,
+        "tagging_rate": 1
+      },
+      "security": {
+        "total_resources": 2,
+        "taggable_resources": 2,
+        "tagging_rate": 1
+      },
+      "sns": {
+        "total_resources": 2,
+        "taggable_resources": 2,
+        "tagging_rate": 1
+      },
+      "subnet": {
+        "total_resources": 2,
+        "taggable_resources": 2,
+        "tagging_rate": 1
+      },
+      "vpc": {
+        "total_resources": 1,
+        "taggable_resources": 1,
+        "tagging_rate": 1
+      }
+    },
+    "category_breakdown": {
+      "taggable": 40
+    }
+  },
+  "results": [
+    {
+      "resource_type": "aws_s3_bucket",
+      "resource_name": "main",
+      "file_path": "modules/storage/main.tf",
+      "line_number": 12,
+      "snippet": "resource \"aws_s3_bucket\" \"main\" {\n  bucket = \"${var.project_name}-${var.environment}-main-${random_string.suffix.result}\"\n\n  tags = merge(var.tags, var.module_tags, {\n    Name          = \"${var.project_name}-${var.environment}-main\"\n    ResourceType  = \"S3Bucket\"\n    Module        = \"storage\"\n    BucketType    = \"main\"\n    Purpose       = \"application-data\"\n  })\n}\n\n── Variable Resolutions ──\n\n  ${var.project_name} → terratag-aws-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-aws-test\n\n  var.environment → staging\n\n  var.tags → map[]\n\n  var.module_tags → map[]\n\n  merge(...) → { Name = \"${var.project_name}-${var.environment}-main\", ResourceType = \"S3Bucket\", Module = \"stor...\n\n  ${var.project_name} → terratag-aws-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-aws-test\n\n  var.environment → staging\n",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "s3",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy",
+        "DataClassification",
+        "Compliance"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        },
+        {
+          "tag_key": "DataClassification",
+          "suggested_value": "internal",
+          "action": "add",
+          "reason": "Required tag 'DataClassification' is missing"
+        },
+        {
+          "tag_key": "Compliance",
+          "suggested_value": "pii",
+          "action": "add",
+          "reason": "Required tag 'Compliance' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_s3_bucket",
+      "resource_name": "static",
+      "file_path": "modules/storage/main.tf",
+      "line_number": 51,
+      "snippet": "resource \"aws_s3_bucket\" \"static\" {\n  count  = var.enable_cdn ? 1 : 0\n  bucket = \"${var.project_name}-${var.environment}-static-${random_string.suffix.result}\"\n\n  tags = merge(var.tags, var.module_tags, {\n    Name          = \"${var.project_name}-${var.environment}-static\"\n    ResourceType  = \"S3Bucket\"\n    Module        = \"storage\"\n    BucketType    = \"static\"\n    Purpose       = \"static-website\"\n  })\n}\n\n── Variable Resolutions ──\n\n  var.enable_cdn → false\n\n  ${var.project_name} → terratag-aws-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-aws-test\n\n  var.environment → staging\n\n  var.tags → map[]\n\n  var.module_tags → map[]\n\n  merge(...) → { Name = \"${var.project_name}-${var.environment}-static\", ResourceType = \"S3Bucket\", Module = \"st...\n\n  ${var.project_name} → terratag-aws-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-aws-test\n\n  var.environment → staging\n",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "s3",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy",
+        "DataClassification",
+        "Compliance"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        },
+        {
+          "tag_key": "DataClassification",
+          "suggested_value": "internal",
+          "action": "add",
+          "reason": "Required tag 'DataClassification' is missing"
+        },
+        {
+          "tag_key": "Compliance",
+          "suggested_value": "pii",
+          "action": "add",
+          "reason": "Required tag 'Compliance' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_cloudfront_distribution",
+      "resource_name": "main",
+      "file_path": "modules/storage/main.tf",
+      "line_number": 88,
+      "snippet": "resource \"aws_cloudfront_distribution\" \"main\" {\n  count = var.enable_cdn ? 1 : 0\n\n  origin {\n    domain_name = aws_s3_bucket.static[0].bucket_regional_domain_name\n    origin_id   = \"S3-${aws_s3_bucket.static[0].bucket}\"\n\n    s3_origin_config {\n      origin_access_identity = aws_cloudfront_origin_access_identity.main[0].cloudfront_access_identity_path\n    }\n  }\n\n  enabled             = true\n  is_ipv6_enabled     = true\n  default_root_object = \"index.html\"\n\n  default_cache_behavior {\n    allowed_methods  = [\"DELETE\", \"GET\", \"HEAD\", \"OPTIONS\", \"PATCH\", \"POST\", \"PUT\"]\n    cached_methods   = [\"GET\", \"HEAD\"]\n    target_origin_id = \"S3-${aws_s3_bucket.static[0].bucket}\"\n\n    forwarded_values {\n      query_string = false\n\n      cookies {\n        forward = \"none\"\n      }\n    }\n\n    viewer_protocol_policy = \"redirect-to-https\"\n    min_ttl                = 0\n    default_ttl            = 3600\n    max_ttl                = 86400\n  }\n\n  restrictions {\n    geo_restriction {\n      restriction_type = \"none\"\n    }\n  }\n\n  viewer_certificate {\n    cloudfront_default_certificate = true\n  }\n\n  tags = merge(var.tags, var.module_tags, {\n    Name          = \"${var.project_name}-${var.environment}-cdn\"\n    ResourceType  = \"CloudFrontDistribution\"\n    Module        = \"storage\"\n    Purpose       = \"content-delivery\"\n  })\n}\n\n── Variable Resolutions ──\n\n  var.enable_cdn → false\n\n  var.tags → map[]\n\n  var.module_tags → map[]\n\n  merge(...) → { Name = \"${var.project_name}-${var.environment}-cdn\", ResourceType = \"CloudFrontDistribution\", M...\n\n  ${var.project_name} → terratag-aws-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-aws-test\n\n  var.environment → staging\n",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "cloudfront",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_s3_bucket",
+      "resource_name": "logs",
+      "file_path": "modules/storage/main.tf",
+      "line_number": 147,
+      "snippet": "resource \"aws_s3_bucket\" \"logs\" {\n  count  = var.enable_logging ? 1 : 0\n  bucket = \"${var.project_name}-${var.environment}-logs-${random_string.suffix.result}\"\n\n  tags = merge(var.tags, var.module_tags, {\n    Name          = \"${var.project_name}-${var.environment}-logs\"\n    ResourceType  = \"S3Bucket\"\n    Module        = \"storage\"\n    BucketType    = \"logs\"\n    Purpose       = \"access-logging\"\n  })\n}\n\n── Variable Resolutions ──\n\n  var.enable_logging → true\n\n  ${var.project_name} → terratag-aws-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-aws-test\n\n  var.environment → staging\n\n  var.tags → map[]\n\n  var.module_tags → map[]\n\n  merge(...) → { Name = \"${var.project_name}-${var.environment}-logs\", ResourceType = \"S3Bucket\", Module = \"stor...\n\n  ${var.project_name} → terratag-aws-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-aws-test\n\n  var.environment → staging\n",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "s3",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy",
+        "DataClassification",
+        "Compliance"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        },
+        {
+          "tag_key": "DataClassification",
+          "suggested_value": "internal",
+          "action": "add",
+          "reason": "Required tag 'DataClassification' is missing"
+        },
+        {
+          "tag_key": "Compliance",
+          "suggested_value": "pii",
+          "action": "add",
+          "reason": "Required tag 'Compliance' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_s3_bucket",
+      "resource_name": "backup",
+      "file_path": "modules/storage/main.tf",
+      "line_number": 179,
+      "snippet": "resource \"aws_s3_bucket\" \"backup\" {\n  bucket = \"${var.project_name}-${var.environment}-backup-${random_string.suffix.result}\"\n\n  tags = merge(var.tags, var.module_tags, {\n    Name          = \"${var.project_name}-${var.environment}-backup\"\n    ResourceType  = \"S3Bucket\"\n    Module        = \"storage\"\n    BucketType    = \"backup\"\n    Purpose       = \"data-backup\"\n  })\n}\n\n── Variable Resolutions ──\n\n  ${var.project_name} → terratag-aws-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-aws-test\n\n  var.environment → staging\n\n  var.tags → map[]\n\n  var.module_tags → map[]\n\n  merge(...) → { BucketType = \"backup\", Purpose = \"data-backup\", Name = \"${var.project_name}-${var.environment}-...\n\n  ${var.project_name} → terratag-aws-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-aws-test\n\n  var.environment → staging\n",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "s3",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy",
+        "DataClassification",
+        "Compliance"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        },
+        {
+          "tag_key": "DataClassification",
+          "suggested_value": "internal",
+          "action": "add",
+          "reason": "Required tag 'DataClassification' is missing"
+        },
+        {
+          "tag_key": "Compliance",
+          "suggested_value": "pii",
+          "action": "add",
+          "reason": "Required tag 'Compliance' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_kms_key",
+      "resource_name": "storage",
+      "file_path": "modules/storage/main.tf",
+      "line_number": 243,
+      "snippet": "resource \"aws_kms_key\" \"storage\" {\n  description             = \"${var.project_name} ${var.environment} storage encryption key\"\n  deletion_window_in_days = var.environment == \"production\" ? 30 : 7\n\n  tags = merge(var.tags, var.module_tags, {\n    Name          = \"${var.project_name}-${var.environment}-storage-key\"\n    ResourceType  = \"KMSKey\"\n    Module        = \"storage\"\n    Purpose       = \"storage-encryption\"\n  })\n}\n\n── Variable Resolutions ──\n\n  ${var.project_name} → terratag-aws-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-aws-test\n\n  var.environment → staging\n\n  var.environment → staging\n\n  var.tags → map[]\n\n  var.module_tags → map[]\n\n  merge(...) → { Purpose = \"storage-encryption\", Name = \"${var.project_name}-${var.environment}-storage-key\", Re...\n\n  ${var.project_name} → terratag-aws-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-aws-test\n\n  var.environment → staging\n",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "kms",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_sns_topic",
+      "resource_name": "bucket_notifications",
+      "file_path": "modules/storage/main.tf",
+      "line_number": 261,
+      "snippet": "resource \"aws_sns_topic\" \"bucket_notifications\" {\n  name = \"${var.project_name}-${var.environment}-bucket-notifications\"\n\n  tags = merge(var.tags, var.module_tags, {\n    Name          = \"${var.project_name}-${var.environment}-bucket-notifications\"\n    ResourceType  = \"SNSTopic\"\n    Module        = \"storage\"\n    Purpose       = \"bucket-notifications\"\n  })\n}\n\n── Variable Resolutions ──\n\n  ${var.project_name} → terratag-aws-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-aws-test\n\n  var.environment → staging\n\n  var.tags → map[]\n\n  var.module_tags → map[]\n\n  merge(...) → { Name = \"${var.project_name}-${var.environment}-bucket-notifications\", ResourceType = \"SNSTopic\"...\n\n  ${var.project_name} → terratag-aws-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-aws-test\n\n  var.environment → staging\n",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "sns",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_vpc",
+      "resource_name": "main",
+      "file_path": "main.tf",
+      "line_number": 77,
+      "snippet": "resource \"aws_vpc\" \"main\" {\n  cidr_block           = var.vpc_cidr\n  enable_dns_hostnames = true\n  enable_dns_support   = true\n\n  tags = local.vpc_tags\n}\n\n── Variable Resolutions ──\n\n  var.vpc_cidr → 10.100.0.0/16\n\n  local.vpc_tags → map[AccountId:123456789012 Application:TerratagValidation BusinessUnit:Engineering CostCenter:CC-DEVOPS-001 CreatedAt:2024-01-01T00:00:00Z CreatedBy:terraform Environment:staging Name:terratag-aws-test-staging-vpc Owner:devops@terratag-test.com Project:terratag-aws-test Region:us-west-2 ResourceType:VPC Team:DevOps]\n",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "vpc",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_subnet",
+      "resource_name": "public",
+      "file_path": "main.tf",
+      "line_number": 85,
+      "snippet": "resource \"aws_subnet\" \"public\" {\n  count = length(var.public_subnet_cidrs)\n\n  vpc_id                  = aws_vpc.main.id\n  cidr_block              = var.public_subnet_cidrs[count.index]\n  availability_zone       = data.aws_availability_zones.available.names[count.index]\n  map_public_ip_on_launch = true\n\n  tags = merge(local.subnet_tags, {\n    Name = \"${var.project_name}-${var.environment}-public-${count.index + 1}\"\n    Type = \"Public\"\n    AZ   = data.aws_availability_zones.available.names[count.index]\n  })\n}\n\n── Variable Resolutions ──\n\n  var.public_subnet_cidrs → [10.100.1.0/24 10.100.2.0/24 10.100.3.0/24]\n\n  var.public_subnet_cidrs → [10.100.1.0/24 10.100.2.0/24 10.100.3.0/24]\n\n  local.subnet_tags → map[AccountId:123456789012 Application:TerratagValidation BusinessUnit:Engineering CostCenter:CC-DEVOPS-001 CreatedAt:2024-01-01T00:00:00Z CreatedBy:terraform Environment:staging Owner:devops@terratag-test.com Project:terratag-aws-test Region:us-west-2 ResourceType:Subnet Team:DevOps]\n\n  merge(...) → { AZ = \"data.aws_availability_zones.available.names[count.index]\", Name = \"${var.project_name}-${...\n\n  ${var.project_name} → terratag-aws-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-aws-test\n\n  var.environment → staging\n",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "subnet",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_subnet",
+      "resource_name": "private",
+      "file_path": "main.tf",
+      "line_number": 100,
+      "snippet": "resource \"aws_subnet\" \"private\" {\n  count = length(var.private_subnet_cidrs)\n\n  vpc_id            = aws_vpc.main.id\n  cidr_block        = var.private_subnet_cidrs[count.index]\n  availability_zone = data.aws_availability_zones.available.names[count.index]\n\n  tags = merge(local.subnet_tags, {\n    Name = \"${var.project_name}-${var.environment}-private-${count.index + 1}\"\n    Type = \"Private\"\n    AZ   = data.aws_availability_zones.available.names[count.index]\n  })\n}\n\n── Variable Resolutions ──\n\n  var.private_subnet_cidrs → [10.100.10.0/24 10.100.11.0/24 10.100.12.0/24]\n\n  var.private_subnet_cidrs → [10.100.10.0/24 10.100.11.0/24 10.100.12.0/24]\n\n  local.subnet_tags → map[AccountId:123456789012 Application:TerratagValidation BusinessUnit:Engineering CostCenter:CC-DEVOPS-001 CreatedAt:2024-01-01T00:00:00Z CreatedBy:terraform Environment:staging Owner:devops@terratag-test.com Project:terratag-aws-test Region:us-west-2 ResourceType:Subnet Team:DevOps]\n\n  merge(...) → { AZ = \"data.aws_availability_zones.available.names[count.index]\", Name = \"${var.project_name}-${...\n\n  ${var.project_name} → terratag-aws-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-aws-test\n\n  var.environment → staging\n",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "subnet",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_internet_gateway",
+      "resource_name": "main",
+      "file_path": "main.tf",
+      "line_number": 115,
+      "snippet": "resource \"aws_internet_gateway\" \"main\" {\n  vpc_id = aws_vpc.main.id\n\n  tags = merge(local.common_tags, {\n    Name         = \"${var.project_name}-${var.environment}-igw\"\n    ResourceType = \"InternetGateway\"\n  })\n}\n\n── Variable Resolutions ──\n\n  local.common_tags → map[AccountId:123456789012 Application:TerratagValidation BusinessUnit:Engineering CostCenter:CC-DEVOPS-001 CreatedAt:2024-01-01T00:00:00Z CreatedBy:terraform Environment:staging Owner:devops@terratag-test.com Project:terratag-aws-test Region:us-west-2 Team:DevOps]\n\n  merge(...) → { Team = \"DevOps\", Project = \"terratag-aws-test\", Region = \"us-west-2\", AccountId = \"123456789012...\n\n  ${var.project_name} → terratag-aws-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-aws-test\n\n  var.environment → staging\n",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "internet",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_route_table",
+      "resource_name": "public",
+      "file_path": "main.tf",
+      "line_number": 125,
+      "snippet": "resource \"aws_route_table\" \"public\" {\n  vpc_id = aws_vpc.main.id\n\n  route {\n    cidr_block = \"0.0.0.0/0\"\n    gateway_id = aws_internet_gateway.main.id\n  }\n\n  tags = merge(local.common_tags, {\n    Name         = \"${var.project_name}-${var.environment}-public-rt\"\n    ResourceType = \"RouteTable\"\n    Type         = \"Public\"\n  })\n}\n\n── Variable Resolutions ──\n\n  local.common_tags → map[AccountId:123456789012 Application:TerratagValidation BusinessUnit:Engineering CostCenter:CC-DEVOPS-001 CreatedAt:2024-01-01T00:00:00Z CreatedBy:terraform Environment:staging Owner:devops@terratag-test.com Project:terratag-aws-test Region:us-west-2 Team:DevOps]\n\n  merge(...) → { Team = \"DevOps\", Project = \"terratag-aws-test\", Application = \"TerratagValidation\", ResourceTyp...\n\n  ${var.project_name} → terratag-aws-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-aws-test\n\n  var.environment → staging\n",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "route",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_cloudtrail",
+      "resource_name": "main",
+      "file_path": "main.tf",
+      "line_number": 261,
+      "snippet": "resource \"aws_cloudtrail\" \"main\" {\n  count = var.environment == \"production\" ? 1 : 0\n\n  name           = \"${var.project_name}-${var.environment}-trail\"\n  s3_bucket_name = module.storage.audit_bucket_name\n  \n  include_global_service_events = true\n  is_multi_region_trail        = true\n  enable_logging              = true\n\n  tags = merge(local.common_tags, {\n    Name         = \"${var.project_name}-${var.environment}-trail\"\n    ResourceType = \"CloudTrail\"\n    Compliance   = \"required\"\n  })\n}\n\n── Variable Resolutions ──\n\n  var.environment → staging\n\n  ${var.project_name} → terratag-aws-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-aws-test\n\n  var.environment → staging\n\n  local.common_tags → map[AccountId:123456789012 Application:TerratagValidation BusinessUnit:Engineering CostCenter:CC-DEVOPS-001 CreatedAt:2024-01-01T00:00:00Z CreatedBy:terraform Environment:staging Owner:devops@terratag-test.com Project:terratag-aws-test Region:us-west-2 Team:DevOps]\n\n  merge(...) → { CreatedAt = \"2024-01-01T00:00:00Z\", Name = \"${var.project_name}-${var.environment}-trail\", Reso...\n\n  ${var.project_name} → terratag-aws-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-aws-test\n\n  var.environment → staging\n",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "cloudtrail",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy",
+        "Compliance"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        },
+        {
+          "tag_key": "Compliance",
+          "suggested_value": "pii",
+          "action": "add",
+          "reason": "Required tag 'Compliance' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_kms_key",
+      "resource_name": "main",
+      "file_path": "main.tf",
+      "line_number": 279,
+      "snippet": "resource \"aws_kms_key\" \"main\" {\n  description             = \"KMS key for ${var.project_name} ${var.environment}\"\n  deletion_window_in_days = var.environment == \"production\" ? 30 : 7\n  enable_key_rotation     = var.environment == \"production\" ? true : false\n\n  tags = merge(local.common_tags, {\n    Name         = \"${var.project_name}-${var.environment}-kms\"\n    ResourceType = \"KMSKey\"\n    KeyRotation  = var.environment == \"production\" ? \"enabled\" : \"disabled\"\n    Purpose      = \"encryption\"\n  })\n}\n\n── Variable Resolutions ──\n\n  ${var.project_name} → terratag-aws-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-aws-test\n\n  var.environment → staging\n\n  var.environment → staging\n\n  var.environment → staging\n\n  local.common_tags → map[AccountId:123456789012 Application:TerratagValidation BusinessUnit:Engineering CostCenter:CC-DEVOPS-001 CreatedAt:2024-01-01T00:00:00Z CreatedBy:terraform Environment:staging Owner:devops@terratag-test.com Project:terratag-aws-test Region:us-west-2 Team:DevOps]\n\n  merge(...) → { Project = \"terratag-aws-test\", CreatedBy = \"terraform\", CreatedAt = \"2024-01-01T00:00:00Z\", Key...\n\n  ${var.project_name} → terratag-aws-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-aws-test\n\n  var.environment → staging\n\n  var.environment → staging\n",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "kms",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_sns_topic",
+      "resource_name": "alerts",
+      "file_path": "modules/monitoring/main.tf",
+      "line_number": 5,
+      "snippet": "resource \"aws_sns_topic\" \"alerts\" {\n  name = \"${var.project_name}-${var.environment}-alerts\"\n\n  tags = merge(var.tags, var.module_tags, {\n    Name          = \"${var.project_name}-${var.environment}-alerts\"\n    ResourceType  = \"SNSTopic\"\n    Module        = \"monitoring\"\n    Purpose       = \"alerts\"\n  })\n}\n\n── Variable Resolutions ──\n\n  ${var.project_name} → terratag-aws-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-aws-test\n\n  var.environment → staging\n\n  var.tags → map[]\n\n  var.module_tags → map[]\n\n  merge(...) → { Name = \"${var.project_name}-${var.environment}-alerts\", ResourceType = \"SNSTopic\", Module = \"mo...\n\n  ${var.project_name} → terratag-aws-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-aws-test\n\n  var.environment → staging\n",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "sns",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_cloudwatch_log_group",
+      "resource_name": "application",
+      "file_path": "modules/monitoring/main.tf",
+      "line_number": 26,
+      "snippet": "resource \"aws_cloudwatch_log_group\" \"application\" {\n  name              = \"/aws/${var.project_name}/${var.environment}/application\"\n  retention_in_days = var.environment == \"production\" ? 90 : 30\n\n  tags = merge(var.tags, var.module_tags, {\n    Name          = \"${var.project_name}-${var.environment}-app-logs\"\n    ResourceType  = \"CloudWatchLogGroup\"\n    Module        = \"monitoring\"\n    LogType       = \"application\"\n  })\n}\n\n── Variable Resolutions ──\n\n  ${var.project_name} → terratag-aws-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-aws-test\n\n  var.environment → staging\n\n  var.environment → staging\n\n  var.tags → map[]\n\n  var.module_tags → map[]\n\n  merge(...) → { LogType = \"application\", Name = \"${var.project_name}-${var.environment}-app-logs\", ResourceType...\n\n  ${var.project_name} → terratag-aws-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-aws-test\n\n  var.environment → staging\n",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "cloudwatch",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_cloudwatch_metric_alarm",
+      "resource_name": "high_cpu",
+      "file_path": "modules/monitoring/main.tf",
+      "line_number": 88,
+      "snippet": "resource \"aws_cloudwatch_metric_alarm\" \"high_cpu\" {\n  count = length(var.instance_ids)\n\n  alarm_name          = \"${var.project_name}-${var.environment}-high-cpu-${count.index + 1}\"\n  comparison_operator = \"GreaterThanThreshold\"\n  evaluation_periods  = \"2\"\n  metric_name         = \"CPUUtilization\"\n  namespace           = \"AWS/EC2\"\n  period              = \"300\"\n  statistic           = \"Average\"\n  threshold           = var.enable_detailed_monitoring ? \"70\" : \"80\"\n  alarm_description   = \"This metric monitors ec2 cpu utilization\"\n  alarm_actions       = [aws_sns_topic.alerts.arn]\n\n  dimensions = {\n    InstanceId = var.instance_ids[count.index]\n  }\n\n  tags = merge(var.tags, var.module_tags, {\n    Name          = \"${var.project_name}-${var.environment}-high-cpu-${count.index + 1}\"\n    ResourceType  = \"CloudWatchAlarm\"\n    Module        = \"monitoring\"\n    AlarmType     = \"cpu\"\n  })\n}\n\n── Variable Resolutions ──\n\n  var.instance_ids → []\n\n  ${var.project_name} → terratag-aws-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-aws-test\n\n  var.environment → staging\n\n  var.enable_detailed_monitoring → false\n\n  var.instance_ids → []\n\n  var.tags → map[]\n\n  var.module_tags → map[]\n\n  merge(...) → { Name = \"${var.project_name}-${var.environment}-high-cpu-${count.index + 1}\", ResourceType = \"Cl...\n\n  ${var.project_name} → terratag-aws-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-aws-test\n\n  var.environment → staging\n",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "cloudwatch",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_cloudwatch_metric_alarm",
+      "resource_name": "database_cpu",
+      "file_path": "modules/monitoring/main.tf",
+      "line_number": 114,
+      "snippet": "resource \"aws_cloudwatch_metric_alarm\" \"database_cpu\" {\n  count = var.database_identifier != \"\" ? 1 : 0\n\n  alarm_name          = \"${var.project_name}-${var.environment}-db-cpu\"\n  comparison_operator = \"GreaterThanThreshold\"\n  evaluation_periods  = \"2\"\n  metric_name         = \"CPUUtilization\"\n  namespace           = \"AWS/RDS\"\n  period              = \"300\"\n  statistic           = \"Average\"\n  threshold           = \"80\"\n  alarm_description   = \"This metric monitors RDS cpu utilization\"\n  alarm_actions       = [aws_sns_topic.alerts.arn]\n\n  dimensions = {\n    DBInstanceIdentifier = var.database_identifier\n  }\n\n  tags = merge(var.tags, var.module_tags, {\n    Name          = \"${var.project_name}-${var.environment}-db-cpu\"\n    ResourceType  = \"CloudWatchAlarm\"\n    Module        = \"monitoring\"\n    AlarmType     = \"database-cpu\"\n  })\n}\n\n── Variable Resolutions ──\n\n  var.database_identifier → \n\n  ${var.project_name} → terratag-aws-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-aws-test\n\n  var.environment → staging\n\n  var.database_identifier → \n\n  var.tags → map[]\n\n  var.module_tags → map[]\n\n  merge(...) → { Name = \"${var.project_name}-${var.environment}-db-cpu\", ResourceType = \"CloudWatchAlarm\", Modul...\n\n  ${var.project_name} → terratag-aws-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-aws-test\n\n  var.environment → staging\n",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "cloudwatch",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_cloudwatch_metric_alarm",
+      "resource_name": "database_connections",
+      "file_path": "modules/monitoring/main.tf",
+      "line_number": 140,
+      "snippet": "resource \"aws_cloudwatch_metric_alarm\" \"database_connections\" {\n  count = var.database_identifier != \"\" ? 1 : 0\n\n  alarm_name          = \"${var.project_name}-${var.environment}-db-connections\"\n  comparison_operator = \"GreaterThanThreshold\"\n  evaluation_periods  = \"2\"\n  metric_name         = \"DatabaseConnections\"\n  namespace           = \"AWS/RDS\"\n  period              = \"300\"\n  statistic           = \"Average\"\n  threshold           = \"80\"\n  alarm_description   = \"This metric monitors RDS connection count\"\n  alarm_actions       = [aws_sns_topic.alerts.arn]\n\n  dimensions = {\n    DBInstanceIdentifier = var.database_identifier\n  }\n\n  tags = merge(var.tags, var.module_tags, {\n    Name          = \"${var.project_name}-${var.environment}-db-connections\"\n    ResourceType  = \"CloudWatchAlarm\"\n    Module        = \"monitoring\"\n    AlarmType     = \"database-connections\"\n  })\n}\n\n── Variable Resolutions ──\n\n  var.database_identifier → \n\n  ${var.project_name} → terratag-aws-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-aws-test\n\n  var.environment → staging\n\n  var.database_identifier → \n\n  var.tags → map[]\n\n  var.module_tags → map[]\n\n  merge(...) → { AlarmType = \"database-connections\", Name = \"${var.project_name}-${var.environment}-db-connectio...\n\n  ${var.project_name} → terratag-aws-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-aws-test\n\n  var.environment → staging\n",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "cloudwatch",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_cloudwatch_metric_alarm",
+      "resource_name": "error_rate",
+      "file_path": "modules/monitoring/main.tf",
+      "line_number": 179,
+      "snippet": "resource \"aws_cloudwatch_metric_alarm\" \"error_rate\" {\n  alarm_name          = \"${var.project_name}-${var.environment}-error-rate\"\n  comparison_operator = \"GreaterThanThreshold\"\n  evaluation_periods  = \"2\"\n  metric_name         = \"ErrorCount\"\n  namespace           = \"${var.project_name}/${var.environment}\"\n  period              = \"300\"\n  statistic           = \"Sum\"\n  threshold           = \"10\"\n  alarm_description   = \"This metric monitors application error rate\"\n  alarm_actions       = [aws_sns_topic.alerts.arn]\n  treat_missing_data  = \"notBreaching\"\n\n  tags = merge(var.tags, var.module_tags, {\n    Name          = \"${var.project_name}-${var.environment}-error-rate\"\n    ResourceType  = \"CloudWatchAlarm\"\n    Module        = \"monitoring\"\n    AlarmType     = \"application-errors\"\n  })\n}\n\n── Variable Resolutions ──\n\n  ${var.project_name} → terratag-aws-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-aws-test\n\n  var.environment → staging\n\n  ${var.project_name} → terratag-aws-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-aws-test\n\n  var.environment → staging\n\n  var.tags → map[]\n\n  var.module_tags → map[]\n\n  merge(...) → { Module = \"monitoring\", AlarmType = \"application-errors\", Name = \"${var.project_name}-${var.envi...\n\n  ${var.project_name} → terratag-aws-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-aws-test\n\n  var.environment → staging\n",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "cloudwatch",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_security_group",
+      "resource_name": "database",
+      "file_path": "modules/database/main.tf",
+      "line_number": 57,
+      "snippet": "resource \"aws_security_group\" \"database\" {\n  name_prefix = \"${var.project_name}-${var.environment}-db-\"\n  vpc_id      = var.vpc_id\n  description = \"Security group for RDS database in ${var.environment}\"\n\n  # MySQL/Aurora port\n  ingress {\n    description = \"MySQL/Aurora\"\n    from_port   = 3306\n    to_port     = 3306\n    protocol    = \"tcp\"\n    cidr_blocks = var.allowed_cidr_blocks\n  }\n\n  # No outbound rules needed for RDS\n  egress {\n    from_port   = 0\n    to_port     = 0\n    protocol    = \"-1\"\n    cidr_blocks = [\"0.0.0.0/0\"]\n  }\n\n  tags = merge(local.sg_tags, {\n    Name = \"${var.project_name}-${var.environment}-db-sg\"\n  })\n\n  lifecycle {\n    create_before_destroy = true\n  }\n}\n\n── Variable Resolutions ──\n\n  ${var.project_name} → terratag-aws-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-aws-test\n\n  var.environment → staging\n\n  ${var.environment} → staging\n\n  var.environment → staging\n\n  var.allowed_cidr_blocks → []\n\n  local.sg_tags → map[CreatedBy:database-module DatabaseType:mysql LastModified:2024-01-01T00:00:00Z Module:database Purpose:database-access ResourceType:SecurityGroup]\n\n  merge(...) → { Name = \"${var.project_name}-${var.environment}-db-sg\", create_before_destroy = \"true\" }\n\n  ${var.project_name} → terratag-aws-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-aws-test\n\n  var.environment → staging\n",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "security",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_db_subnet_group",
+      "resource_name": "main",
+      "file_path": "modules/database/main.tf",
+      "line_number": 89,
+      "snippet": "resource \"aws_db_subnet_group\" \"main\" {\n  name_prefix = \"${var.project_name}-${var.environment}-\"\n  subnet_ids  = var.private_subnet_ids\n  description = \"Database subnet group for ${var.project_name} ${var.environment}\"\n\n  tags = merge(local.subnet_group_tags, {\n    Name = \"${var.project_name}-${var.environment}-db-subnet-group\"\n  })\n}\n\n── Variable Resolutions ──\n\n  ${var.project_name} → terratag-aws-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-aws-test\n\n  var.environment → staging\n\n  ${var.project_name} → terratag-aws-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-aws-test\n\n  var.environment → staging\n\n  local.subnet_group_tags → map[CreatedBy:database-module DatabaseType:mysql LastModified:2024-01-01T00:00:00Z Module:database Purpose:database-networking ResourceType:DBSubnetGroup]\n\n  merge(...) → { Name = \"${var.project_name}-${var.environment}-db-subnet-group\" }\n\n  ${var.project_name} → terratag-aws-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-aws-test\n\n  var.environment → staging\n",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "db",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_db_parameter_group",
+      "resource_name": "main",
+      "file_path": "modules/database/main.tf",
+      "line_number": 100,
+      "snippet": "resource \"aws_db_parameter_group\" \"main\" {\n  family      = \"mysql8.0\"\n  name_prefix = \"${var.project_name}-${var.environment}-\"\n  description = \"Database parameter group for ${var.project_name} ${var.environment}\"\n\n  # Performance parameters\n  parameter {\n    name  = \"innodb_buffer_pool_size\"\n    value = \"{DBInstanceClassMemory*3/4}\"\n  }\n\n  parameter {\n    name  = \"max_connections\"\n    value = var.max_connections\n  }\n\n  parameter {\n    name  = \"slow_query_log\"\n    value = \"1\"\n  }\n\n  parameter {\n    name  = \"long_query_time\"\n    value = \"2\"\n  }\n\n  parameter {\n    name  = \"general_log\"\n    value = var.environment == \"production\" ? \"0\" : \"1\"\n  }\n\n  tags = merge(local.param_group_tags, {\n    Name = \"${var.project_name}-${var.environment}-db-params\"\n  })\n\n  lifecycle {\n    create_before_destroy = true\n  }\n}\n\n── Variable Resolutions ──\n\n  ${var.project_name} → terratag-aws-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-aws-test\n\n  var.environment → staging\n\n  ${var.project_name} → terratag-aws-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-aws-test\n\n  var.environment → staging\n\n  var.environment → staging\n\n  local.param_group_tags → map[CreatedBy:database-module DatabaseType:mysql LastModified:2024-01-01T00:00:00Z Module:database Purpose:database-configuration ResourceType:DBParameterGroup]\n\n  merge(...) → { Name = \"${var.project_name}-${var.environment}-db-params\", create_before_destroy = \"true\" }\n\n  ${var.project_name} → terratag-aws-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-aws-test\n\n  var.environment → staging\n",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "db",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_db_option_group",
+      "resource_name": "main",
+      "file_path": "modules/database/main.tf",
+      "line_number": 141,
+      "snippet": "resource \"aws_db_option_group\" \"main\" {\n  name                     = \"${var.project_name}-${var.environment}-db-options\"\n  option_group_description = \"Database option group for ${var.project_name} ${var.environment}\"\n  engine_name              = \"mysql\"\n  major_engine_version     = \"8.0\"\n\n  tags = merge(local.option_group_tags, {\n    Name = \"${var.project_name}-${var.environment}-db-options\"\n  })\n}\n\n── Variable Resolutions ──\n\n  ${var.project_name} → terratag-aws-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-aws-test\n\n  var.environment → staging\n\n  ${var.project_name} → terratag-aws-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-aws-test\n\n  var.environment → staging\n\n  local.option_group_tags → map[CreatedBy:database-module DatabaseType:mysql LastModified:2024-01-01T00:00:00Z Module:database Purpose:database-options ResourceType:DBOptionGroup]\n\n  merge(...) → { Name = \"${var.project_name}-${var.environment}-db-options\" }\n\n  ${var.project_name} → terratag-aws-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-aws-test\n\n  var.environment → staging\n",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "db",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_secretsmanager_secret",
+      "resource_name": "database",
+      "file_path": "modules/database/main.tf",
+      "line_number": 159,
+      "snippet": "resource \"aws_secretsmanager_secret\" \"database\" {\n  name_prefix             = \"${var.project_name}-${var.environment}-db-\"\n  description             = \"Database credentials for ${var.project_name} ${var.environment}\"\n  recovery_window_in_days = var.environment == \"production\" ? 30 : 0\n\n  tags = merge(local.db_common_tags, {\n    Name         = \"${var.project_name}-${var.environment}-db-secret\"\n    ResourceType = \"Secret\"\n    Purpose      = \"database-credentials\"\n  })\n}\n\n── Variable Resolutions ──\n\n  ${var.project_name} → terratag-aws-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-aws-test\n\n  var.environment → staging\n\n  ${var.project_name} → terratag-aws-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-aws-test\n\n  var.environment → staging\n\n  var.environment → staging\n\n  local.db_common_tags → map[CreatedBy:database-module DatabaseType:mysql LastModified:2024-01-01T00:00:00Z Module:database]\n\n  merge(...) → { Name = \"${var.project_name}-${var.environment}-db-secret\", ResourceType = \"Secret\", Purpose = \"...\n\n  ${var.project_name} → terratag-aws-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-aws-test\n\n  var.environment → staging\n",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "secretsmanager",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_db_instance",
+      "resource_name": "main",
+      "file_path": "modules/database/main.tf",
+      "line_number": 184,
+      "snippet": "resource \"aws_db_instance\" \"main\" {\n  identifier = \"${var.project_name}-${var.environment}-database\"\n  \n  # Engine configuration\n  engine         = \"mysql\"\n  engine_version = var.db_engine_version\n  instance_class = var.db_instance_class\n  \n  # Storage configuration\n  allocated_storage     = var.db_allocated_storage\n  max_allocated_storage = var.db_allocated_storage * 2\n  storage_type          = \"gp3\"\n  storage_encrypted     = true\n  \n  # Database configuration\n  db_name  = var.db_name\n  username = var.db_username\n  password = random_password.database.result\n  \n  # Network and security configuration\n  vpc_security_group_ids = [aws_security_group.database.id]\n  db_subnet_group_name   = aws_db_subnet_group.main.name\n  parameter_group_name   = aws_db_parameter_group.main.name\n  option_group_name      = aws_db_option_group.main.name\n  \n  # High availability configuration\n  multi_az               = var.multi_az\n  availability_zone      = var.multi_az ? null : var.availability_zone\n  \n  # Backup configuration\n  backup_retention_period = var.backup_retention\n  backup_window          = var.backup_window\n  maintenance_window     = var.maintenance_window\n  \n  # Monitoring and logging\n  monitoring_interval                = var.enable_enhanced_monitoring ? 60 : 0\n  monitoring_role_arn               = var.enable_enhanced_monitoring ? aws_iam_role.rds_enhanced_monitoring[0].arn : null\n  performance_insights_enabled      = var.enable_performance_insights\n  performance_insights_retention_period = var.enable_performance_insights ? 7 : null\n  \n  enabled_cloudwatch_logs_exports = var.enabled_cloudwatch_logs_exports\n  \n  # Deletion protection\n  deletion_protection = var.deletion_protection\n  \n  # Snapshot configuration\n  skip_final_snapshot       = var.skip_final_snapshot\n  final_snapshot_identifier = var.skip_final_snapshot ? null : \"${var.project_name}-${var.environment}-final-snapshot-${formatdate(\"YYYY-MM-DD-hhmm\", timestamp())}\"\n  \n  # Auto minor version updates\n  auto_minor_version_upgrade = var.auto_minor_version_upgrade\n  \n  # Publicly accessible\n  publicly_accessible = false\n\n  tags = merge(local.db_instance_tags, {\n    Name = \"${var.project_name}-${var.environment}-database\"\n  })\n\n  lifecycle {\n    ignore_changes = [\n      password,  # Password is managed by Secrets Manager\n      final_snapshot_identifier\n    ]\n  }\n}\n\n── Variable Resolutions ──\n\n  ${var.project_name} → terratag-aws-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-aws-test\n\n  var.environment → staging\n\n  var.db_engine_version → 8.0\n\n  var.db_instance_class → db.t3.small\n\n  var.db_allocated_storage → 50\n\n  var.db_allocated_storage → 50\n\n  var.multi_az → false\n\n  var.multi_az → false\n\n  ${var.project_name} → terratag-aws-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-aws-test\n\n  var.environment → staging\n\n  local.db_instance_tags → map[BackupRetention:7 CreatedBy:database-module DatabaseType:mysql DeletionProtection:disabled Engine:mysql LastModified:2024-01-01T00:00:00Z Module:database MultiAZ:disabled ResourceType:RDSInstance]\n\n  merge(...) → { Name = \"${var.project_name}-${var.environment}-database\", ignore_changes = \"[\" }\n\n  ${var.project_name} → terratag-aws-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-aws-test\n\n  var.environment → staging\n",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "db",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy",
+        "Backup",
+        "DataClassification"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        },
+        {
+          "tag_key": "Backup",
+          "suggested_value": "none",
+          "action": "add",
+          "reason": "Required tag 'Backup' is missing"
+        },
+        {
+          "tag_key": "DataClassification",
+          "suggested_value": "internal",
+          "action": "add",
+          "reason": "Required tag 'DataClassification' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_db_instance",
+      "resource_name": "replica",
+      "file_path": "modules/database/main.tf",
+      "line_number": 252,
+      "snippet": "resource \"aws_db_instance\" \"replica\" {\n  count = var.create_read_replica ? 1 : 0\n  \n  identifier = \"${var.project_name}-${var.environment}-database-replica\"\n  \n  # Read replica configuration\n  replicate_source_db = aws_db_instance.main.id\n  instance_class      = var.replica_instance_class\n  \n  # Network configuration (can be in different AZ/region)\n  availability_zone = var.replica_availability_zone\n  \n  # Monitoring\n  monitoring_interval = var.enable_enhanced_monitoring ? 60 : 0\n  monitoring_role_arn = var.enable_enhanced_monitoring ? aws_iam_role.rds_enhanced_monitoring[0].arn : null\n  \n  # Performance Insights\n  performance_insights_enabled = var.enable_performance_insights\n  \n  # Auto minor version updates\n  auto_minor_version_upgrade = var.auto_minor_version_upgrade\n  \n  # Public accessibility\n  publicly_accessible = false\n\n  tags = merge(local.db_instance_tags, {\n    Name         = \"${var.project_name}-${var.environment}-database-replica\"\n    ResourceType = \"RDSInstance\"\n    ReplicaType  = \"read-replica\"\n    SourceDB     = aws_db_instance.main.id\n  })\n}\n\n── Variable Resolutions ──\n\n  ${var.project_name} → terratag-aws-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-aws-test\n\n  var.environment → staging\n\n  local.db_instance_tags → map[BackupRetention:7 CreatedBy:database-module DatabaseType:mysql DeletionProtection:disabled Engine:mysql LastModified:2024-01-01T00:00:00Z Module:database MultiAZ:disabled ResourceType:RDSInstance]\n\n  merge(...) → { ReplicaType = \"read-replica\", SourceDB = \"aws_db_instance.main.id\", Name = \"${var.project_name}...\n\n  ${var.project_name} → terratag-aws-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-aws-test\n\n  var.environment → staging\n",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "db",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy",
+        "Backup",
+        "DataClassification"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        },
+        {
+          "tag_key": "Backup",
+          "suggested_value": "none",
+          "action": "add",
+          "reason": "Required tag 'Backup' is missing"
+        },
+        {
+          "tag_key": "DataClassification",
+          "suggested_value": "internal",
+          "action": "add",
+          "reason": "Required tag 'DataClassification' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_iam_role",
+      "resource_name": "rds_enhanced_monitoring",
+      "file_path": "modules/database/main.tf",
+      "line_number": 286,
+      "snippet": "resource \"aws_iam_role\" \"rds_enhanced_monitoring\" {\n  count = var.enable_enhanced_monitoring ? 1 : 0\n  \n  name_prefix = \"${var.project_name}-${var.environment}-rds-monitoring-\"\n  \n  assume_role_policy = jsonencode({\n    Version = \"2012-10-17\"\n    Statement = [\n      {\n        Action = \"sts:AssumeRole\"\n        Effect = \"Allow\"\n        Principal = {\n          Service = \"monitoring.rds.amazonaws.com\"\n        }\n      }\n    ]\n  })\n\n  tags = merge(local.db_common_tags, {\n    Name         = \"${var.project_name}-${var.environment}-rds-monitoring-role\"\n    ResourceType = \"IAMRole\"\n    Purpose      = \"rds-enhanced-monitoring\"\n  })\n}\n\n── Variable Resolutions ──\n\n  ${var.project_name} → terratag-aws-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-aws-test\n\n  var.environment → staging\n\n  local.db_common_tags → map[CreatedBy:database-module DatabaseType:mysql LastModified:2024-01-01T00:00:00Z Module:database]\n\n  merge(...) → { Purpose = \"rds-enhanced-monitoring\", Name = \"${var.project_name}-${var.environment}-rds-monitor...\n\n  ${var.project_name} → terratag-aws-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-aws-test\n\n  var.environment → staging\n",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "iam",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy",
+        "Team"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        },
+        {
+          "tag_key": "Team",
+          "suggested_value": "DevOps",
+          "action": "add",
+          "reason": "Required tag 'Team' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_cloudwatch_log_group",
+      "resource_name": "database_slow_query",
+      "file_path": "modules/database/main.tf",
+      "line_number": 318,
+      "snippet": "resource \"aws_cloudwatch_log_group\" \"database_slow_query\" {\n  count             = contains(var.enabled_cloudwatch_logs_exports, \"slowquery\") ? 1 : 0\n  name              = \"/aws/rds/instance/${aws_db_instance.main.id}/slowquery\"\n  retention_in_days = var.log_retention_days\n\n  tags = merge(local.db_common_tags, {\n    Name         = \"${var.project_name}-${var.environment}-db-slowquery-logs\"\n    ResourceType = \"CloudWatchLogGroup\"\n    Purpose      = \"database-slow-queries\"\n  })\n}\n\n── Variable Resolutions ──\n\n  var.log_retention_days → 30\n\n  local.db_common_tags → map[CreatedBy:database-module DatabaseType:mysql LastModified:2024-01-01T00:00:00Z Module:database]\n\n  merge(...) → { Name = \"${var.project_name}-${var.environment}-db-slowquery-logs\", ResourceType = \"CloudWatchLo...\n\n  ${var.project_name} → terratag-aws-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-aws-test\n\n  var.environment → staging\n",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "cloudwatch",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_cloudwatch_log_group",
+      "resource_name": "database_error",
+      "file_path": "modules/database/main.tf",
+      "line_number": 331,
+      "snippet": "resource \"aws_cloudwatch_log_group\" \"database_error\" {\n  count             = contains(var.enabled_cloudwatch_logs_exports, \"error\") ? 1 : 0\n  name              = \"/aws/rds/instance/${aws_db_instance.main.id}/error\"\n  retention_in_days = var.log_retention_days\n\n  tags = merge(local.db_common_tags, {\n    Name         = \"${var.project_name}-${var.environment}-db-error-logs\"\n    ResourceType = \"CloudWatchLogGroup\"\n    Purpose      = \"database-errors\"\n  })\n}\n\n── Variable Resolutions ──\n\n  var.log_retention_days → 30\n\n  local.db_common_tags → map[CreatedBy:database-module DatabaseType:mysql LastModified:2024-01-01T00:00:00Z Module:database]\n\n  merge(...) → { ResourceType = \"CloudWatchLogGroup\", Purpose = \"database-errors\", Name = \"${var.project_name}-$...\n\n  ${var.project_name} → terratag-aws-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-aws-test\n\n  var.environment → staging\n",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "cloudwatch",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_cloudwatch_log_group",
+      "resource_name": "database_general",
+      "file_path": "modules/database/main.tf",
+      "line_number": 344,
+      "snippet": "resource \"aws_cloudwatch_log_group\" \"database_general\" {\n  count             = contains(var.enabled_cloudwatch_logs_exports, \"general\") ? 1 : 0\n  name              = \"/aws/rds/instance/${aws_db_instance.main.id}/general\"\n  retention_in_days = var.log_retention_days\n\n  tags = merge(local.db_common_tags, {\n    Name         = \"${var.project_name}-${var.environment}-db-general-logs\"\n    ResourceType = \"CloudWatchLogGroup\"\n    Purpose      = \"database-general-logs\"\n  })\n}\n\n── Variable Resolutions ──\n\n  var.log_retention_days → 30\n\n  local.db_common_tags → map[CreatedBy:database-module DatabaseType:mysql LastModified:2024-01-01T00:00:00Z Module:database]\n\n  merge(...) → { Name = \"${var.project_name}-${var.environment}-db-general-logs\", ResourceType = \"CloudWatchLogG...\n\n  ${var.project_name} → terratag-aws-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-aws-test\n\n  var.environment → staging\n",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "cloudwatch",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_security_group",
+      "resource_name": "compute",
+      "file_path": "modules/compute/main.tf",
+      "line_number": 74,
+      "snippet": "resource \"aws_security_group\" \"compute\" {\n  name_prefix = \"${var.project_name}-${var.environment}-compute-\"\n  vpc_id      = var.vpc_id\n  description = \"Security group for compute resources in ${var.environment}\"\n\n  # Inbound rules\n  ingress {\n    description = \"HTTP\"\n    from_port   = 80\n    to_port     = 80\n    protocol    = \"tcp\"\n    cidr_blocks = [\"0.0.0.0/0\"]\n  }\n\n  ingress {\n    description = \"HTTPS\"\n    from_port   = 443\n    to_port     = 443\n    protocol    = \"tcp\"\n    cidr_blocks = [\"0.0.0.0/0\"]\n  }\n\n  ingress {\n    description = \"SSH\"\n    from_port   = 22\n    to_port     = 22\n    protocol    = \"tcp\"\n    cidr_blocks = [data.aws_vpc.main.cidr_block]\n  }\n\n  # Application port\n  ingress {\n    description = \"Application\"\n    from_port   = 8080\n    to_port     = 8080\n    protocol    = \"tcp\"\n    cidr_blocks = [data.aws_vpc.main.cidr_block]\n  }\n\n  # Outbound rules\n  egress {\n    from_port   = 0\n    to_port     = 0\n    protocol    = \"-1\"\n    cidr_blocks = [\"0.0.0.0/0\"]\n  }\n\n  tags = merge(local.sg_tags, {\n    Name = \"${var.project_name}-${var.environment}-compute-sg\"\n  })\n\n  lifecycle {\n    create_before_destroy = true\n  }\n}\n\n── Variable Resolutions ──\n\n  ${var.project_name} → terratag-aws-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-aws-test\n\n  var.environment → staging\n\n  ${var.environment} → staging\n\n  var.environment → staging\n\n  local.sg_tags → map[CreatedBy:database-module DatabaseType:mysql LastModified:2024-01-01T00:00:00Z Module:database Purpose:database-access ResourceType:SecurityGroup]\n\n  merge(...) → { Name = \"${var.project_name}-${var.environment}-compute-sg\", create_before_destroy = \"true\" }\n\n  ${var.project_name} → terratag-aws-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-aws-test\n\n  var.environment → staging\n",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "security",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_iam_role",
+      "resource_name": "compute",
+      "file_path": "modules/compute/main.tf",
+      "line_number": 131,
+      "snippet": "resource \"aws_iam_role\" \"compute\" {\n  name_prefix = \"${var.project_name}-${var.environment}-compute-\"\n  \n  assume_role_policy = jsonencode({\n    Version = \"2012-10-17\"\n    Statement = [\n      {\n        Action = \"sts:AssumeRole\"\n        Effect = \"Allow\"\n        Principal = {\n          Service = \"ec2.amazonaws.com\"\n        }\n      }\n    ]\n  })\n\n  tags = merge(local.module_common_tags, {\n    Name         = \"${var.project_name}-${var.environment}-compute-role\"\n    ResourceType = \"IAMRole\"\n    Purpose      = \"ec2-service-role\"\n  })\n}\n\n── Variable Resolutions ──\n\n  ${var.project_name} → terratag-aws-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-aws-test\n\n  var.environment → staging\n\n  local.module_common_tags → map[CreatedBy:compute-module LastModified:2024-01-01T00:00:00Z Module:compute]\n\n  merge(...) → { Name = \"${var.project_name}-${var.environment}-compute-role\", ResourceType = \"IAMRole\", Purpose...\n\n  ${var.project_name} → terratag-aws-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-aws-test\n\n  var.environment → staging\n",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "iam",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy",
+        "Team"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        },
+        {
+          "tag_key": "Team",
+          "suggested_value": "DevOps",
+          "action": "add",
+          "reason": "Required tag 'Team' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_iam_instance_profile",
+      "resource_name": "compute",
+      "file_path": "modules/compute/main.tf",
+      "line_number": 167,
+      "snippet": "resource \"aws_iam_instance_profile\" \"compute\" {\n  name_prefix = \"${var.project_name}-${var.environment}-compute-\"\n  role        = aws_iam_role.compute.name\n\n  tags = merge(local.module_common_tags, {\n    Name         = \"${var.project_name}-${var.environment}-compute-profile\"\n    ResourceType = \"IAMInstanceProfile\"\n  })\n}\n\n── Variable Resolutions ──\n\n  ${var.project_name} → terratag-aws-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-aws-test\n\n  var.environment → staging\n\n  local.module_common_tags → map[CreatedBy:compute-module LastModified:2024-01-01T00:00:00Z Module:compute]\n\n  merge(...) → { Name = \"${var.project_name}-${var.environment}-compute-profile\", ResourceType = \"IAMInstancePro...\n\n  ${var.project_name} → terratag-aws-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-aws-test\n\n  var.environment → staging\n",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "iam",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_launch_template",
+      "resource_name": "compute",
+      "file_path": "modules/compute/main.tf",
+      "line_number": 178,
+      "snippet": "resource \"aws_launch_template\" \"compute\" {\n  name_prefix   = \"${var.project_name}-${var.environment}-compute-\"\n  description   = \"Launch template for ${var.project_name} ${var.environment} compute resources\"\n  image_id      = data.aws_ami.amazon_linux.id\n  instance_type = var.instance_type\n  key_name      = var.key_name != \"\" ? var.key_name : null\n\n  vpc_security_group_ids = [aws_security_group.compute.id]\n\n  iam_instance_profile {\n    name = aws_iam_instance_profile.compute.name\n  }\n\n  monitoring {\n    enabled = var.enable_monitoring\n  }\n\n  block_device_mappings {\n    device_name = \"/dev/xvda\"\n    ebs {\n      volume_size           = var.root_volume_size\n      volume_type          = \"gp3\"\n      encrypted            = true\n      delete_on_termination = true\n\n      tags = merge(local.module_common_tags, {\n        Name         = \"${var.project_name}-${var.environment}-root-volume\"\n        ResourceType = \"EBSVolume\"\n        Purpose      = \"root-filesystem\"\n      })\n    }\n  }\n\n  # User data script\n  user_data = base64encode(templatefile(\"${path.module}/user-data.sh\", {\n    project_name    = var.project_name\n    environment     = var.environment\n    enable_monitoring = var.enable_monitoring\n  }))\n\n  tag_specifications {\n    resource_type = \"instance\"\n    tags = merge(local.instance_tags, {\n      Name = \"${var.project_name}-${var.environment}-instance\"\n    })\n  }\n\n  tag_specifications {\n    resource_type = \"volume\"\n    tags = merge(local.module_common_tags, {\n      Name         = \"${var.project_name}-${var.environment}-volume\"\n      ResourceType = \"EBSVolume\"\n    })\n  }\n\n  tags = merge(local.lt_tags, {\n    Name = \"${var.project_name}-${var.environment}-launch-template\"\n  })\n\n  lifecycle {\n    create_before_destroy = true\n  }\n}\n\n── Variable Resolutions ──\n\n  ${var.project_name} → terratag-aws-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-aws-test\n\n  var.environment → staging\n\n  ${var.project_name} → terratag-aws-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-aws-test\n\n  var.environment → staging\n\n  var.instance_type → t3.micro\n\n  var.key_name → \n\n  var.key_name → \n\n  var.enable_monitoring → true\n\n  var.root_volume_size → 20\n\n  local.module_common_tags → map[CreatedBy:compute-module LastModified:2024-01-01T00:00:00Z Module:compute]\n\n  merge(...) → { ResourceType = \"EBSVolume\", Purpose = \"root-filesystem\", Name = \"${var.project_name}-${var.envi...\n\n  ${var.project_name} → terratag-aws-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-aws-test\n\n  var.environment → staging\n\n  var.project_name → terratag-aws-test\n\n  var.environment → staging\n\n  var.enable_monitoring → true\n\n  local.instance_tags → map[Backup:enabled CreatedBy:compute-module LastModified:2024-01-01T00:00:00Z Module:compute Monitoring:enabled ResourceType:EC2Instance]\n\n  merge(...) → { Name = \"${var.project_name}-${var.environment}-root-volume\", ResourceType = \"EBSVolume\", Purpos...\n\n  ${var.project_name} → terratag-aws-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-aws-test\n\n  var.environment → staging\n\n  local.module_common_tags → map[CreatedBy:compute-module LastModified:2024-01-01T00:00:00Z Module:compute]\n\n  merge(...) → { Name = \"${var.project_name}-${var.environment}-root-volume\", ResourceType = \"EBSVolume\", Purpos...\n\n  ${var.project_name} → terratag-aws-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-aws-test\n\n  var.environment → staging\n\n  local.lt_tags → map[CreatedBy:compute-module LastModified:2024-01-01T00:00:00Z Module:compute Purpose:auto-scaling ResourceType:LaunchTemplate]\n\n  merge(...) → { Purpose = \"root-filesystem\", Name = \"${var.project_name}-${var.environment}-root-volume\", Resou...\n\n  ${var.project_name} → terratag-aws-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-aws-test\n\n  var.environment → staging\n",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "launch",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy",
+        "Backup",
+        "Monitoring"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        },
+        {
+          "tag_key": "Backup",
+          "suggested_value": "none",
+          "action": "add",
+          "reason": "Required tag 'Backup' is missing"
+        },
+        {
+          "tag_key": "Monitoring",
+          "suggested_value": "basic",
+          "action": "add",
+          "reason": "Required tag 'Monitoring' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_lb",
+      "resource_name": "compute",
+      "file_path": "modules/compute/main.tf",
+      "line_number": 282,
+      "snippet": "resource \"aws_lb\" \"compute\" {\n  count           = var.create_load_balancer ? 1 : 0\n  name            = \"${var.project_name}-${var.environment}-alb\"\n  internal        = false\n  load_balancer_type = \"application\"\n  security_groups = [aws_security_group.compute.id]\n  subnets         = var.public_subnet_ids\n\n  enable_deletion_protection = var.environment == \"production\" ? true : false\n\n  tags = merge(local.module_common_tags, {\n    Name         = \"${var.project_name}-${var.environment}-alb\"\n    ResourceType = \"ApplicationLoadBalancer\"\n    Tier         = \"public\"\n  })\n}\n\n── Variable Resolutions ──\n\n  var.create_load_balancer → true\n\n  ${var.project_name} → terratag-aws-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-aws-test\n\n  var.environment → staging\n\n  var.public_subnet_ids → []\n\n  var.environment → staging\n\n  local.module_common_tags → map[CreatedBy:compute-module LastModified:2024-01-01T00:00:00Z Module:compute]\n\n  merge(...) → { ResourceType = \"ApplicationLoadBalancer\", Tier = \"public\", Name = \"${var.project_name}-${var.en...\n\n  ${var.project_name} → terratag-aws-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-aws-test\n\n  var.environment → staging\n",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "lb",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_lb_target_group",
+      "resource_name": "compute",
+      "file_path": "modules/compute/main.tf",
+      "line_number": 300,
+      "snippet": "resource \"aws_lb_target_group\" \"compute\" {\n  count    = var.create_load_balancer ? 1 : 0\n  name     = \"${var.project_name}-${var.environment}-tg\"\n  port     = 80\n  protocol = \"HTTP\"\n  vpc_id   = var.vpc_id\n\n  health_check {\n    enabled             = true\n    healthy_threshold   = 2\n    interval            = 30\n    matcher             = \"200\"\n    path                = var.health_check_path\n    port                = \"traffic-port\"\n    protocol            = \"HTTP\"\n    timeout             = 5\n    unhealthy_threshold = 2\n  }\n\n  tags = merge(local.module_common_tags, {\n    Name         = \"${var.project_name}-${var.environment}-tg\"\n    ResourceType = \"TargetGroup\"\n    Protocol     = \"HTTP\"\n  })\n}\n\n── Variable Resolutions ──\n\n  var.create_load_balancer → true\n\n  ${var.project_name} → terratag-aws-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-aws-test\n\n  var.environment → staging\n\n  var.health_check_path → /\n\n  local.module_common_tags → map[CreatedBy:compute-module LastModified:2024-01-01T00:00:00Z Module:compute]\n\n  merge(...) → { Protocol = \"HTTP\", Name = \"${var.project_name}-${var.environment}-tg\", ResourceType = \"TargetGr...\n\n  ${var.project_name} → terratag-aws-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-aws-test\n\n  var.environment → staging\n",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "lb",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_lb_listener",
+      "resource_name": "compute",
+      "file_path": "modules/compute/main.tf",
+      "line_number": 327,
+      "snippet": "resource \"aws_lb_listener\" \"compute\" {\n  count             = var.create_load_balancer ? 1 : 0\n  load_balancer_arn = aws_lb.compute[0].arn\n  port              = \"80\"\n  protocol          = \"HTTP\"\n\n  default_action {\n    type             = \"forward\"\n    target_group_arn = aws_lb_target_group.compute[0].arn\n  }\n\n  tags = merge(local.module_common_tags, {\n    Name         = \"${var.project_name}-${var.environment}-listener\"\n    ResourceType = \"LoadBalancerListener\"\n    Port         = \"80\"\n  })\n}\n\n── Variable Resolutions ──\n\n  var.create_load_balancer → true\n\n  local.module_common_tags → map[CreatedBy:compute-module LastModified:2024-01-01T00:00:00Z Module:compute]\n\n  merge(...) → { Name = \"${var.project_name}-${var.environment}-listener\", ResourceType = \"LoadBalancerListener\"...\n\n  ${var.project_name} → terratag-aws-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-aws-test\n\n  var.environment → staging\n",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "lb",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_cloudwatch_log_group",
+      "resource_name": "compute",
+      "file_path": "modules/compute/main.tf",
+      "line_number": 346,
+      "snippet": "resource \"aws_cloudwatch_log_group\" \"compute\" {\n  count             = var.enable_monitoring ? 1 : 0\n  name              = \"/aws/ec2/${var.project_name}-${var.environment}\"\n  retention_in_days = var.log_retention_days\n\n  tags = merge(local.module_common_tags, {\n    Name         = \"${var.project_name}-${var.environment}-logs\"\n    ResourceType = \"CloudWatchLogGroup\"\n    Purpose      = \"application-logs\"\n  })\n}\n\n── Variable Resolutions ──\n\n  var.enable_monitoring → true\n\n  ${var.project_name} → terratag-aws-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-aws-test\n\n  var.environment → staging\n\n  var.log_retention_days → 30\n\n  local.module_common_tags → map[CreatedBy:compute-module LastModified:2024-01-01T00:00:00Z Module:compute]\n\n  merge(...) → { ResourceType = \"CloudWatchLogGroup\", Purpose = \"application-logs\", Name = \"${var.project_name}-...\n\n  ${var.project_name} → terratag-aws-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-aws-test\n\n  var.environment → staging\n",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "cloudwatch",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        }
+      ]
+    },
+    {
+      "resource_type": "aws_cloudwatch_metric_alarm",
+      "resource_name": "high_cpu",
+      "file_path": "modules/compute/main.tf",
+      "line_number": 359,
+      "snippet": "resource \"aws_cloudwatch_metric_alarm\" \"high_cpu\" {\n  count               = var.enable_monitoring ? 1 : 0\n  alarm_name          = \"${var.project_name}-${var.environment}-high-cpu\"\n  comparison_operator = \"GreaterThanThreshold\"\n  evaluation_periods  = \"2\"\n  metric_name         = \"CPUUtilization\"\n  namespace           = \"AWS/EC2\"\n  period              = \"120\"\n  statistic           = \"Average\"\n  threshold           = \"80\"\n  alarm_description   = \"This metric monitors ec2 cpu utilization\"\n  alarm_actions       = var.alarm_topic_arn != \"\" ? [var.alarm_topic_arn] : []\n\n  dimensions = {\n    AutoScalingGroupName = aws_autoscaling_group.compute.name\n  }\n\n  tags = merge(local.module_common_tags, {\n    Name         = \"${var.project_name}-${var.environment}-high-cpu-alarm\"\n    ResourceType = \"CloudWatchAlarm\"\n    MetricType   = \"CPUUtilization\"\n  })\n}\n\n── Variable Resolutions ──\n\n  var.enable_monitoring → true\n\n  ${var.project_name} → terratag-aws-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-aws-test\n\n  var.environment → staging\n\n  var.alarm_topic_arn → \n\n  var.alarm_topic_arn → \n\n  local.module_common_tags → map[CreatedBy:compute-module LastModified:2024-01-01T00:00:00Z Module:compute]\n\n  merge(...) → { Name = \"${var.project_name}-${var.environment}-high-cpu-alarm\", ResourceType = \"CloudWatchAlarm...\n\n  ${var.project_name} → terratag-aws-test\n\n  ${var.environment} → staging\n\n  var.project_name → terratag-aws-test\n\n  var.environment → staging\n",
+      "is_compliant": false,
+      "supports_tagging": true,
+      "tagging_capability": {
+        "supports_tag_attribute": true,
+        "tag_attribute_name": "tags",
+        "provider_supported": true,
+        "service": "cloudwatch",
+        "category": "taggable",
+        "reason": "Resource supports the 'tags' attribute"
+      },
+      "missing_tags": [
+        "Environment",
+        "Project",
+        "Owner",
+        "CostCenter",
+        "ManagedBy"
+      ],
+      "suggested_fixes": [
+        {
+          "tag_key": "Environment",
+          "suggested_value": "Production",
+          "action": "add",
+          "reason": "Required tag 'Environment' is missing"
+        },
+        {
+          "tag_key": "Project",
+          "suggested_value": "terratag-test",
+          "action": "add",
+          "reason": "Required tag 'Project' is missing"
+        },
+        {
+          "tag_key": "Owner",
+          "suggested_value": "",
+          "action": "add",
+          "reason": "Required tag 'Owner' is missing"
+        },
+        {
+          "tag_key": "CostCenter",
+          "suggested_value": "CC-DEV-001",
+          "action": "add",
+          "reason": "Required tag 'CostCenter' is missing"
+        },
+        {
+          "tag_key": "ManagedBy",
+          "suggested_value": "Terraform",
+          "action": "add",
+          "reason": "Required tag 'ManagedBy' is missing"
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "compliance_rate": 0,
+    "most_common_violations": null,
+    "resource_type_breakdown": {
+      "aws_cloudfront_distribution": {
+        "total": 1,
+        "compliant": 0,
+        "rate": 0
+      },
+      "aws_cloudtrail": {
+        "total": 1,
+        "compliant": 0,
+        "rate": 0
+      },
+      "aws_cloudwatch_log_group": {
+        "total": 5,
+        "compliant": 0,
+        "rate": 0
+      },
+      "aws_cloudwatch_metric_alarm": {
+        "total": 5,
+        "compliant": 0,
+        "rate": 0
+      },
+      "aws_db_instance": {
+        "total": 2,
+        "compliant": 0,
+        "rate": 0
+      },
+      "aws_db_option_group": {
+        "total": 1,
+        "compliant": 0,
+        "rate": 0
+      },
+      "aws_db_parameter_group": {
+        "total": 1,
+        "compliant": 0,
+        "rate": 0
+      },
+      "aws_db_subnet_group": {
+        "total": 1,
+        "compliant": 0,
+        "rate": 0
+      },
+      "aws_iam_instance_profile": {
+        "total": 1,
+        "compliant": 0,
+        "rate": 0
+      },
+      "aws_iam_role": {
+        "total": 2,
+        "compliant": 0,
+        "rate": 0
+      },
+      "aws_internet_gateway": {
+        "total": 1,
+        "compliant": 0,
+        "rate": 0
+      },
+      "aws_kms_key": {
+        "total": 2,
+        "compliant": 0,
+        "rate": 0
+      },
+      "aws_launch_template": {
+        "total": 1,
+        "compliant": 0,
+        "rate": 0
+      },
+      "aws_lb": {
+        "total": 1,
+        "compliant": 0,
+        "rate": 0
+      },
+      "aws_lb_listener": {
+        "total": 1,
+        "compliant": 0,
+        "rate": 0
+      },
+      "aws_lb_target_group": {
+        "total": 1,
+        "compliant": 0,
+        "rate": 0
+      },
+      "aws_route_table": {
+        "total": 1,
+        "compliant": 0,
+        "rate": 0
+      },
+      "aws_s3_bucket": {
+        "total": 4,
+        "compliant": 0,
+        "rate": 0
+      },
+      "aws_secretsmanager_secret": {
+        "total": 1,
+        "compliant": 0,
+        "rate": 0
+      },
+      "aws_security_group": {
+        "total": 2,
+        "compliant": 0,
+        "rate": 0
+      },
+      "aws_sns_topic": {
+        "total": 2,
+        "compliant": 0,
+        "rate": 0
+      },
+      "aws_subnet": {
+        "total": 2,
+        "compliant": 0,
+        "rate": 0
+      },
+      "aws_vpc": {
+        "total": 1,
+        "compliant": 0,
+        "rate": 0
+      }
+    }
+  }
+}

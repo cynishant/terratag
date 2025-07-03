@@ -14,8 +14,8 @@ import (
 	"testing"
 
 	"github.com/bmatcuk/doublestar"
-	"github.com/env0/terratag/cli"
-	"github.com/env0/terratag/internal/common"
+	"github.com/cloudyali/terratag/cli"
+	"github.com/cloudyali/terratag/internal/common"
 	. "github.com/onsi/gomega"
 	"github.com/otiai10/copy"
 	"github.com/spf13/viper"
@@ -27,7 +27,7 @@ var cleanArgs = append([]string(nil), os.Args...)
 var programName = os.Args[0]
 var args = []string{
 	programName,
-	"-tags={\"env0_environment_id\":\"40907eff-cf7c-419a-8694-e1c6bf1d1168\",\"env0_project_id\":\"43fd4ff1-8d37-4d9d-ac97-295bd850bf94\"}",
+	"-tags=test-tags.yaml",
 }
 var testsDir = "test/tests"
 var fixtureDir = "test/fixture"
@@ -505,7 +505,7 @@ func TestToHclMap(t *testing.T) {
 }
 
 func TestEnvVariables(t *testing.T) {
-	os.Setenv("TERRATAG_TAGS", `{"a":"b"}`)
+	os.Setenv("TERRATAG_TAGS", "test-tags.yaml")
 	os.Setenv("TERRATAG_DIR", "./dir")
 	os.Setenv("TERRATAG_SKIPTERRATAGFILES", "true")
 	os.Setenv("TERRATAG_FILTER", "filter")
@@ -534,7 +534,7 @@ func TestEnvVariables(t *testing.T) {
 
 	require.NoError(t, err)
 
-	assert.Equal(t, `{"a":"b"}`, args.Tags)
+	assert.Equal(t, "test-tags.yaml", args.TagsFile)
 	assert.Equal(t, "./dir", args.Dir)
 	assert.True(t, args.IsSkipTerratagFiles)
 	assert.Equal(t, "filter", args.Filter)
@@ -543,11 +543,11 @@ func TestEnvVariables(t *testing.T) {
 	assert.Equal(t, string(common.Terragrunt), args.Type)
 
 	// The command line flags have precedence over environment variables.
-	os.Args = []string{programName, `-tags={"c":"d"}`}
+	os.Args = []string{programName, `-tags=other-tags.yaml`}
 	args, err = cli.InitArgs()
 	os.Args = cleanArgs
 
 	require.NoError(t, err)
 
-	assert.Equal(t, `{"c":"d"}`, args.Tags)
+	assert.Equal(t, "other-tags.yaml", args.TagsFile)
 }
